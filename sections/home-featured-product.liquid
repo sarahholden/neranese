@@ -1,0 +1,30 @@
+{%- assign product = all_products[section.settings.product] -%}
+
+{% if product != empty %}
+  {%- include 'product-card' -%}
+
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Featured product",
+    "settings": [
+      {
+        "type": "product",
+        "id": "product",
+        "label": "Product"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_share_buttons",
+        "label": "Show social sharing buttons"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Featured product",
+        "category": "Product"
+      }
+    ]
+  }
+{% endschema %}

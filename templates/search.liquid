@@ -1,0 +1,65 @@
+<section class="container page-padded-top padded">
+  {% paginate search.results by 15 %}
+
+    <header>
+      <h1>
+        {% if search.performed %}
+          {% if search.results_count == 0 %}
+            {{ 'general.search.no_results_html' | t: terms: search.terms }}
+          {% else %}
+            {{ 'general.search.results_for_html' | t: terms: search.terms }}
+          {% endif %}
+        {% else %}
+          {{ 'general.search.title' | t }}
+        {% endif %}
+      </h1>
+    </header>
+
+    {% comment %}
+    <form action="/search" method="get" role="search">
+      <label for="Search" class="label-hidden">
+        {{ 'general.search.placeholder' | t }}
+      </label>
+      <input type="search"
+             name="q"
+             id="Search"
+             value="{{ search.terms | escape }}"
+             placeholder="{{ 'general.search.placeholder' | t }}">
+      <button type="submit" class="btn">
+        {% include 'icon-search' %}
+        <span class="icon-fallback-text">{{ 'general.search.submit' | t }}</span>
+      </button>
+    </form>
+    {% endcomment %}
+
+
+  {% if search.performed %}
+      <ul class="cols-3 product-grid cols-2-sm">
+        {% for item in search.results %}
+          <li>
+            {% if item.object_type == 'product' %}
+              {% render 'product-card', product: item %}
+            {% else %}
+              {% assign featured_image = item.image | default: item.featured_image %}
+              {% if featured_image != blank %}
+                <a href="{{ item.url | within: collection }}" title="{{ item.title | escape }}">
+                  {{ featured_image | img_url: '240x240' | img_tag: featured_image.alt }}
+                </a>
+              {% endif %}
+
+              <h5>{{ item.title | link_to: item.url }}</h5>
+              <p>{{ item.content | strip_html | truncatewords: 50 }}</p>
+            {% endif %}
+
+          </li>
+        {% endfor %}
+      </ul>
+
+      {% if paginate.pages > 1 %}
+        {% include 'pagination' %}
+      {% endif %}
+    {% endif %}
+
+  {% endpaginate %}
+
+</section>

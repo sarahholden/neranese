@@ -1,0 +1,77 @@
+/* SUPER basic styles for recharge. Adjust as needed. Needs to be included in theme.scss.liquid to use. */
+
+/* --------------------------------------------------------------------------
+  RECHARGE
+-----------------------------------------------------------------------------*/
+body #ReCharge {
+  @extend .page-padded-top !optional;
+  @extend .container !optional;
+  padding-top: 16rem;
+  padding-bottom: 12rem;
+  min-height: 100vh;
+  font-size: 1.8rem;
+  @include mobile-only {
+    padding-top: 9rem;
+    padding-bottom: 6rem;
+  }
+  h2 {
+    font-size: 5rem;
+    @include mobile-only {
+      font-size: 3.5rem;
+    }
+  }
+  a {
+    text-decoration: underline;
+  }
+
+  .rc_header-settings {
+    margin-bottom: 4rem;
+  }
+  .rc_table__container {
+    margin-top: 2rem;
+  }
+  .rc_sidebar__menu {
+    a {
+      @extend .small-caps !optional;
+      display: inline-block;
+      margin-bottom: 0.5rem;
+      text-decoration: none;
+      &.rc_active,
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  .rc_button--fa-plus-circle {
+    &::before {
+      margin-right: 1rem;
+    }
+  }
+  .edit_address_link {
+    text-decoration: underline;
+  }
+  .rc_toggler form {
+    margin-left: 0;
+    margin-top: 3rem;
+    button {
+      margin-top: 1rem;
+    }
+    input[type="number"],
+    input[type="date"] {
+      width: 20rem;
+    }
+  }
+  input,
+  textarea {
+    margin-bottom: 2rem;
+  }
+  select {
+    max-width: 100%;
+    margin-top: 0.6rem;
+    margin-bottom: 2rem;
+  }
+  .form-vertical {
+    margin-left: 0;
+  }
+
+}

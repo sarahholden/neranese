@@ -1,0 +1,118 @@
+<!--
+SETUP INSTRUCTIONS:
+[] Uncomment contact scss file in dev > scss > theme.scss.liquid
+[] Uncomment form-submission.js section in theme.liquid
+[] Add additional fields if needed. Make sure to add a name attribute
+  example: name="contact[yourFieldNameHereCamelCased]"
+  (see other fields for examples)
+[] Test form!! Make sure you're getting success and error messages and those messages have basic styles.
+[] Test twice - make sure captcha page is styled.
+[] Style as needed.
+[] Remove this comment :)
+-->
+
+<section class="container">
+  <div class="inner">
+    <header class="js-animate">
+      {% if section.settings.heading != blank %}
+        <h1 data-reveal="lines-masked">{{ section.settings.heading | newline_to_br }}</h1>
+      {% endif %}
+      {% if section.settings.desc != blank %}
+        <div class="desc" data-anim="slide" data-anim-order="3">
+          {{ section.settings.desc }}
+        </div>
+      {% endif %}
+    </header>
+
+
+      <div class="list-animation-wrapper" >
+
+        {% form 'contact' %}
+
+        {% if form.posted_successfully? %}
+          <div class="js-animate">
+            <div class="desc success-message" data-anim="slide" data-anim-order="4">
+              {{ section.settings.success }}
+            </div>
+          </div>
+        {% else %}
+
+
+          {{ form.errors | default_errors }}
+
+          <div class="form-inner-wrap">
+            <div class="validation-wrapper animate-item">
+              <label class="visually-hidden" for="ContactFormName">{{ 'contact.form.name' | t }}</label>
+              <input type="text"
+                required
+                name="contact[name]"
+                id="ContactFormName"
+                placeholder="{{ 'contact.form.name' | t }}"
+                value="{% if form[name] %}{{ form[name] }}{% elsif customer %}{{ customer.name }}{% endif %}"
+                >
+            </div>
+            <div class="validation-wrapper animate-item">
+              <label class="visually-hidden" for="ContactFormEmail">{{ 'contact.form.email' | t }}</label>
+              <input type="email"
+                required
+                name="contact[email]"
+                id="ContactFormEmail"
+                placeholder="{{ 'contact.form.email' | t }}"
+                value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+                spellcheck="false"
+                autocomplete="off"
+                autocapitalize="off"
+                >
+
+            </div>
+            <div class="validation-wrapper animate-item">
+              <label class="visually-hidden" for="ContactFormMessage">{{ 'contact.form.message' | t }}</label>
+              <textarea rows="10"
+                required
+                name="contact[body]"
+                id="ContactFormMessage"
+                placeholder="{{ 'contact.form.message' | t }}"
+                >
+                {%- if form.body -%}
+                  {{- form.body -}}
+                {%- endif -%}
+              </textarea>
+            </div>
+            <div class="btn-row animate-item">
+              <button type="submit" class="btn btn--black">Send</button>
+            </div>
+          </div>
+          {% endif %}
+        {% endform %}
+      </div>
+
+
+
+  </div>
+</section>
+
+
+{% schema %}
+{
+  "name": "Contact Content",
+  "class": "page-general",
+  "settings": [
+    {
+      "id": "heading",
+      "type": "text",
+      "label": "Heading"
+    },
+    {
+      "id": "desc",
+      "type": "richtext",
+      "label": "Description"
+    },
+    {
+      "id": "success",
+      "type": "richtext",
+      "label": "Success Message",
+      "default": "<p>Thank you for reaching out! <br>We'll get back to you as soon as possible.</p>"
+    }
+  ]
+}
+{% endschema %}

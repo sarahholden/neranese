@@ -1,0 +1,73 @@
+@charset "UTF-8";
+
+/*================ COMMON ================*/
+@import 'global/reset.scss';
+@import 'global/slate-reset.scss';
+
+/*================ SETTINGS ================*/
+@import 'settings/variables.scss';
+
+// @import 'vendor/swiper.scss';
+
+/*================ PARTIALS ================*/
+@import 'partials/images.scss';
+@import 'partials/typography.scss';
+@import 'partials/layout.scss';
+@import 'partials/grid.scss';
+@import 'partials/nav.scss';
+@import 'partials/search.scss';
+@import 'partials/footer.scss';
+@import 'partials/forms.scss';
+@import 'partials/buttons.scss';
+@import 'vendor/selectric.scss';
+@import 'partials/cart.scss';
+@import 'partials/promo-bar.scss';
+@import 'partials/animation.scss';
+
+/*================ COMPONENTS ================*/
+@import 'components/components.scss';
+
+/*================ SECTIONS ================*/
+// @import 'sections/faq.scss';
+// @import 'sections/contact.scss';
+// @import 'sections/about.scss';
+// @import 'sections/home.scss';
+@import 'sections/product.scss';
+@import 'sections/general-styles.scss';
+
+/* --------------------------------------------------------------------------
+Section Comment
+-----------------------------------------------------------------------------*/
+.visually-hidden,
+.icon-fallback-text,
+.label-hidden {
+  position: absolute !important;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: -400px;
+  left: 0;
+  padding: 0.8rem;
+  z-index: 400;
+  background: white;
+  &:focus {
+    top: 0;
+  }
+}
+
+/* 404 page ================== */
+.page-404,
+.page-general {
+  text-align: center;
+  h1 {
+    margin-bottom: 2rem;
+  }
+}

@@ -1,0 +1,93 @@
+<div class="container padded">
+  <header data-trigger="scroll">
+    <h1 data-reveal="lines-masked">{{ section.settings.heading }}</h1>
+  </header>
+  <section>
+    <div class="cols-2">
+      {% for block in section.blocks %}
+        {%- if block.settings.link != blank -%}
+          <a href="{{ block.settings.link }}">
+        {%- endif -%}
+          {% case block.type %}
+          {% when 'press_item' %}
+            {% if block.settings.image != blank %}
+                <div class="cropped-image-wrapper">
+                  {% assign image = block.settings.image %}
+                  {% assign alt_text = block.settings.image_alt | escape %}
+                  {% assign img_url = image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+                  <img
+                  class="lazyload fade-in"
+                  data-src="{{ img_url }}"
+                  data-widths="[360, 540, 720, 900, 1080, 1600, 2200, 2800]"
+                  data-aspectratio="{{ image.aspect_ratio }}"
+                  data-sizes="auto"
+                  alt="{{ alt_text }}"
+                  data-anim="scale"
+                  >
+                </div>
+            {% endif %}
+          {% endcase %}
+          {% if block.settings.title != blank %}
+            <h2>{{ block.settings.title | newline_to_br }}</h2>
+          {% endif %}
+          <p class="cta-link">
+            {{ section.settings.link_text }}
+          </p>
+        {%- if block.settings.link != blank -%}
+          </a>
+        {%- endif -%}
+      {% endfor %}
+    </div>
+  </section>
+
+</div>
+
+{% schema %}
+{
+  "name": "Press Page",
+  "settings": [
+    {
+      "id": "heading",
+      "type": "text",
+      "label": "heading",
+      "default": "Press"
+    },
+    {
+      "id": "link_text",
+      "type": "text",
+      "label": "Link Text",
+      "default": "read more"
+    }
+
+  ],
+  "blocks": [
+    {
+      "type": "press_item",
+      "name": "Press Item",
+      "settings": [
+        {
+          "id": "image",
+          "type": "image_picker",
+          "label": "Image"
+        },
+        {
+          "id": "image_alt",
+          "type": "text",
+          "label": "Image Alt",
+          "info": "Write a brief description of this image to improve search engine optimization (SEO) and ADA accessibility."
+        },
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Publication"
+        },
+        {
+          "id": "link",
+          "type": "url",
+          "label": "Link"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

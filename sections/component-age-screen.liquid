@@ -1,0 +1,41 @@
+<div class="js-age-screen age-screen">
+  {% if section.settings.heading != blank %}
+    <h1>{{ section.settings.heading | newline_to_br }}</h1>
+  {% endif %}
+
+  <!-- ====== YES AND NO ======== -->
+  <button class="js-close-age-screen">{{ section.settings.yes_text }}</button>
+  <a href="{{ section.settings.no_url }}">{{ section.settings.no_text }}</a>
+
+</div>
+
+
+{% schema %}
+{
+  "name": "Age Screen",
+  "settings": [
+    {
+      "id": "heading",
+      "type": "text",
+      "label": "Heading"
+    },
+    {
+      "id": "yes_text",
+      "type": "text",
+      "label": "Yes Text",
+      "default": "Yes"
+    },
+    {
+      "id": "no_text",
+      "type": "text",
+      "label": "No Text",
+      "default": "No"
+    },
+    {
+      "id": "no_url",
+      "type": "url",
+      "label": "No URL"
+    }
+  ]
+}
+{% endschema %}

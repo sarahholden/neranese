@@ -1,0 +1,15 @@
+development:
+  password: ${SH_DEV_PASSWD}
+  theme_id: ${SH_DEV_THEMEID}
+  store: ${SH_DEV_SHOP}
+  ignore_files:
+    - config/settings_data.json
+    - .gitignore
+    - webpack.config.js
+    - dev/*
+production:
+  password: ${SH_DEV_PASSWD}
+  theme_id: ${SH_LIVE_THEMEID}
+  store: ${SH_DEV_SHOP}
+  timeout: 60s
+  readonly: true

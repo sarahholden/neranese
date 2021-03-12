@@ -1,0 +1,50 @@
+<!-- -====================================
+PROMO BAR
+=========================================--->
+{% if section.settings.show_promo_bar %}
+  {%- unless section.settings.home_page_only and template != 'index' -%}
+    <div class="promo-bar" style="background-color: {{section.settings.promo_bar_bg_color}}; color: {{section.settings.promo_bar_text_color}};">
+      {% comment %}
+        <button type="button" class="text-only js-close-promo-bar">{%- include 'icon-close' -%}</button>
+      {% endcomment %}
+      <div class="desc">{{section.settings.promo_bar_text}}</div>
+    </div>
+  {%- endunless -%}
+{% endif %}
+
+{% schema %}
+{
+  "name": "Promo Bar",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Promo Bar"
+    },
+    {
+      "id": "show_promo_bar",
+      "type": "checkbox",
+      "label": "Show Promo Bar"
+    },
+    {
+      "id": "home_page_only",
+      "type": "checkbox",
+      "label": "Home Page Only"
+    },
+    {
+      "id": "promo_bar_text",
+      "type": "richtext",
+      "label": "Promo Bar Text"
+    },
+    {
+      "id": "promo_bar_bg_color",
+      "type": "color",
+      "label": "Promo Bar Bg Color"
+    },
+    {
+      "id": "promo_bar_text_color",
+      "type": "color",
+      "label": "Promo Bar Text Color"
+    }
+  ]
+}
+{% endschema %}

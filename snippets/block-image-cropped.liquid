@@ -1,0 +1,18 @@
+<div class="cropped-image-wrapper" {% if height != blank %}style="padding-bottom: {{ height }};"{% endif %}>
+  {%- unless img_url -%}
+    {% assign img_url = image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+    {% assign mobile_img_url = m_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+  {%- endunless -%}
+
+  <picture>
+    <!--[if IE 9]><audio><![endif]-->
+    <source
+    data-src="{{ mobile_img_url }}"
+    media="--medium" />
+    <!--[if IE 9]></audio><![endif]-->
+    <img class="lazyload {{ img_class }}"
+        data-src="{{ img_url }}"
+        data-sizes="auto"
+        alt="{{ alt_text }}">
+  </picture>
+</div>

@@ -1,0 +1,92 @@
+<!--
+SETUP INSTRUCTIONS:
+1. Uncomment this file in theme.liquid
+2. Uncomment "Cookies" and "Email Popup" sections in dev > js > main.js
+3. Make sure scss file email-popup is uncommented in dev > scss > theme.scss.liquid
+4. Fill out content to match design in Theme > Customize (add options in schema as needed)
+5. Make sure Klaviyo app is installed on Shopify store
+6. Replace ###### with Klaviyo list ID. To get this, log into Klaviyo and go to Lists & Segments, find the newsletter list,
+  click the 3 dot icon, list settings, and get the list id (usually around 6 letters)
+7. Delete snippets > mailchimp-newsletter.liquid  and dev > scss > components > mailchimp.scss if email provider is Klaviyo
+8. Test by submitting your email then making sure you see it in Klaviyo and get an email asking to confirm your subscription.
+9. Delete this comment once you've confirmed this is set up correctly :)
+
+Note: form_index is used to make sure IDs are unique if this snippet is included multiple times.
+-->
+
+
+{%- if section.settings.show_email_popup == true -%}
+  <div class="js-close-email-popup close-popup-overlay"></div>
+  <div class="newsletter-section email-popup-form-wrapper">
+    <div class="container padded">
+      <button type="button"
+        aria-label="close-popup"
+        class="js-close-email-popup close-popup-btn text-only">
+        {%- include 'icon-close' -%}
+      </button>
+      <!-- ======================================
+      TEXT INFO
+      =========================================== -->
+      {% if section.settings.heading != blank %}
+        <h2 class="h1" data-anim="slide" data-anim-order="4">{{ section.settings.heading | newline_to_br }}</h2>
+      {% endif %}
+
+      <!-- ======================================
+      KLAVIYO FORM
+      =========================================== -->
+      <div class="form-outer-wrapper" data-anim="slide" data-anim-order="5">
+        <!-- REPLACE ID HERE -->
+        {%- include 'klaviyo-newsletter', list_id: '######', form_index: '-1' -%}
+
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+
+ {% schema %}
+ {
+   "name": "Newsletter Popup",
+   "class": "newsletter-popup",
+   "settings": [
+     {
+       "id": "show_email_popup",
+       "type": "checkbox",
+       "label": "Show Email Popup",
+       "default": true
+     },
+     {
+       "id": "heading",
+       "type": "textarea",
+       "label": "Heading",
+       "default": "Keep In Touch."
+     },
+     {
+       "id": "placeholder",
+       "type": "text",
+       "label": "Placeholder",
+       "default": "Enter your email"
+     },
+     {
+       "id": "btn_text",
+       "type": "text",
+       "label": "Button Text",
+       "default": "Submit"
+     },
+     {
+       "id": "success",
+       "type": "text",
+       "label": "Form submitted message",
+       "default": "Check your inbox for updates."
+     },
+     {
+       "id": "error",
+       "type": "text",
+       "label": "Error message",
+       "default": "Please enter a valid email address."
+     }
+
+
+   ]
+ }
+ {% endschema %}

@@ -1,0 +1,43 @@
+// /* --------------------------------------------------------------------------
+//   TEXT ANIMATIONS
+// -----------------------------------------------------------------------------*/
+[data-reveal="lines-masked"],
+[data-reveal="lines-masked-desc"],
+[data-reveal="words-masked"] {
+  opacity: 0;
+  &.loaded {
+    opacity: 1;
+  }
+  [class^="split-line-wrap"] {
+    overflow: hidden;
+    display: block;
+  }
+}
+
+.scroll-enter,
+[data-stagger] {
+  opacity: 0;
+}
+
+// /* --------------------------------------------------------------------------
+//   SLIDE
+// -----------------------------------------------------------------------------*/
+[data-anim="slide"] {
+  opacity: 0;
+  transform: translateY(2rem);
+  transition: all 0.8s $ease;
+}
+
+.animate-in [data-anim="fade"],
+.animate-in [data-anim="slide"],
+.animate-in[data-anim="slide"] {
+  opacity: 1;
+  transform: none;
+  transition: all 0.8s $ease;
+}
+
+@for $i from 1 through 30 {
+  .animate-in [data-anim-order="#{$i}"] {
+    transition-delay: 0.15 + ($i - 1) * 0.15s;
+  }
+}

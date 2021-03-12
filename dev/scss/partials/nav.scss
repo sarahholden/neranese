@@ -1,0 +1,166 @@
+/* --------------------------------------------------------------------------
+Body Open Mobile Nav Styles
+-----------------------------------------------------------------------------*/
+.open-mobile-nav {
+  /* Prevent the body from scrolling under the mobile navigation */
+  position: fixed;
+  overflow: hidden;
+}
+
+/* --------------------------------------------------------------------------
+GENERAL Navigation Styles
+-----------------------------------------------------------------------------*/
+.nav-wrapper {
+  position: absolute;
+  width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+SCROLLED NAV
+-----------------------------------------------------------------------------*/
+.nav-wrapper {
+  &.is-fixed-hidden,
+  &.is-fixed-visible {
+    position: fixed;
+    background-color: white;
+    transition: top 0.3s ease-in-out;
+  }
+  &.is-fixed-visible {
+    top: 0;
+  }
+  &.is-fixed-hidden {
+    top: -200px;
+  }
+}
+
+.open-mobile-nav .nav-wrapper.is-fixed-hidden {
+  top: 0;
+}
+
+/* --------------------------------------------------------------------------
+LOGO WRAPPER
+-----------------------------------------------------------------------------*/
+// CENTERED LOGO
+// .nav-wrapper .logo-wrapper {
+//   max-width: 12.3rem;
+//   position: absolute;
+//   top: 50%;
+//   left: 50%;
+//   transform: translate(-50%, -50%);
+//   @include mobile-only {
+//     max-width: 9rem;
+//   }
+// }
+
+/* --------------------------------------------------------------------------
+Header Navigation Styles
+-----------------------------------------------------------------------------*/
+.nav-wrapper nav {
+  a {}
+  a:hover {}
+  .current a {
+    /* Styles for the currently active link */
+
+  }
+
+}
+
+/* ==============   MOBILE NAV STYLES  ============== */
+@include mobile-only {
+  .nav-wrapper nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, .95);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    a {
+      display: block;
+      margin: 0;
+      font-size: 2rem;
+      line-height: 2;
+    }
+  }
+}
+
+/* ==============   OPEN MOBILE NAV  ============== */
+.open-mobile-nav {
+  .nav-wrapper nav {
+    /* Styles for when the user clicks the hamburger icon */
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+/* --------------------------------------------------------------------------
+Hamburger Icon styles
+-----------------------------------------------------------------------------*/
+.hamburger {
+  width: 3rem;
+  height: 1.5rem;
+  position: absolute;
+  right: 3rem;
+  top: 1.5rem;
+  display: none;
+  z-index: 201;
+  cursor: pointer;
+  span {
+    display: block;
+    border-bottom: 2px solid $borderColor;
+    width: 100%;
+    position: absolute;
+    height: 1px;
+    transition: all 0.2s ease-in-out;
+  }
+  span:first-of-type {
+    top: 0;
+  }
+  span:nth-of-type(2) {
+    top: 50%;
+  }
+  span:last-of-type {
+    top: 100%;
+  }
+}
+
+/* ==============   HAMBURGER MOBILE STYLES  ============== */
+@include mobile-only {
+  .hamburger {
+    display: block;
+    position: fixed;
+  }
+}
+
+/* ==============   OPEN MOBILE NAV HAMBURGER STYLES  ============== */
+.open-mobile-nav {
+  /* Rotate lines to form an X */
+  .hamburger {
+    position: fixed;
+    span:first-of-type {
+      top: 50%;
+      transform: rotate(-45deg);
+    }
+    span:nth-of-type(2) {
+      transform: translateX(-20%);
+      opacity: 0;
+    }
+    span:last-of-type {
+      top: 50%;
+      transform: rotate(45deg);
+    }
+  }
+}
+
+/* ==============   CART ICON  ============== */
+.nav-wrapper .cart-icon-wrapper {
+  width: 3rem;
+  display: block;
+}

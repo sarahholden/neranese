@@ -1,0 +1,48 @@
+<div data-section-id="{{ section.id }}" data-section-type="header-section">
+  <div class="nav-wrapper" role="banner">
+
+    <div class="container">
+      <!--   LOGO   -->
+      {%- include 'nav-logo' -%}
+
+      <!--   NAV   -->
+      {%- include 'nav-menu', current_linklist: section.settings.main_linklist -%}
+
+
+      <!-- ACCOUNT LINKS -->
+      {% if shop.customer_accounts_enabled %}
+        {%- include 'nav-account-links' -%}
+      {% endif %}
+
+      <!--   CART   -->
+      {%- include 'nav-cart-link' -%}
+    </div>
+
+    <!--   HAMBURGER   -->
+    <button type="button" class="hamburger text-only" aria-label="Open nav menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "Header",
+    "settings": [
+      {
+        "id": "logo",
+        "type": "url",
+        "label": "Logo image"
+      },
+      {
+        "id": "main_linklist",
+        "type": "link_list",
+        "label": "Menu",
+        "default": "main-menu",
+        "info": "Update links in Online Store > Navigation."
+      }
+    ]
+  }
+{% endschema %}

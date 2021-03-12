@@ -1,0 +1,22 @@
+{% comment %}
+  Example include including placeholder_image, video_url, and alt_text
+  {%- include 'components-html5-video', placeholder_image: img_url, video_url: section.settings.image_upper_right_video_url, alt_text: alt_text, lazy_load: false -%}
+
+  Add the following to JS
+  $( window ).on( "load", function() {
+    $('.js-lazy-video source').each(function() {
+      var sourceFile = $(this).attr('data-src');
+      $(this).attr('src', sourceFile);
+      var video = this.parentElement;
+      video.load();
+      video.play();
+    });
+  });
+
+{% endcomment %}
+
+<div class="cropped-image-wrapper">
+  <video autoplay muted loop poster="{{ placeholder_image }}" class="video-player js-video-player {% if lazy_load == true %}js-lazy-video{% endif %}" title="{{ alt_text }}">
+   <source {% if lazy_load == true %}data-src="{{ video_url }}"{% else %}src="{{ video_url }}"{% endif %} type="video/mp4">
+  </video>
+</div>

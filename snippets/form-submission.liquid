@@ -1,0 +1,55 @@
+<script type="text/javascript">
+
+  /* ---------------------------------------------
+  Form Submissions
+  ------------------------------------------------ */
+  var invalid = 0;
+
+  function checkField (field) {
+    var userInput = field.val();
+    field.siblings('p').remove();
+    if (field.prop('required') && userInput === '') {
+      field.after('<p class="error">Please fill in the field before continuing.</p>');
+      field.closest('.validation-wrapper').addClass('has-error');
+      invalid++;
+      return false;
+    } else if (field.attr('type') === 'email' && !(/(.+)@(.+){2,}\.(.+){2,}/.test(userInput))) {
+      field.after('<p class="error">Please enter a valid email address.</p>');
+      invalid++;
+      return false;
+    } else {
+      field.closest('.validation-wrapper').removeClass('has-error');
+    }
+    return true;
+  }
+
+  function checkAllFields() {
+    invalid = 0;
+    $('.error').remove();
+    $('#contact_form input, #contact_form textarea').each(function () {
+      checkField($(this));
+    });
+
+    if (invalid > 0) {
+      return false;
+    }
+
+    return true;
+  }
+
+  $('#contact_form input, #contact_form textarea').on('blur', function () {
+    checkField($(this));
+  });
+
+  /* ---------------------------------------------
+  Form Submit
+  ------------------------------------------------ */
+  $('#contact_form').on('submit', function (e) {
+    // First check to make sure all required fields are filled out
+    if (!checkAllFields()){
+      e.preventDefault();
+    }
+  });
+
+
+</script>

@@ -1,0 +1,79 @@
+<!-- ======================================
+CUSTOM CURSOR
+=========================================== -->
+<!--
+1. Include Slick JS and CSS if this is a slider
+<script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.4.1/slick.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.4.1/slick.css"/>
+2. See components.scss for css code
+2. See theme.js for css code
+ -->
+
+
+ <!-- SLIDER WITH GRAB CURSOR -->
+
+ <div class="js-cursor home-product-slider" data-cursor-type="grab">
+  <div class="follower" aria-hidden="true">
+    <div class="animated-content">
+      <!-- Cursor content -->
+      GRAB
+    </div>
+  </div>
+  <div class="slider js-preload" id="full-product-list">
+    {% for product in collection.products %}
+    <div>
+      Product here!
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+ <!-- GLOW CURSOR -->
+<div class="gdpr-bar body-sans-4 js-cursor js-has-click-targets" aria-hidden="true" data-cursor-type="glow">
+  <div class="follower">
+    <div class="animated-content"></div>
+  </div>
+  <div class="desc">
+    {{ section.settings.desc }}
+  </div>
+  <button class="js-close-gdpr text-only close-btn" aria-label="Close GDPR Bar">
+    {%- include 'icon-close' -%}
+  </button>
+</div>
+
+
+<!-- ======================================
+CSS GIF ANIMATION (SPRITE)
+=========================================== -->
+{% if section.settings.sprite != blank %}
+  {% assign bg_image = section.settings.sprite %}
+  {% assign alt_text = section.settings.sprite_alt %}
+  <div class="sprite-wrapper">
+    <div class="lazyload sprite"
+      data-bgset="{% include 'bgset', image: bg_image %}"
+      data-sizes="auto"
+      role="img" aria-label="{{ alt_text }}">
+    </div>
+  </div>
+{% endif %}
+
+
+<!-- ======================================
+Marquee text
+=========================================== -->
+
+{%- include 'block-marquee-text', marquee_text: marquee_text, marquee_link: section.settings.button_url -%}
+
+<div class="marquee-text {{ marquee_class }}">
+  {%- if marquee_link -%}
+    <a href="{{ marquee_link }}" {% if link_target == 'blank' %}target="_blank"{% endif %}>
+  {%- endif -%}
+    <h1 class="hd--serif-xl marquee__inner">
+      {%- for i in (1..5) -%}
+        <span {% if i > 1 %}aria-hidden="true"{% endif %}>{{ marquee_text }}</span>
+      {%- endfor -%}
+    </h1>
+  {%- if marquee_link -%}
+    </a>
+  {%- endif -%}
+</div>

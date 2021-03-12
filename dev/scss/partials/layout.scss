@@ -1,0 +1,140 @@
+/* --------------------------------------------------------------------------
+Layout Helpers
+-----------------------------------------------------------------------------*/
+.hide {
+	display: none;
+}
+
+/* --------------------------------------------------------------------------
+Default Box sizing, Overflow Styles
+-----------------------------------------------------------------------------*/
+* {
+	box-sizing: border-box;
+}
+
+/* --------------------------------------------------------------------------
+Vertical & Horizontal Alignment
+-----------------------------------------------------------------------------*/
+/* Center vertically  */
+%v-aligner,
+.v-aligner {
+	display: flex;
+	align-items: center;
+}
+
+/* Center vertically and horizontally */
+%v-h-aligner,
+.v-h-aligner {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.flex-wrapper {
+	display: flex;
+}
+
+.split-aligner {
+	display: flex;
+	justify-content: space-between;
+}
+
+/* --------------------------------------------------------------------------
+Centered Layout
+-----------------------------------------------------------------------------*/
+$desktopSidePadding: 14rem;
+$mobileSidePadding: 3rem;
+.page-width,
+.sh-container {
+	width: 100%;
+	padding-left: $desktopSidePadding;
+	padding-right: $desktopSidePadding;
+	@include mobile-only {
+		padding-left: $mobileSidePadding;
+		padding-right: $mobileSidePadding;
+	}
+}
+
+.container-sm {
+	@include mobile-only {
+		padding-left: $mobileSidePadding;
+		padding-right: $mobileSidePadding;
+
+	}
+}
+
+.padded {
+	padding-top: 17.6rem;
+	padding-bottom: 17.6rem;
+	@include mobile-only {
+		padding-top: 6rem;
+		padding-bottom: 6rem;
+
+	}
+}
+
+.padded-sm {
+	padding-top: 8rem;
+	padding-bottom: 8rem;
+	@include mobile-only {
+		padding-top: 4rem;
+		padding-bottom: 4rem;
+
+	}
+}
+
+// Used for account pages, general
+.page-padding-top {
+	padding-top: 12rem;
+	@include mobile-only {
+		padding-top: 8rem;
+	}
+}
+
+/* --------------------------------------------------------------------------
+Sticky Footer
+-----------------------------------------------------------------------------*/
+.cssgrid {
+	/* Add to the body element */
+	.site {
+		display: flex;
+		min-height: 100vh;
+		flex-direction: column;
+	}
+
+	/* Add to the main element (or whichever element includes your site content and not the footer) */
+	.site-content {
+		flex: 1;
+	}
+}
+
+/* --------------------------------------------------------------------------
+  Sticky
+-----------------------------------------------------------------------------*/
+.sticky {
+	position: sticky;
+	position: -webkit-sticky;
+	top: 0;
+	overflow-y: scroll;
+	height: calc(100vh);
+}
+
+/* --------------------------------------------------------------------------
+Clearfix helpers (for floats)
+-----------------------------------------------------------------------------*/
+.clearfix:after,
+.clearfix:before {
+	display: table;
+	content: " ";
+}
+
+.clearfix:after {
+	clear: both;
+}
+
+.clearer {
+	content: "";
+	display: table;
+	clear: both;
+}

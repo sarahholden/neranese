@@ -1,0 +1,22 @@
+<form class="js-klaviyo-form klaviyo-form" novalidate="novalidate" data-list-id="{{ list_id }}">
+  <div class="js-inner-form-wrap split-aligner">
+    <div class="input-wrapper">
+      <label for="popup-klaviyo-email{{ form_index }}" class="visually-hidden">Enter your email</label>
+      <input type="email" id="popup-klaviyo-email{{ form_index }}" placeholder="{{ section.settings.placeholder }}">
+    </div>
+    {% if section.settings.error != blank %}
+      <div class="error-message hide">
+        <p>{{ section.settings.error }}</p>
+      </div>
+    {% endif %}
+
+    <button type="submit" class="btn" aria-label="Submit email">{{ section.settings.btn_text }}</button>
+
+  </div>
+  {% if section.settings.success != blank %}
+  <div class="success-message hide">
+    {{ section.settings.success }}
+  </div>
+  {% endif %}
+
+</form>

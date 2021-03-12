@@ -1,0 +1,132 @@
+<!doctype html>
+<!--[if IE 9]> <html class="ie9 no-js supports-no-cookies" lang="{{ shop.locale }}"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js supports-no-cookies" lang="{{ shop.locale }}"> <!--<![endif]-->
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="{{ settings.color_primary }}">
+  <link rel="canonical" href="{{ canonical_url }}">
+
+  {% if settings.favicon != blank %}
+    <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
+  {% endif %}
+
+  {% capture seo_title %}
+    {{ page_title }}
+    {% if current_tags %}
+      {%- assign meta_tags = current_tags | join: ', ' %} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags -}}
+    {% endif %}
+    {% if current_page != 1 %}
+      &ndash; {{ 'general.meta.page' | t: page: current_page }}
+    {% endif %}
+    {% unless page_title contains shop.name %}
+      &ndash; {{ shop.name }}
+    {% endunless %}
+  {% endcapture %}
+  <title>{{ seo_title }}</title>
+
+  {% if page_description %}
+    <meta name="description" content="{{ page_description | escape }}">
+  {% endif %}
+
+  {% include 'social-meta-tags' %}
+
+  {{ 'fonts.scss.css' | asset_url | stylesheet_tag }}
+  {{ 'theme.scss.min.css' | asset_url | stylesheet_tag }}
+
+  <script>
+    document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+
+    window.theme = {
+      strings: {
+        addToCart: {{ 'products.product.add_to_cart' | t | json }},
+        soldOut: {{ 'products.product.sold_out' | t | json }},
+        unavailable: {{ 'products.product.unavailable' | t | json }}
+      },
+      moneyFormat: {{ shop.money_format | json }}
+    };
+  </script>
+
+  <!--[if (gt IE 9)|!(IE)]><!--><script src="{{ 'jquery3.3.1.min.js' | asset_url }}"></script><!--<![endif]-->
+  <!--[if lt IE 9]><script src="{{ 'jquery3.3.1.min.js' | asset_url }}"></script><![endif]-->
+
+
+  <script>
+    window.lazySizesConfig = window.lazySizesConfig || {};
+    window.lazySizesConfig.customMedia = {
+        '--small': '(max-width: 767px)',
+        '--medium': '(max-width: 1024px)',
+        '--large': '(max-width: 1440px)',
+        '--xl': '(max-width: 2800px)'
+    };
+    window.lazySizesConfig.rias = window.lazySizesConfig.rias || {};
+    window.lazySizesConfig.rias.widths = [360, 540, 720, 900, 1080, 1600, 2200, 2800];
+  </script>
+
+  {% if template.directory == 'customers' %}
+    <!--[if (gt IE 9)|!(IE)]><!--><script src="{{ 'shopify_common.js' | shopify_asset_url }}" defer="defer"></script><!--<![endif]-->
+    <!--[if lte IE 9]><script src="{{ 'shopify_common.js' | shopify_asset_url }}"></script><![endif]-->
+  {% endif %}
+
+  <!--[if (gt IE 9)|!(IE)]><!--><script src="{{ 'vendor.js' | asset_url }}" defer="defer"></script><!--<![endif]-->
+  <!--[if lt IE 9]><script src="{{ 'vendor.js' | asset_url }}"></script><![endif]-->
+
+  <!--[if (gt IE 9)|!(IE)]><!--><script src="{{ 'theme.min.js' | asset_url }}" defer="defer"></script><!--<![endif]-->
+  <!--[if lt IE 9]><script src="{{ 'theme.min.js' | asset_url }}"></script><![endif]-->
+
+  {{ content_for_header }}
+
+  <!-- YOTPO -->
+  <!-- ADD API KEY: https://support.yotpo.com/en/article/finding-your-yotpo-app-key-and-api-secret -->
+
+  <!-- <script type="text/javascript">
+    (function e(){var e=document.createElement("script");e.type="text/javascript",e.async=true,e.src="//staticw2.yotpo.com/###APP_KEY###/widget.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)})();
+  </script> -->
+</head>
+
+<body id="{{ page_title | handle }}" class="template-{{ template.name | handle }} site {% if settings.show_promo_bar %}has-promo-bar{% endif %}">
+
+  <a class="in-page-link skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
+
+  <!-- ====== AGE SCREEN (CHECK FOR COOKIE & POP UP BEFORE OTHER CONTENT LOADS) ======== -->
+  {% comment %}
+    {% section 'component-age-screen' %}
+    <script src="{{ 'age-screen.js' | asset_url }}"></script>
+  {% endcomment %}
+
+  {% comment %}
+    {% section 'component-promo-bar' %}
+  {% endcomment %}
+  {% comment %}
+    {% section 'component-email-popup' %}
+  {% endcomment %}
+  {% section 'header' %}
+
+  <main role="main" id="MainContent" class="site-content  {% if template.suffix != blank %}page-{{ template.suffix }}{% endif %}">
+    {{ content_for_layout }}
+  </main>
+
+  {% section 'footer' %}
+  {% section 'cart-drawer' %}
+
+  {% comment %}
+  {%- if template == 'page.contact' -%}
+    <script src="{{ 'form-submission.js' | asset_url }}" defer="defer"></script>
+  {%- endif -%}
+  {% endcomment %}
+
+  <!-- Initialize Cart.js for AJAX cart -->
+  {{ 'option_selection.js' | shopify_asset_url | script_tag }}
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/shopify-cartjs/1.0.2/rivets-cart.min.js"></script>
+
+  <script type="text/javascript">
+    jQuery(function() {
+      CartJS.init({{ cart | json }});
+    });
+  </script>
+
+</body>
+</html>

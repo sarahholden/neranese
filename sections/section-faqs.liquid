@@ -1,0 +1,97 @@
+<!--
+SETUP INSTRUCTIONS:
+1. Uncomment faq scss file in dev > scss > theme.scss.liquid
+2. If FAQ page isn't split into sections:
+  - delete faq_heading and h2 from the liquid code
+  - remove faq_heading block from schema
+  - make accordion-toggles h2s instead of h3s
+3. Search for "Accordion" in dev > js > main.js and uncomment
+4. Add at least a handful of FAQ items to test. Make sure any links in FAQ answers have underline or clickable styles.
+5. Style as needed
+6. Remove this comment :)
+
+Dummy text if it's helpful :)
+Placeholder Heading:
+Lorem ipsum dolor sit amet, consectetur adipisicing elitsed do eiusmod ?
+Placeholder Text:
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+-->
+
+<!-- ============================
+HEADER
+================================= -->
+<header>
+  <div class="container">
+    <h1 class="main-heading">{{ section.settings.title }}</h1>
+  </div>
+</header>
+
+
+<!-- ============================
+FAQs
+================================= -->
+<section class="container">
+  <div class="accordion list-animation-wrapper">
+    {% for block in section.blocks %}
+      {% case block.type %}
+        {% when 'faq_heading' %}
+          <h2>{{ block.settings.title }}</h2>
+        {% when 'faq_item' %}
+          <div class="accordion-panel animate-item">
+            <h3 class="accordion-toggle"><span class="text">{{ block.settings.title }}</span> <span class="icon"></span></h3>
+            <div class="accordion-text">
+              <div class="accordion-inner desc">
+                {{ block.settings.desc }}
+              </div>
+            </div>
+          </div>
+      {% endcase %}
+    {% endfor %}
+  </div>
+</section>
+
+
+{% schema %}
+{
+  "name": "FAQ Page content",
+
+  "settings": [
+    {
+      "id": "title",
+      "type": "text",
+      "label": "Title"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq_heading",
+      "name": "FAQ Section Heading",
+      "settings": [
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Section Heading",
+          "info": "Use this block to split FAQ page into sections."
+        }
+      ]
+    },
+    {
+      "type": "faq_item",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Question",
+          "info": "Will appear as clickable text"
+        },
+        {
+          "id": "desc",
+          "type": "richtext",
+          "label": "Answer"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

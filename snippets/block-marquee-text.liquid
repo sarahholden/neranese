@@ -1,0 +1,14 @@
+
+<div class="marquee-text {{ marquee_class }}">
+  {%- if marquee_link -%}
+    <a href="{{ marquee_link }}" {% if link_target == 'blank' %}target="_blank"{% endif %}>
+  {%- endif -%}
+    <h1 class="hd--serif-xl marquee__inner">
+      {%- for i in (1..5) -%}
+        <span {% if i > 1 %}aria-hidden="true"{% endif %}>{{ marquee_text }}</span>
+      {%- endfor -%}
+    </h1>
+  {%- if marquee_link -%}
+    </a>
+  {%- endif -%}
+</div>

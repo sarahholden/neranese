@@ -1,0 +1,288 @@
+/* --------------------------------------------------------------------------
+Font Sizes
+-----------------------------------------------------------------------------*/
+$baseSize: 10px;
+$tabletBaseSize: 9px;
+$mobileBaseSize: 8px;
+$bodyDesktopFontSize: 1.8rem;
+$bodyMobileFontSize: 1.6rem;
+
+/* --------------------------------------------------------------------------
+Font Styles
+-----------------------------------------------------------------------------*/
+$bodyTextLineHeight: (28 / 18);
+$bodyTextLetterSpacing: 0;
+
+/* --------------------------------------------------------------------------
+Typography
+-----------------------------------------------------------------------------*/
+html {
+  font-size: $baseSize;
+  font-size: 0.69444444vw;
+}
+
+body {
+  background-color: $primaryBgColor;
+  font-family: $bodyTextFont;
+  color: $primaryTextColor;
+  line-height: $bodyTextLineHeight;
+  letter-spacing: $bodyTextLetterSpacing;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-font-smoothing: antialiased;
+  font-size: $bodyDesktopFontSize;
+  @include mobile-only {
+    font-size: $bodyMobileFontSize;
+  }
+}
+
+/* --------------------------------------------------------------------------
+Anchors
+-----------------------------------------------------------------------------*/
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+}
+
+/* --------------------------------------------------------------------------
+Headings
+-----------------------------------------------------------------------------*/
+.hd-1,
+.hd-2,
+.hd-3,
+.hd-4,
+.hd-5,
+.hd-6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: 2rem;
+  @include mobile-only {
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+  SMALL CAPS
+-----------------------------------------------------------------------------*/
+%smallCaps {
+  text-transform: uppercase;
+}
+
+/* --------------------------------------------------------------------------
+  Richtext Styles
+-----------------------------------------------------------------------------*/
+
+/* --------------------------------------------------------------------------
+  DESCRIPTION, RICHTEXT STYLES
+-----------------------------------------------------------------------------*/
+strong {
+  font-weight: 600;
+}
+em,
+i {
+  font-style: italic;
+}
+sup {
+  vertical-align: super;
+  font-size: smaller;
+}
+
+.desc,
+.desc-sm,
+.page-account,
+.rte {
+  p,
+  ul {
+    margin-bottom: 2rem;
+  }
+  ul {
+    padding-left: 3rem;
+    list-style-type: disc;
+    margin-bottom: 2.2rem;
+  }
+
+  ol {
+    padding-left: 3rem;
+    list-style-type: decimal;
+    margin-bottom: 2.2rem;
+  }
+
+  a {
+    text-decoration: underline;
+    &:hover {}
+  }
+
+  blockquote {
+    max-width: 80rem;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    @include mobile-only {
+      margin-left: 1rem;
+    }
+    p {
+      font-size: 2.6rem;
+      margin-bottom: 2rem;
+    }
+    cite {
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.1rem;
+      font-size: 1.2rem;
+      text-transform: translateX(-1rem);
+      display: block;
+    }
+
+  }
+  img {
+    height: auto;
+  }
+  table {
+    table-layout: fixed;
+  }
+}
+
+.rte-table {
+  max-width: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/*================ Rich Text Editor ================*/
+.text-center .rte ol,
+.text-center .rte ul,
+.text-center.rte ol,
+.text-center.rte ul {
+  margin-left: 0;
+  list-style-position: inside;
+}
+
+.rte__video-wrapper {
+  position: relative;
+  overflow: hidden;
+  max-width: 100%;
+  padding-bottom: 56.25%;
+  height: 0;
+  height: auto;
+}
+.rte__video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.rte__table-wrapper {
+  max-width: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* --------------------------------------------------------------------------
+  Responsive Tables
+-----------------------------------------------------------------------------*/
+@include tablet-up {
+  .responsive-table,
+  table {
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+    td,
+    th {
+      border: 1px solid #dfdfdf;
+      padding: 1rem 2rem;
+    }
+  }
+}
+@include mobile-only {
+  .responsive-table {
+    width: 100%;
+  }
+  .responsive-table thead {
+    display: none;
+  }
+  .responsive-table tr {
+    display: block;
+  }
+  .responsive-table td,
+  .responsive-table tr {
+    float: left;
+    clear: both;
+    width: 100%;
+  }
+  .responsive-table td,
+  .responsive-table th {
+    display: block;
+    text-align: right;
+    padding: 15px;
+    margin: 0;
+  }
+  .responsive-table td::before {
+    content: attr(data-label);
+    float: left;
+    text-align: center;
+    padding-right: 10px;
+  }
+  .responsive-table-row + .responsive-table-row,
+  tfoot > .responsive-table-row:first-child {
+    position: relative;
+    margin-top: 10px;
+    padding-top: 15px;
+  }
+  .responsive-table-row + .responsive-table-row::after,
+  tfoot > .responsive-table-row:first-child::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 15px;
+    right: 15px;
+    border-bottom: 1px solid #f6f6f6;
+  }
+}
+
+/* --------------------------------------------------------------------------
+Rules
+-----------------------------------------------------------------------------*/
+hr {
+  border: 0;
+  border-bottom: $border;
+}
+
+/* --------------------------------------------------------------------------
+Responsive Design
+-----------------------------------------------------------------------------*/
+/* Mobile ================== */
+@include mobile-only {
+  html {
+    font-size: 2.1vw;
+  }
+}
+
+@include mobile-sm-only {
+  html {
+    font-size: 2.666666666vw;
+    // font-size: 10px;
+  }
+}
+
+/* Large Mobile ================== */
+@media only screen and (max-width: 768px) and (min-width: 580px) {
+  html {
+    font-size: 1.8vw;
+  }
+}
+
+/* MONITOR ================== */
+@media only screen and (min-width: 1800px) {
+  html {
+    font-size: 13px;
+  }
+}
