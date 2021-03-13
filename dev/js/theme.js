@@ -387,76 +387,69 @@ $(document).ready(function() {
   // }
   //
   //
-  // // KLAVIYO FORM START ------
-  // function validateEmail (email) {
-  //   const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  //   return re.test(String(email).toLowerCase());
-  // }
-  //
-  // function closePopup () {
-  //
-  // }
-  //
-  // // SUCCESS =========================
-  // function formSubmitted ($form) {
-  //   // SHOW SUCCESS MESSAGE
-  //   $form.find('.js-inner-form-wrap').hide();
-  //   $form.find('.success-message').fadeIn();
-  //
-  //
-  //   // DON'T SHOW AGAIN
-  //   setCookie('email-popup-dismissed');
-  //
-  //   // Briefly show success message, then hide popup
-  //   setTimeout(function () {
-  //     $('body').removeClass('show-email-popup email-submitted');
-  //   }, 3000);
-  // }
-  //
-  // // FORM SUBMIT =========================
-  // $('.js-klaviyo-form').on('submit', function (e) {
-  //   e.preventDefault();
-  //   var $form = $(this);
-  // 	var email = $(this).find("input[type=email]").val();
-  //
-  //   // CHECK FOR VALID EMAIL ADDRESS
-  //   if (validateEmail(email)) {
-  //     $($form).find('.error-message').fadeOut();
-  //
-  //     var listId = $form.data('list-id');
-  //
-  //     $.ajax({
-  //       url: "https://manage.kmail-lists.com/ajax/subscriptions/subscribe",
-  //       method: "POST",
-  //       crossDomain: true,
-  //       dataType: 'json',
-  //       data: {
-  //         "g": listId,
-  //         '$consent': 'web',
-  //         'email': email,
-  //       },
-  //       success: function (data) {
-  //         formSubmitted($form);
-  //       }
-  //     });
-  //   } else {
-  //     $($form).find('.error-message').fadeIn();
-  //   }
-  // });
-  //
+  // KLAVIYO FORM START ------
+  function validateEmail (email) {
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  }
+
+  function closePopup () {
+
+  }
+
+  // SUCCESS =========================
+  function formSubmitted ($form) {
+    // SHOW SUCCESS MESSAGE
+    $form.find('.js-inner-form-wrap').hide();
+    $form.find('.success-message').fadeIn();
+
+
+    // DON'T SHOW AGAIN
+    setCookie('email-popup-dismissed');
+
+    // Briefly show success message, then hide popup
+    setTimeout(function () {
+      $('body').removeClass('show-email-popup email-submitted');
+    }, 3000);
+  }
+
+  // FORM SUBMIT =========================
+  $('.js-klaviyo-form').on('submit', function (e) {
+    e.preventDefault();
+    var $form = $(this);
+  	var email = $(this).find("input[type=email]").val();
+
+    // CHECK FOR VALID EMAIL ADDRESS
+    if (validateEmail(email)) {
+      $($form).find('.error-message').fadeOut();
+
+      var listId = $form.data('list-id');
+
+      $.ajax({
+        url: "https://manage.kmail-lists.com/ajax/subscriptions/subscribe",
+        method: "POST",
+        crossDomain: true,
+        dataType: 'json',
+        data: {
+          "g": listId,
+          '$consent': 'web',
+          'email': email,
+        },
+        success: function (data) {
+          formSubmitted($form);
+        }
+      });
+    } else {
+      $($form).find('.error-message').fadeIn();
+    }
+  });
+  
   // $('.js-close-email-popup').on('click', function () {
   //   // DON'T SHOW AGAIN
   //   setCookie('email-popup-dismissed');
   //   $('body').removeClass('show-email-popup');
   // });
 
-  //
-  // // MAILCHIMP =========================
-  // $('#email-popup form').on('submit', function(e) {
-  //   e.preventDefault();
-  //
-  //   formSubmitted();
-  // });
 
 
 

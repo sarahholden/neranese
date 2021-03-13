@@ -18,7 +18,7 @@ const webpackstream = require('webpack-stream');
 // CSS task
 function css() {
   return gulp
-    .src('scss/**/*.scss.liquid')
+    .src(['scss/**/*.scss.liquid', 'scss/*.scss.liquid'])
     .pipe(plumber())
     .pipe(sass({ outputStyle: 'expanded' }))
     .pipe(gulp.dest('../assets/'))
