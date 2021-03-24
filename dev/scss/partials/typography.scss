@@ -4,13 +4,13 @@ Font Sizes
 $baseSize: 10px;
 $tabletBaseSize: 9px;
 $mobileBaseSize: 8px;
-$bodyDesktopFontSize: 1.8rem;
-$bodyMobileFontSize: 1.6rem;
+$bodyDesktopFontSize: 1.3rem;
+$bodyMobileFontSize: 1.1rem;
 
 /* --------------------------------------------------------------------------
 Font Styles
 -----------------------------------------------------------------------------*/
-$bodyTextLineHeight: (28 / 18);
+$bodyTextLineHeight: (17 / 13);
 $bodyTextLetterSpacing: 0;
 
 /* --------------------------------------------------------------------------
@@ -18,7 +18,7 @@ Typography
 -----------------------------------------------------------------------------*/
 html {
   font-size: $baseSize;
-  font-size: 0.69444444vw;
+  font-size: 0.9765625vw;
 }
 
 body {
@@ -59,28 +59,106 @@ h3,
 h4,
 h5,
 h6 {
+  font-family: $headingFont;
   margin-bottom: 2rem;
   @include mobile-only {
     margin-bottom: 1.5rem;
   }
 }
 
+.hd-1,
+h1 {
+  font-size: 6rem;
+  letter-spacing: 0.1rem;
+}
+
+.hd-2,
+h2 {
+  font-size: 4.5rem;
+  letter-spacing: 0.075rem;
+}
+
+.hd-3,
+h3 {
+  font-size: 4rem;
+  letter-spacing: 0.067rem;
+}
+
+.hd-4,
+h4 {
+  font-size: 3rem;
+  letter-spacing: 0.05rem;
+}
+
+.hd-5,
+h5 {
+  font-size: 2.5rem;
+  letter-spacing: 0;
+}
+
+.hd-6,
+h6 {
+  font-size: 2.4rem;
+  letter-spacing: 0.04rem;
+  line-height: (30 / 24);
+}
+
 /* --------------------------------------------------------------------------
   SMALL CAPS
 -----------------------------------------------------------------------------*/
-%smallCaps {
+%caps {
   text-transform: uppercase;
+  font-family: $basis;
+  font-weight: 500;
+}
+
+.caps--12 {
+  @extend %caps;
+  font-size: 1.2rem;
+  letter-spacing: 0.185rem;
+}
+
+.caps--10 {
+  @extend %caps;
+  font-size: 1rem;
+  letter-spacing: 0.1rem;
+}
+
+.caps--8 {
+  @extend %caps;
+  font-size: 0.8rem;
+  letter-spacing: 0.08rem;
 }
 
 /* --------------------------------------------------------------------------
   Richtext Styles
 -----------------------------------------------------------------------------*/
+.body--13 {
+  font-size: 1.3rem;
+  color: #464646;
+  letter-spacing: 0;
+  line-height: (17 / 13);
+}
+
+.body--11 {
+  font-size: 1.1rem;
+  letter-spacing: 0;
+  line-height: (14 / 11);
+}
+
+.body--24 {
+  font-family: $headingFont;
+  text-align: center;
+  font-size: 2.4rem;
+  letter-spacing: 0.04rem;
+  line-height: (30 / 24);
+}
 
 /* --------------------------------------------------------------------------
   DESCRIPTION, RICHTEXT STYLES
 -----------------------------------------------------------------------------*/
 strong {
-  font-weight: 600;
+  font-weight: 500;
 }
 em,
 i {
@@ -122,6 +200,10 @@ sup {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
+    font-family: $headingFont;
+    font-size: 2.4rem;
+    line-height: (30 / 24);
+    font-weight: 400;
     @include mobile-only {
       margin-left: 1rem;
     }

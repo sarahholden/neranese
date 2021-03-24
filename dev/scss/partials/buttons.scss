@@ -1,8 +1,7 @@
 /* --------------------------------------------------------------------------
 Buttons
 -----------------------------------------------------------------------------*/
-.btn,
-button {
+.btn {
   cursor: pointer;
   border: 0;
   border-radius: 0;
@@ -11,6 +10,8 @@ button {
   outline: none;
   display: inline-block;
   background-color: transparent;
+  text-align: center;
+  padding: 1rem 3rem;
   &:hover {}
   &:disabled,
   &[disabled] {
@@ -19,6 +20,58 @@ button {
   }
 }
 
+/* BLACK BUTTON ================== */
+.btn--black {
+  background: $black;
+  color: $cream;
+  text-transform: uppercase;
+  font-family: $basis;
+  font-weight: 500;
+  font-size: 1rem;
+  letter-spacing: 0.154rem;
+  border: 2px solid $black;
+  &:hover {
+    background: transparent;
+    color: $black;
+  }
+}
+
+.btn--star {
+  padding: 0.7rem 0.9rem 0.7rem 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  .icon-wrap {
+    margin-left: 2rem;
+    width: 1.9rem;
+    color: white;
+    display: inline-block;
+  }
+  svg path {
+    fill: currentColor;
+  }
+  &:hover {
+    .icon {
+      color: $black;
+    }
+  }
+}
+
+.link--arrow {
+  @extend %caps;
+  font-size: 1.2rem;
+  letter-spacing: 0.185rem;
+  display: inline-flex;
+  align-items: center;
+  .icon-wrap {
+    width: 3.4rem;
+    display: inline-block;
+    margin-left: 1.3rem;
+    transform: translateY(.1rem);
+  }
+}
+
+/* ADA BUTTON ================== */
 .text-only {
   font-family: inherit;
   color: inherit;

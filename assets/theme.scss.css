@@ -476,23 +476,23 @@ Typography
 -----------------------------------------------------------------------------*/
 html {
   font-size: 10px;
-  font-size: 0.69444444vw;
+  font-size: 0.9765625vw;
 }
 
 body {
   background-color: #FFF;
-  font-family: sofia-pro, sans-serif;
-  color: #231F20;
-  line-height: 1.55556;
+  font-family: "Basis Grotesque Pro", sans-serif;
+  color: #363636;
+  line-height: 1.30769;
   letter-spacing: 0;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   -webkit-font-smoothing: antialiased;
-  font-size: 1.8rem;
+  font-size: 1.3rem;
 }
 
 @media (max-width: 767px) {
   body {
-    font-size: 1.6rem;
+    font-size: 1.1rem;
   }
 }
 
@@ -520,6 +520,7 @@ h3,
 h4,
 h5,
 h6 {
+  font-family: "Cardinal Photo", serif;
   margin-bottom: 2rem;
 }
 
@@ -540,17 +541,96 @@ h6 {
   }
 }
 
+.hd-1,
+h1 {
+  font-size: 6rem;
+  letter-spacing: 0.1rem;
+}
+
+.hd-2,
+h2 {
+  font-size: 4.5rem;
+  letter-spacing: 0.075rem;
+}
+
+.hd-3,
+h3 {
+  font-size: 4rem;
+  letter-spacing: 0.067rem;
+}
+
+.hd-4,
+h4 {
+  font-size: 3rem;
+  letter-spacing: 0.05rem;
+}
+
+.hd-5,
+h5 {
+  font-size: 2.5rem;
+  letter-spacing: 0;
+}
+
+.hd-6,
+h6 {
+  font-size: 2.4rem;
+  letter-spacing: 0.04rem;
+  line-height: 1.25;
+}
+
 /* --------------------------------------------------------------------------
   SMALL CAPS
 -----------------------------------------------------------------------------*/
+.caps--12, .caps--10, .caps--8, .link--arrow {
+  text-transform: uppercase;
+  font-family: "Basis Grotesque Pro", sans-serif;
+  font-weight: 500;
+}
+
+.caps--12 {
+  font-size: 1.2rem;
+  letter-spacing: 0.185rem;
+}
+
+.caps--10 {
+  font-size: 1rem;
+  letter-spacing: 0.1rem;
+}
+
+.caps--8 {
+  font-size: 0.8rem;
+  letter-spacing: 0.08rem;
+}
+
 /* --------------------------------------------------------------------------
   Richtext Styles
 -----------------------------------------------------------------------------*/
+.body--13 {
+  font-size: 1.3rem;
+  color: #464646;
+  letter-spacing: 0;
+  line-height: 1.30769;
+}
+
+.body--11 {
+  font-size: 1.1rem;
+  letter-spacing: 0;
+  line-height: 1.27273;
+}
+
+.body--24 {
+  font-family: "Cardinal Photo", serif;
+  text-align: center;
+  font-size: 2.4rem;
+  letter-spacing: 0.04rem;
+  line-height: 1.25;
+}
+
 /* --------------------------------------------------------------------------
   DESCRIPTION, RICHTEXT STYLES
 -----------------------------------------------------------------------------*/
 strong {
-  font-weight: 600;
+  font-weight: 500;
 }
 
 em,
@@ -608,6 +688,10 @@ sup {
   margin-left: auto;
   margin-right: auto;
   text-align: center;
+  font-family: "Cardinal Photo", serif;
+  font-size: 2.4rem;
+  line-height: 1.25;
+  font-weight: 400;
 }
 
 @media (max-width: 767px) {
@@ -1454,6 +1538,7 @@ textarea {
   font-size: inherit;
   color: inherit;
   margin-right: 2rem;
+  margin-bottom: 1rem;
 }
 
 textarea {
@@ -1469,6 +1554,12 @@ form textarea {
   display: block;
   width: 100%;
   margin-right: 0;
+}
+
+label,
+legend {
+  margin-bottom: 0.8rem;
+  display: block;
 }
 
 /* NUMBER ================== */
@@ -1498,6 +1589,14 @@ input[type="search"]::-webkit-search-results-decoration {
   margin-bottom: 2rem;
 }
 
+.checkbox-wrapper {
+  margin-bottom: 1.2rem;
+}
+
+.radio-wrapper {
+  margin-bottom: 0.5rem;
+}
+
 /* CHECKBOX ================== */
 input[type="checkbox"],
 input[type="radio"] {
@@ -1517,6 +1616,7 @@ input[type="radio"] + label {
   cursor: pointer;
   position: relative;
   padding: 0 0 0 2.6rem;
+  margin-bottom: 0;
 }
 
 input[type="checkbox"] + label:before,
@@ -1528,7 +1628,7 @@ input[type="radio"] + label:before {
   width: 20px;
   height: 20px;
   background: transparent;
-  border: 1px solid #231F20;
+  border: 1px solid #363636;
   transition: all 0.6s ease;
   top: 50%;
   left: 0;
@@ -1538,12 +1638,12 @@ input[type="radio"] + label:before {
 
 input[type="checkbox"]:hover + label:before,
 input[type="radio"]:hover + label:before {
-  border-color: #080707;
+  border-color: #1d1d1d;
 }
 
 input[type="checkbox"]:checked + label:before,
 input[type="radio"]:checked + label:before {
-  background: #231F20;
+  background: #363636;
 }
 
 input[type="checkbox"]:disabled + label,
@@ -1564,7 +1664,7 @@ input[type="radio"]:checked + label:after {
   position: absolute;
   left: 2px;
   top: 2px;
-  background: #231F20;
+  background: #363636;
   border: 2px solid white;
   width: 16px;
   height: 16px;
@@ -1583,50 +1683,50 @@ input[type="radio"]:checked + label:after {
 
 ::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
-  color: #231F20;
+  color: #363636;
   transition: all 0.5s cubic-bezier(0.34, 0.615, 0.4, 0.985);
 }
 
 ::-moz-placeholder {
   /* Firefox 19+ */
-  color: #231F20;
+  color: #363636;
   transition: all 0.5s cubic-bezier(0.34, 0.615, 0.4, 0.985);
 }
 
 :-ms-input-placeholder {
   /* IE 10+ */
-  color: #231F20;
+  color: #363636;
   transition: all 0.5s cubic-bezier(0.34, 0.615, 0.4, 0.985);
 }
 
 :-moz-placeholder {
   /* Firefox 18- */
-  color: #231F20;
+  color: #363636;
   transition: all 0.5s cubic-bezier(0.34, 0.615, 0.4, 0.985);
 }
 
 input:focus::-webkit-input-placeholder,
 textarea:focus::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
-  color: #594f51;
+  color: dimgray;
 }
 
 input:focus::-moz-placeholder,
 textarea:focus::-moz-placeholder {
   /* Firefox 19+ */
-  color: #594f51;
+  color: dimgray;
 }
 
 input:focus:-ms-input-placeholder,
 textarea:focus:-ms-input-placeholder {
   /* IE 10+ */
-  color: #594f51;
+  color: dimgray;
 }
 
 input:focus:-moz-placeholder,
 textarea:focus:-moz-placeholder {
   /* Firefox 18- */
-  color: #594f51;
+  color: dimgray;
 }
 
 .form-vertical {
@@ -1666,8 +1766,7 @@ Validation
 /* --------------------------------------------------------------------------
 Buttons
 -----------------------------------------------------------------------------*/
-.btn,
-button {
+.btn {
   cursor: pointer;
   border: 0;
   border-radius: 0;
@@ -1676,15 +1775,69 @@ button {
   outline: none;
   display: inline-block;
   background-color: transparent;
+  text-align: center;
+  padding: 1rem 3rem;
 }
 
-.btn:disabled, .btn[disabled],
-button:disabled,
-button[disabled] {
+.btn:disabled, .btn[disabled] {
   pointer-events: none;
   opacity: 0.8;
 }
 
+/* BLACK BUTTON ================== */
+.btn--black {
+  background: #363636;
+  color: #F2EFE8;
+  text-transform: uppercase;
+  font-family: "Basis Grotesque Pro", sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
+  letter-spacing: 0.154rem;
+  border: 2px solid #363636;
+}
+
+.btn--black:hover {
+  background: transparent;
+  color: #363636;
+}
+
+.btn--star {
+  padding: 0.7rem 0.9rem 0.7rem 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.btn--star .icon-wrap {
+  margin-left: 2rem;
+  width: 1.9rem;
+  color: white;
+  display: inline-block;
+}
+
+.btn--star svg path {
+  fill: currentColor;
+}
+
+.btn--star:hover .icon {
+  color: #363636;
+}
+
+.link--arrow {
+  font-size: 1.2rem;
+  letter-spacing: 0.185rem;
+  display: inline-flex;
+  align-items: center;
+}
+
+.link--arrow .icon-wrap {
+  width: 3.4rem;
+  display: inline-block;
+  margin-left: 1.3rem;
+  transform: translateY(0.1rem);
+}
+
+/* ADA BUTTON ================== */
 .text-only {
   font-family: inherit;
   color: inherit;

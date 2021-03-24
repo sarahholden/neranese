@@ -21,26 +21,61 @@
 
   <h2 class="docs-title">Typography</h2>
 
-  <h1>Heading one</h1>
-  <h2>Heading two</h2>
-  <h3>Heading three</h3>
-  <h4>Heading four</h4>
-  <h5>Heading five</h5>
-  <h6>Heading six</h6>
+  <h1>Heading <em>one</em></h1>
+  <h2><em>Heading</em> two</h2>
+  <h3>Heading <em>three</em></h3>
+  <h4><em>Heading</em> four</h4>
+  <h5>Heading <em>five</em></h5>
+  <h6><em>Heading</em> six</h6>
 
-  <h4 class="docs-title">RTE headings</h4>
-  <div class="rte">
-    <h1>RTE heading one</h1>
-    <h2>RTE heading two</h2>
-    <h3>RTE heading three</h3>
-    <h4>RTE heading four</h4>
-    <h5>RTE heading five</h5>
-    <h6>RTE heading six</h6>
-  </div>
+  <h4 class="docs-title">Caps</h4>
+  <ul>
+    <li class="caps--12">.caps--12</li>
+    <li class="caps--10">.caps--10</li>
+    <li class="caps--8">.caps--8</li>
+  </ul>
 
   <h4 class="docs-title">Paragraphs</h4>
-  <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper.</p>
-  <p>Suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat.</p>
+  <div class="desc body--24">
+    <p>Lorem ipsum dolor sit amet, <strong>consectetuer</strong> adipiscing elit, sed diam <a href="/">nonummy</a> nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper.</p>
+  </div>
+  <div class="desc body--13">
+    <p>Lorem ipsum dolor sit amet, <strong>consectetuer</strong> adipiscing elit, sed diam <a href="/">nonummy</a> nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper.</p>
+    <p>Suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure <em>dolor</em> in hendrerit in vulputate velit esse molestie consequat.</p>
+  </div>
+  <div class="desc body--11">
+    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper.</p>
+    <p>Suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat.</p>
+  </div>
+
+  <h2 class="docs-title">Buttons</h2>
+
+  <p>
+    <a href="#" class="btn btn--black">Black button</a>
+  </p>
+  <br>
+  <p>
+    <a href="#" class="btn btn--black" disabled>Disabled button</a>
+  </p>
+  <br>
+  <p>
+    <a href="#" class="btn btn--black btn--star">
+      Btn Star
+      <span class="icon-wrap">
+        {% render 'icon-star' %}
+      </span>
+    </a>
+  </p>
+<br>
+  <p>
+    <a href="#" class="link--arrow" >
+      Arrow link
+      <span class="icon-wrap">{% render 'icon-arrow-right' %}</span>
+    </a>
+  </p>
+  <br>
+  <hr>
+
 
   <h4 class="docs-title">Type styles</h4>
   <ul>
@@ -52,13 +87,16 @@
   </ul>
 
   <h4 class="docs-title">Blockquotes</h4>
-  <blockquote>
-    <p>Eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.</p>
-    <cite>The author of the quote</cite>
-  </blockquote>
+  <div class="desc">
+    <blockquote>
+      <p>Eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.</p>
+      <cite>The author of the quote</cite>
+    </blockquote>
+
+  </div>
 
   <h4 class="docs-title">Lists</h4>
-  <table>
+  <table class="desc">
     <tbody>
       <tr>
         <td width="40%">
@@ -192,8 +230,11 @@
       <option value="3">Option 3</option>
     </select>
 
-    <input type="checkbox" id="checkInline">
-    <label for="checkInline" class="inline">Checkbox Label</label>
+    <div class="checkbox-wrapper">
+      <input type="checkbox" id="checkInline">
+      <label for="checkInline" class="inline">Checkbox Label</label>
+    </div>
+
   </form>
 
   <h4 class="docs-title">Invisible labels</h4>
@@ -227,8 +268,7 @@
     <label for="text4">Label</label>
     <input type="text" id="text4">
 
-    <label for="text5" class="error">Text Field (Error)</label>
-    <input type="text" id="text5" class="error" value="Invalid Entry">
+
 
     <label for="select1">Select Field</label>
     <select id="select1">
@@ -240,20 +280,34 @@
 
     <fieldset>
       <legend>Checkboxes</legend>
-      <input type="checkbox" id="check1">
-      <label for="check1" class="inline">Checkbox Field</label><br>
-      <input type="checkbox" id="check2">
-      <label for="check2" class="inline">Checkbox Field</label><br>
-      <input type="checkbox" id="check3">
-      <label for="check3" class="inline">Checkbox Field</label>
+      <div class="checkbox-wrapper">
+        <input type="checkbox" id="check1">
+        <label for="check1" class="inline">Checkbox Field</label>
+      </div>
+      <div class="checkbox-wrapper">
+        <input type="checkbox" id="check2">
+        <label for="check2" class="inline">Checkbox Field</label>
+      </div>
+      <div class="checkbox-wrapper">
+        <input type="checkbox" id="check3">
+        <label for="check3" class="inline">Checkbox Field</label>
+      </div>
     </fieldset>
     <fieldset>
       <legend>Radios</legend>
-      <input type="radio" name="radio" id="radio1">
-      <label for="radio1" class="inline">Option1</label><br>
-      <input type="radio" name="radio" id="radio2"> <label for="radio2" class="inline">Option1</label><br>
-      <input type="radio" name="radio" id="radio3">
-      <label for="radio3" class="inline">Option1</label>
+      <div class="radio-wrapper">
+        <input type="radio" name="radio" id="radio1">
+        <label for="radio1" class="inline">Option1</label><br>
+      </div>
+      <div class="radio-wrapper">
+        <input type="radio" name="radio" id="radio2">
+        <label for="radio2" class="inline">Option1</label><br>
+      </div>
+      <div class="radio-wrapper">
+        <input type="radio" name="radio" id="radio3">
+        <label for="radio3" class="inline">Option1</label><br>
+      </div>
+
     </fieldset>
 
     <label for="textarea1">Textarea</label>
@@ -306,25 +360,7 @@
 
   <hr>
 
-  <h2 class="docs-title">Buttons</h2>
 
-  <p>
-    <a href="#" class="btn">Default button</a>
-  </p>
-
-  <p>
-    <a href="#" class="btn btn--secondary">Default button (no defaults)</a>
-  </p>
-
-  <p>
-    <a href="#" class="btn" disabled>Button disabled</a>
-  </p>
-
-  <p>
-    <a href="#" class="btn btn--full">Wide button (no defaults)</a>
-  </p>
-
-  <hr>
 
   <h2 class="docs-title">Miscellaneous elements</h2>
 

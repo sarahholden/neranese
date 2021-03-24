@@ -1,19 +1,20 @@
 /* --------------------------------------------------------------------------
 Fonts
 -----------------------------------------------------------------------------*/
-$sophia: sofia-pro, sans-serif;
-$chronicle: "Chronicle", serif;
-$serif: "Chronicle", serif;
+$basis: "Basis Grotesque Pro", sans-serif;
+$cardinal: "Cardinal Photo", serif;
+$serif: "Cardinal Photo", serif;
 
-$bodyTextFont: $sophia;
-$headingFont: $sophia;
+$bodyTextFont: $basis;
+$headingFont: $cardinal;
 
 /* --------------------------------------------------------------------------
 Colors
 -----------------------------------------------------------------------------*/
-$black: #231F20;
+$black: #363636;
 $white: #FFF;
 $lightGrey: #F3F3F4;
+$cream: #F2EFE8;
 $borderColor: #383938;
 
 $primaryBgColor: $white;
