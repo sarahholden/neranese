@@ -480,7 +480,7 @@ html {
 }
 
 body {
-  background-color: #FFF;
+  background-color: #F2EFE8;
   font-family: "Basis Grotesque Pro", sans-serif;
   color: #363636;
   line-height: 1.30769;
@@ -511,6 +511,7 @@ Headings
 .hd-1,
 .hd-2,
 .hd-3,
+.page-general h1,
 .hd-4,
 .hd-5,
 .hd-6,
@@ -528,6 +529,7 @@ h6 {
   .hd-1,
   .hd-2,
   .hd-3,
+  .page-general h1,
   .hd-4,
   .hd-5,
   .hd-6,
@@ -553,7 +555,9 @@ h2 {
   letter-spacing: 0.075rem;
 }
 
+
 .hd-3,
+.page-general h1,
 h3 {
   font-size: 4rem;
   letter-spacing: 0.067rem;
@@ -581,7 +585,7 @@ h6 {
 /* --------------------------------------------------------------------------
   SMALL CAPS
 -----------------------------------------------------------------------------*/
-.caps--12, .caps--10, .caps--8, .link--arrow {
+.caps--12, .caps--10, .caps--8, .nav-wrapper__left ul, .link--arrow {
   text-transform: uppercase;
   font-family: "Basis Grotesque Pro", sans-serif;
   font-weight: 500;
@@ -597,7 +601,7 @@ h6 {
   letter-spacing: 0.1rem;
 }
 
-.caps--8 {
+.caps--8, .nav-wrapper__left ul {
   font-size: 0.8rem;
   letter-spacing: 0.08rem;
 }
@@ -925,25 +929,25 @@ Vertical & Horizontal Alignment
 /* --------------------------------------------------------------------------
 Centered Layout
 -----------------------------------------------------------------------------*/
-.page-width,
-.sh-container {
+.container,
+.page-width {
   width: 100%;
-  padding-left: 14rem;
-  padding-right: 14rem;
+  padding-left: 2.6rem;
+  padding-right: 2.6rem;
 }
 
 @media (max-width: 767px) {
-  .page-width,
-  .sh-container {
-    padding-left: 3rem;
-    padding-right: 3rem;
+  .container,
+  .page-width {
+    padding-left: 1.8rem;
+    padding-right: 1.8rem;
   }
 }
 
 @media (max-width: 767px) {
   .container-sm {
-    padding-left: 3rem;
-    padding-right: 3rem;
+    padding-left: 1.8rem;
+    padding-right: 1.8rem;
   }
 }
 
@@ -971,14 +975,18 @@ Centered Layout
   }
 }
 
-.page-padding-top, .page-404,
+.page-padded-top,
+.page-padding-top,
+.page-404,
 .page-general,
 .shopify-challenge__container {
-  padding-top: 12rem;
+  padding-top: 10rem;
 }
 
 @media (max-width: 767px) {
-  .page-padding-top, .page-404,
+  .page-padded-top,
+  .page-padding-top,
+  .page-404,
   .page-general,
   .shopify-challenge__container {
     padding-top: 8rem;
@@ -1305,12 +1313,20 @@ GENERAL Navigation Styles
   width: 100%;
 }
 
+@media (min-width: 768px) {
+  .nav-wrapper .inner {
+    padding: 3rem 0 2rem;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
 /* --------------------------------------------------------------------------
 SCROLLED NAV
 -----------------------------------------------------------------------------*/
 .nav-wrapper.is-fixed-hidden, .nav-wrapper.is-fixed-visible {
   position: fixed;
-  background-color: white;
+  background-color: #F2EFE8;
   transition: top 0.3s ease-in-out;
 }
 
@@ -1329,10 +1345,57 @@ SCROLLED NAV
 /* --------------------------------------------------------------------------
 LOGO WRAPPER
 -----------------------------------------------------------------------------*/
+.nav-wrapper .logo-wrapper {
+  max-width: 17.2rem;
+  width: 100%;
+  position: absolute;
+  top: calc(50% - .2rem);
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media (max-width: 767px) {
+  .nav-wrapper .logo-wrapper {
+    max-width: 14rem;
+  }
+}
+
+.nav-wrapper .logo-wrapper img {
+  width: 100%;
+}
+
+.nav-wrapper .logo-wrapper a {
+  display: block;
+}
+
 /* --------------------------------------------------------------------------
 Header Navigation Styles
 -----------------------------------------------------------------------------*/
-.nav-wrapper nav .current a {
+@media (min-width: 768px) {
+  .nav-wrapper__left ul {
+    display: flex;
+  }
+  .nav-wrapper__left ul li {
+    margin-right: 2rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .nav-wrapper__right ul {
+    display: flex;
+  }
+  .nav-wrapper__right ul li {
+    margin-left: 2rem;
+    font-family: "Cardinal Photo", serif;
+    font-size: 1rem;
+    letter-spacing: 0.154rem;
+    font-style: italic;
+    transform: translateY(-0.15rem);
+  }
+}
+
+.nav-wrapper__left .current a,
+.nav-wrapper__right .current a {
   /* Styles for the currently active link */
 }
 
@@ -1437,11 +1500,6 @@ Hamburger Icon styles
 }
 
 /* ==============   CART ICON  ============== */
-.nav-wrapper .cart-icon-wrapper {
-  width: 3rem;
-  display: block;
-}
-
 /* --------------------------------------------------------------------------
 Search
 -----------------------------------------------------------------------------*/
@@ -2463,14 +2521,14 @@ Buttons
 
 .overlay-content .close-overlay-btn {
   position: absolute;
-  right: 14rem;
+  right: 2.6rem;
   top: 6.6rem;
 }
 
 @media (max-width: 767px) {
   .overlay-content .close-overlay-btn {
     top: 2rem;
-    right: 3rem;
+    right: 1.8rem;
   }
 }
 
@@ -2574,6 +2632,22 @@ Set "0" for offest option ^^
   margin-right: auto;
 }
 
+.page-general {
+  font-size: 1.1rem;
+  line-height: 1.54545;
+}
+
+.page-general h1 {
+  text-align: center;
+}
+
+.page-legal .inner {
+  max-width: 59.2rem;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+
 /* SHIPPING ================== */
 .policy-refund-policy .inner,
 .policy-shipping-policy .inner {
@@ -2637,15 +2711,4 @@ Section Comment
 
 .skip-link:focus {
   top: 0;
-}
-
-/* 404 page ================== */
-.page-404,
-.page-general {
-  text-align: center;
-}
-
-.page-404 h1,
-.page-general h1 {
-  margin-bottom: 2rem;
 }

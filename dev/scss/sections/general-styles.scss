@@ -38,6 +38,24 @@
   .desc {}
 }
 
+.page-general {
+  font-size: 1.1rem;
+  line-height: (17 / 11);
+  h1 {
+    text-align: center;
+    @extend .hd-3;
+  }
+}
+
+.page-legal {
+  .inner {
+    max-width: 59.2rem;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+  }
+}
+
 /* SHIPPING ================== */
 .policy-refund-policy,
 .policy-shipping-policy {

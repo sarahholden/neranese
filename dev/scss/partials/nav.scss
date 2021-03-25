@@ -13,6 +13,13 @@ GENERAL Navigation Styles
 .nav-wrapper {
   position: absolute;
   width: 100%;
+  .inner {
+    @include tablet-up {
+      padding: 3rem 0 2rem;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -22,7 +29,7 @@ SCROLLED NAV
   &.is-fixed-hidden,
   &.is-fixed-visible {
     position: fixed;
-    background-color: white;
+    background-color: $cream;
     transition: top 0.3s ease-in-out;
   }
   &.is-fixed-visible {
@@ -40,29 +47,61 @@ SCROLLED NAV
 /* --------------------------------------------------------------------------
 LOGO WRAPPER
 -----------------------------------------------------------------------------*/
-// CENTERED LOGO
-// .nav-wrapper .logo-wrapper {
-//   max-width: 12.3rem;
-//   position: absolute;
-//   top: 50%;
-//   left: 50%;
-//   transform: translate(-50%, -50%);
-//   @include mobile-only {
-//     max-width: 9rem;
-//   }
-// }
+.nav-wrapper .logo-wrapper {
+  max-width: 17.2rem;
+  width: 100%;
+  position: absolute;
+  top: calc(50% - .2rem);
+  left: 50%;
+  transform: translate(-50%, -50%);
+  @include mobile-only {
+    max-width: 14rem;
+  }
+  img {
+    width: 100%;
+  }
+  a {
+    display: block;
+  }
+}
 
 /* --------------------------------------------------------------------------
 Header Navigation Styles
 -----------------------------------------------------------------------------*/
-.nav-wrapper nav {
+.nav-wrapper__left ul {
+  @extend .caps--8;
+  @include tablet-up {
+    display: flex;
+    li {
+      margin-right: 2rem;
+    }
+  }
+}
+
+.nav-wrapper__right ul {
+  @include tablet-up {
+    display: flex;
+
+    li {
+      margin-left: 2rem;
+      font-family: $cardinal;
+      font-size: 1rem;
+      letter-spacing: 0.154rem;
+      font-style: italic;
+      transform: translateY(-.15rem);
+    }
+
+  }
+}
+
+.nav-wrapper__left,
+.nav-wrapper__right {
   a {}
   a:hover {}
   .current a {
     /* Styles for the currently active link */
 
   }
-
 }
 
 /* ==============   MOBILE NAV STYLES  ============== */
@@ -160,7 +199,4 @@ Hamburger Icon styles
 }
 
 /* ==============   CART ICON  ============== */
-.nav-wrapper .cart-icon-wrapper {
-  width: 3rem;
-  display: block;
-}
+.nav-wrapper .cart-icon-wrapper {}

@@ -2,21 +2,40 @@
   <div class="nav-wrapper" role="banner">
 
     <div class="container">
+      <div class="inner">
+        <!--   NAV   -->
+        <div class="nav-wrapper__left">
+          {%- render 'nav-menu', current_linklist: section.settings.main_linklist -%}
+        </div>
+        <div class="nav-wrapper__right">
+          <ul>
+            <li>
+              <a href="#" class="js-open-search">{{ section.settings.search_text | default: "search" }}</a>
+            </li>
+            <!-- ACCOUNT LINKS -->
+            <li>
+              {% if shop.customer_accounts_enabled %}
+                <a href="/account">{{ section.settings.account_text | default: 'account' }}</a>
+              {% endif %}
+            </li>
+            <!--   CART   -->
+            <li>
+              <a href="/cart" data-cart-view="data-cart-view" class="hide-mobile cart-icon-wrapper js-view-cart">{{ section.settings.cart_text | default: 'Bag' }}</a>
+            </li>
+          </ul>
+
+        </div>
+      </div>
+
       <!--   LOGO   -->
-      {%- include 'nav-logo' -%}
+      {%- render 'nav-logo' -%}
 
-      <!--   NAV   -->
-      {%- include 'nav-menu', current_linklist: section.settings.main_linklist -%}
-
-
-      <!-- ACCOUNT LINKS -->
-      {% if shop.customer_accounts_enabled %}
-        {%- include 'nav-account-links' -%}
-      {% endif %}
-
-      <!--   CART   -->
-      {%- include 'nav-cart-link' -%}
     </div>
+
+    <!-- SEARCH -->
+    {% comment %}
+      {%- render 'nav-search' -%}
+    {% endcomment %}
 
     <!--   HAMBURGER   -->
     <button type="button" class="hamburger text-only" aria-label="Open nav menu">
@@ -42,6 +61,24 @@
         "label": "Menu",
         "default": "main-menu",
         "info": "Update links in Online Store > Navigation."
+      },
+      {
+        "id": "search_text",
+        "type": "text",
+        "label": "Search Nav Link Text",
+        "default": "search"
+      },
+      {
+        "id": "account_text",
+        "type": "text",
+        "label": "Account Nav Link Text",
+        "default": "account"
+      },
+      {
+        "id": "cart_text",
+        "type": "text",
+        "label": "Cart Nav Link Text",
+        "default": "bag"
       }
     ]
   }

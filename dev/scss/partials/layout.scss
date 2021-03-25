@@ -43,10 +43,10 @@ Vertical & Horizontal Alignment
 /* --------------------------------------------------------------------------
 Centered Layout
 -----------------------------------------------------------------------------*/
-$desktopSidePadding: 14rem;
-$mobileSidePadding: 3rem;
-.page-width,
-.sh-container {
+$desktopSidePadding: 2.6rem;
+$mobileSidePadding: 1.8rem;
+.container,
+.page-width {
 	width: 100%;
 	padding-left: $desktopSidePadding;
 	padding-right: $desktopSidePadding;
@@ -60,7 +60,6 @@ $mobileSidePadding: 3rem;
 	@include mobile-only {
 		padding-left: $mobileSidePadding;
 		padding-right: $mobileSidePadding;
-
 	}
 }
 
@@ -85,8 +84,9 @@ $mobileSidePadding: 3rem;
 }
 
 // Used for account pages, general
+.page-padded-top,
 .page-padding-top {
-	padding-top: 12rem;
+	padding-top: 10rem;
 	@include mobile-only {
 		padding-top: 8rem;
 	}
