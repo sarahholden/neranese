@@ -555,6 +555,13 @@ h2 {
   letter-spacing: 0.075rem;
 }
 
+@media (max-width: 767px) {
+  .hd-2,
+  h2 {
+    font-size: 3.5rem;
+  }
+}
+
 
 .hd-3,
 .page-general h1,
@@ -585,7 +592,8 @@ h6 {
 /* --------------------------------------------------------------------------
   SMALL CAPS
 -----------------------------------------------------------------------------*/
-.caps--12, .caps--10, .caps--8, .nav-wrapper__left ul, .link--arrow {
+.caps--12, .caps--10, .caps--8, .nav-wrapper__left ul, .link--arrow,
+.accordion-panel h2 {
   text-transform: uppercase;
   font-family: "Basis Grotesque Pro", sans-serif;
   font-weight: 500;
@@ -851,7 +859,7 @@ Rules
 -----------------------------------------------------------------------------*/
 hr {
   border: 0;
-  border-bottom: 1px solid #383938;
+  border-bottom: 1px solid #363636;
 }
 
 /* --------------------------------------------------------------------------
@@ -952,14 +960,14 @@ Centered Layout
 }
 
 .padded {
-  padding-top: 17.6rem;
-  padding-bottom: 17.6rem;
+  padding-top: 6.4rem;
+  padding-bottom: 6.4rem;
 }
 
 @media (max-width: 767px) {
   .padded {
-    padding-top: 6rem;
-    padding-bottom: 6rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
   }
 }
 
@@ -980,7 +988,7 @@ Centered Layout
 .page-404,
 .page-general,
 .shopify-challenge__container {
-  padding-top: 10rem;
+  padding-top: 11rem;
 }
 
 @media (max-width: 767px) {
@@ -1328,6 +1336,7 @@ SCROLLED NAV
   position: fixed;
   background-color: #F2EFE8;
   transition: top 0.3s ease-in-out;
+  z-index: 300;
 }
 
 .nav-wrapper.is-fixed-visible {
@@ -1448,7 +1457,7 @@ Hamburger Icon styles
 
 .hamburger span {
   display: block;
-  border-bottom: 2px solid #383938;
+  border-bottom: 2px solid #363636;
   width: 100%;
   position: absolute;
   height: 1px;
@@ -1586,7 +1595,7 @@ input,
 textarea {
   border: none;
   outline: none;
-  border-bottom: 1px solid #383938;
+  border-bottom: 1px solid #363636;
   background-color: transparent;
   box-shadow: none;
   padding-bottom: 4px;
@@ -1881,18 +1890,56 @@ Buttons
   color: #363636;
 }
 
-.link--arrow {
-  font-size: 1.2rem;
-  letter-spacing: 0.185rem;
+.link--arrow,
+.link--arrow-italic {
   display: inline-flex;
   align-items: center;
 }
 
-.link--arrow .icon-wrap {
+.link--arrow .icon-wrap,
+.link--arrow-italic .icon-wrap {
   width: 3.4rem;
   display: inline-block;
   margin-left: 1.3rem;
   transform: translateY(0.1rem);
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 767px) {
+  .link--arrow .icon-wrap,
+  .link--arrow-italic .icon-wrap {
+    width: 2.4rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .link--arrow:hover .icon-wrap,
+  .link--arrow-italic:hover .icon-wrap {
+    transform: translate(0.3rem, 0.1rem);
+  }
+}
+
+.link--arrow {
+  font-size: 1.2rem;
+  letter-spacing: 0.185rem;
+}
+
+.link--arrow-italic {
+  font-family: "Cardinal Photo", serif;
+  font-size: 2rem;
+  color: #4B4B4B;
+  letter-spacing: 0;
+  font-style: italic;
+}
+
+@media (max-width: 767px) {
+  .link--arrow-italic {
+    font-size: 1.6rem;
+  }
+}
+
+.link--arrow-italic svg path {
+  stroke-width: 1px;
 }
 
 /* ADA BUTTON ================== */
@@ -2362,7 +2409,7 @@ Buttons
 
 [data-anim="slide"] {
   opacity: 0;
-  transform: translateY(2rem);
+  transform: translateY(1rem);
   transition: all 0.8s cubic-bezier(0.34, 0.615, 0.4, 0.985);
 }
 
@@ -2586,6 +2633,186 @@ Set "0" for offest option ^^
   MARQUEE
 -----------------------------------------------------------------------------*/
 /*================ SECTIONS ================*/
+/* --------------------------------------------------------------------------
+Accordions
+-----------------------------------------------------------------------------*/
+/* Accordion Panel Styles ---------------- */
+.accordion-panel {
+  border-bottom: 1px solid #363636;
+  padding: 2rem 0;
+}
+
+.accordion-panel:first-of-type {
+  border-top: 1px solid #363636;
+}
+
+.accordion-panel h2 {
+  margin-bottom: 0;
+}
+
+/* Accordion Text Styles ---------------- */
+.accordion-text {
+  display: none;
+}
+
+.accordion-text a {
+  color: #363636;
+}
+
+.accordion-text a:hover {
+  color: #2e2e2e;
+}
+
+.accordion-text p:first-of-type {
+  margin-top: 1.4rem;
+}
+
+.accordion-text p:last-of-type {
+  margin-bottom: 1.2rem;
+}
+
+.accordion-text .accordion-inner {
+  padding-top: 2rem;
+}
+
+/* Clickable accordion headings ---------------- */
+.accordion-toggle {
+  cursor: pointer;
+  position: relative;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-right: 4.5rem;
+  /* Plus / Minus icon */
+  /* Accordion arrow (product detail page) */
+}
+
+.accordion-toggle .icon {
+  cursor: pointer;
+  position: absolute;
+  right: 1.4rem;
+  top: 47%;
+  transform: translateY(-50%);
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.accordion-toggle .icon::after,
+.accordion-toggle .icon::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  border-bottom: 2px solid #363636;
+}
+
+.accordion-toggle .icon::before {
+  transition: all 0.3s ease-in-out;
+  transform: rotate(90deg);
+}
+
+.accordion-toggle .icon-arrow-down {
+  top: 42%;
+  width: 1.2rem;
+}
+
+@media (max-width: 767px) {
+  .accordion-toggle .icon-arrow-down {
+    width: 0.8rem;
+    top: 40%;
+  }
+}
+
+/* Expanded accordion styles ---------------- */
+.expanded .accordion-toggle .icon-arrow-down {
+  transform: translateY(-50%) rotateX(180deg);
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.expanded .accordion-toggle span::before {
+  -webkit-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.expanded .accordion-toggle span::after {
+  -webkit-transform: rotate(-180deg);
+  transform: rotate(-180deg);
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+/* --------------------------------------------------------------------------
+  CONTACT PAGE STYLES
+-----------------------------------------------------------------------------*/
+/* --------------------------------------------------------------------------
+  Press page
+-----------------------------------------------------------------------------*/
+.page-press header {
+  text-align: center;
+  padding-bottom: 4rem;
+}
+
+/* --------------------------------------------------------------------------
+  PRESS CARDS
+-----------------------------------------------------------------------------*/
+.page-press {
+  padding-bottom: 12rem;
+}
+
+@media (max-width: 767px) {
+  .page-press {
+    padding-bottom: 10rem;
+  }
+}
+
+.page-press .image-wrap {
+  width: 13rem;
+  margin-bottom: 3.6rem;
+}
+
+@media (max-width: 767px) {
+  .page-press .image-wrap {
+    margin-bottom: 2.6rem;
+  }
+}
+
+.page-press .cropped-image-wrapper {
+  padding-bottom: 122%;
+}
+
+.page-press h2 {
+  display: block;
+  border-bottom: 0.1rem solid #363636;
+  padding-bottom: 0.6rem;
+}
+
+@media (min-width: 768px) {
+  .page-press h2 {
+    margin-bottom: 1.6rem;
+    font-size: 5rem;
+    padding-bottom: 1.3rem;
+  }
+}
+
+.page-press .cols-2 {
+  grid-column-gap: 5rem;
+  grid-row-gap: 8rem;
+}
+
+@media (max-width: 767px) {
+  .page-press .cols-2 {
+    grid-row-gap: 5.5rem;
+  }
+}
+
+.page-press .link--arrow-italic {
+  display: flex;
+  justify-content: space-between;
+}
+
 .social-sharing svg {
   display: block;
   width: 2rem;

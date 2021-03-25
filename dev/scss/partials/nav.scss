@@ -31,6 +31,7 @@ SCROLLED NAV
     position: fixed;
     background-color: $cream;
     transition: top 0.3s ease-in-out;
+    z-index: 300;
   }
   &.is-fixed-visible {
     top: 0;

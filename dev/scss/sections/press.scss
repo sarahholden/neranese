@@ -1,0 +1,48 @@
+/* --------------------------------------------------------------------------
+  Press page
+-----------------------------------------------------------------------------*/
+.page-press header {
+  text-align: center;
+  padding-bottom: 4rem;
+}
+
+/* --------------------------------------------------------------------------
+  PRESS CARDS
+-----------------------------------------------------------------------------*/
+.page-press {
+  padding-bottom: 12rem;
+  @include mobile-only {
+    padding-bottom: 10rem;
+  }
+  .image-wrap {
+    width: 13rem;
+    margin-bottom: 3.6rem;
+    @include mobile-only {
+      margin-bottom: 2.6rem;
+    }
+  }
+  .cropped-image-wrapper {
+    padding-bottom: 122%;
+  }
+  h2 {
+    display: block;
+    border-bottom: 0.1rem solid $borderColor;
+    padding-bottom: 0.6rem;
+    @include tablet-up {
+      margin-bottom: 1.6rem;
+      font-size: 5rem;
+      padding-bottom: 1.3rem;
+    }
+  }
+  .cols-2 {
+    grid-column-gap: 5rem;
+    grid-row-gap: 8rem;
+    @include mobile-only {
+      grid-row-gap: 5.5rem;
+    }
+  }
+  .link--arrow-italic {
+    display: flex;
+    justify-content: space-between;
+  }
+}

@@ -57,10 +57,8 @@ Buttons
   }
 }
 
-.link--arrow {
-  @extend %caps;
-  font-size: 1.2rem;
-  letter-spacing: 0.185rem;
+.link--arrow,
+.link--arrow-italic {
   display: inline-flex;
   align-items: center;
   .icon-wrap {
@@ -68,6 +66,37 @@ Buttons
     display: inline-block;
     margin-left: 1.3rem;
     transform: translateY(.1rem);
+    transition: all 0.3s ease;
+    @include mobile-only {
+      width: 2.4rem;
+    }
+  }
+  &:hover {
+    @include tablet-up {
+      .icon-wrap {
+        transform: translate(.3rem, .1rem);
+      }
+    }
+  }
+}
+
+.link--arrow {
+  @extend %caps;
+  font-size: 1.2rem;
+  letter-spacing: 0.185rem;
+}
+
+.link--arrow-italic {
+  font-family: $cardinal;
+  font-size: 2rem;
+  color: #4B4B4B;
+  letter-spacing: 0;
+  font-style: italic;
+  @include mobile-only {
+    font-size: 1.6rem;
+  }
+  svg path {
+    stroke-width: 1px;
   }
 }
 

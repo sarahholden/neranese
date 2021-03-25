@@ -76,6 +76,9 @@ h1 {
 h2 {
   font-size: 4.5rem;
   letter-spacing: 0.075rem;
+  @include mobile-only {
+    font-size: 3.5rem;
+  }
 }
 
 .hd-3,
@@ -106,7 +109,8 @@ h6 {
 /* --------------------------------------------------------------------------
   SMALL CAPS
 -----------------------------------------------------------------------------*/
-%caps {
+%caps,
+%smallCaps {
   text-transform: uppercase;
   font-family: $basis;
   font-weight: 500;

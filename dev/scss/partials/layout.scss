@@ -64,11 +64,11 @@ $mobileSidePadding: 1.8rem;
 }
 
 .padded {
-	padding-top: 17.6rem;
-	padding-bottom: 17.6rem;
+	padding-top: 6.4rem;
+	padding-bottom: 6.4rem;
 	@include mobile-only {
-		padding-top: 6rem;
-		padding-bottom: 6rem;
+		padding-top: 3rem;
+		padding-bottom: 3rem;
 
 	}
 }
@@ -86,7 +86,7 @@ $mobileSidePadding: 1.8rem;
 // Used for account pages, general
 .page-padded-top,
 .page-padding-top {
-	padding-top: 10rem;
+	padding-top: 11rem;
 	@include mobile-only {
 		padding-top: 8rem;
 	}

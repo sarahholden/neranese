@@ -1,16 +1,16 @@
-<div class="container padded">
-  <header data-trigger="scroll">
-    <h1 data-reveal="lines-masked">{{ section.settings.heading }}</h1>
+<div class="container padded page-padded-top">
+  <header class="js-animate">
+    <h1 class="hd-3" data-anim="slide" data-anim-order="1">{{ section.settings.heading }}</h1>
   </header>
   <section>
     <div class="cols-2">
       {% for block in section.blocks %}
-        {%- if block.settings.link != blank -%}
-          <a href="{{ block.settings.link }}">
-        {%- endif -%}
-          {% case block.type %}
-          {% when 'press_item' %}
-            {% if block.settings.image != blank %}
+        <div class="press-card" data-stagger>
+          {% if block.settings.image != blank %}
+            <div class="image-wrap">
+              {%- if block.settings.link != blank -%}
+                <a href="{{ block.settings.link }}">
+              {%- endif -%}
                 <div class="cropped-image-wrapper">
                   {% assign image = block.settings.image %}
                   {% assign alt_text = block.settings.image_alt | escape %}
@@ -25,17 +25,27 @@
                   data-anim="scale"
                   >
                 </div>
-            {% endif %}
-          {% endcase %}
-          {% if block.settings.title != blank %}
-            <h2>{{ block.settings.title | newline_to_br }}</h2>
+              {%- if block.settings.link != blank -%}
+                </a>
+              {%- endif -%}
+            </div>
           {% endif %}
-          <p class="cta-link">
-            {{ section.settings.link_text }}
-          </p>
-        {%- if block.settings.link != blank -%}
-          </a>
-        {%- endif -%}
+
+          {%- if block.settings.link != blank -%}
+            <a href="{{ block.settings.link }}">
+          {%- endif -%}
+            {% if block.settings.title != blank %}
+              <h2>{{ block.settings.title | newline_to_br }}</h2>
+            {% endif %}
+            <p class="link--arrow-italic" >
+              {{ section.settings.link_text }}
+              <span class="icon-wrap">{% render 'icon-arrow-right' %}</span>
+            </p>
+          {%- if block.settings.link != blank -%}
+            </a>
+          {%- endif -%}
+        </div>
+
       {% endfor %}
     </div>
   </section>

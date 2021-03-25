@@ -1,6 +1,9 @@
 $(document).ready(function() {
-  console.log('Shopify developer: Sarah Holden 🏄🏻‍♀️');
+  console.log('Custom Shopify theme development by Sarah Holden:');
   console.log('https://saraheholden.com/');
+  console.log('---');
+  console.log('Design by Kati Forner Design:');
+  console.log('https://katiforner.com/');
 
 
   /* ---------------------------------------------
@@ -27,8 +30,7 @@ $(document).ready(function() {
     EXTERNAL LINKS - OPEN IN NEW TAB (NAV)
   ------------------------------------------------ */
   // Switch selectors if all links should open in a new tab, instead of just the nav (only use for small sites)
-  // var links = document.links;
-  var links = document.querySelectorAll('nav a');
+  var links = document.links;
   for (let i = 0, linksLength = links.length ; i < linksLength ; i++) {
     if (links[i].hostname !== window.location.hostname) {
       links[i].target = '_blank';
@@ -171,44 +173,6 @@ $(document).ready(function() {
       const start = elem.dataset.start ? elem.dataset.start : "center bottom";
       triggerTextAnimation(delay, start, $(elem).find('p'));
     });
-
-
-
-    // WORDS POPPING UP FROM TILTED MASKS
-    gsap.utils.toArray('[data-reveal="words-masked"]').forEach((elem, i) => {
-      const start = elem.dataset.start ? elem.dataset.start : "top 80%";
-
-      var tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: elem,
-          start: start
-        }
-      });
-
-      var splitText = new SplitText($(elem).find('.animate-me'), { type: "lines,words", linesClass: "split-line-wrap", wordsClass: "split-line-child" });
-
-      tl.staggerFrom($(elem).find('.split-line-child'), 1.4, {y: '100%', skewX: -15, rotate: 2, ease: Power4.easeOut}, .1);
-
-      $(window).resize(function () {
-        tl.progress(1);
-        splitText.revert();
-      });
-    });
-
-    // WORDS SLIDING UP IN BLOCKS
-    gsap.utils.toArray('[data-reveal="blocks-slide"]').forEach((elem, i) => {
-      const start = elem.dataset.start ? elem.dataset.start : "top 80%";
-
-      var tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: elem,
-          start: start
-        }
-      });
-
-      tl.staggerFrom($(elem).find('.animate-me'), 1.4, {y: '200px', autoAlpha: 0, ease: Power4.easeOut}, .1);
-    });
-
 
   });
 
@@ -443,7 +407,7 @@ $(document).ready(function() {
       $($form).find('.error-message').fadeIn();
     }
   });
-  
+
   // $('.js-close-email-popup').on('click', function () {
   //   // DON'T SHOW AGAIN
   //   setCookie('email-popup-dismissed');
