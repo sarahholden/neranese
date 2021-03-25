@@ -367,10 +367,6 @@ $(document).ready(function() {
     $form.find('.js-inner-form-wrap').hide();
     $form.find('.success-message').fadeIn();
 
-
-    // DON'T SHOW AGAIN
-    setCookie('email-popup-dismissed');
-
     // Briefly show success message, then hide popup
     setTimeout(function () {
       $('body').removeClass('show-email-popup email-submitted');

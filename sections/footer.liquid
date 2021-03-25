@@ -1,24 +1,24 @@
+<section class="newsletter-signup container">
+  {% render 'klaviyo-newsletter', list_id: section.settings.list_id, form_index: 2 %}
+</section>
+
+
 <footer class="site-footer">
-  <div class="container">
-    <!-- Social Icons -->
-    {%- include 'social-icons' -%}
+  <div class="container inner">
 
-    <!-- Payment Icons -->
-    {% if section.settings.show_payment_icons %}
-      {% unless shop.enabled_payment_types == empty %}
-        {%- include 'payment-icons' -%}
-      {% endunless %}
-    {% endif %}
+    <div class="site-footer__main">
+      <!-- Footer Menu -->
+      {%- include 'nav-menu', current_linklist: section.settings.footer_linklist, class_name: 'site-footer__nav' -%}
 
-    <!-- Footer Menu -->
-    {%- include 'nav-menu', current_linklist: section.settings.footer_linklist -%}
+    </div>
+    <div class="site-footer__social">
+      <!--   SOCIAL NAV   -->
+      {%- include 'nav-menu', current_linklist: section.settings.social_linklist, open_in_new_tab: true -%}
 
-    <!--   SOCIAL NAV   -->
-    {%- include 'nav-menu', current_linklist: section.settings.social_linklist, open_in_new_tab: true -%}
-
-    <!-- Copyright -->
-    <div class="copyright">
-      <p>{{ 'layout.footer.copyright' | t }} &copy; {{ 'now' | date: "%Y" }}, {{ shop.name | link_to: '/' }}.</p>
+      <!-- Copyright -->
+      <div class="copyright">
+        <div>&copy;{{ section.settings.copyright }} {% if section.settings.include_copyright_year == true %}{{ 'now' | date: "%Y" }}{% endif %}</div>
+      </div>
     </div>
   </div>
 </footer>
@@ -28,6 +28,44 @@
   {
     "name": "Footer",
     "settings": [
+      {
+        "type": "header",
+        "content": "Newsletter"
+      },
+      {
+        "id": "placeholder_text",
+        "type": "text",
+        "label": "Placeholder Text",
+        "default": "Join our newsletter"
+      },
+      {
+        "id": "btn_text",
+        "type": "text",
+        "label": "Button Text",
+        "default": "Join"
+      },
+      {
+        "id": "success",
+        "type": "text",
+        "label": "Success Message",
+        "default": "Check your inbox for updates"
+      },
+      {
+        "id": "error",
+        "type": "text",
+        "label": "Error",
+        "default": "Please enter a valid email address"
+      },
+      {
+        "id": "list_id",
+        "type": "text",
+        "label": "Klaviyo List Id",
+        "default": "UEBPdM"
+      },
+      {
+        "type": "header",
+        "content": "Footer Menus"
+      },
       {
         "id": "footer_linklist",
         "type": "link_list",
@@ -39,13 +77,23 @@
         "id": "social_linklist",
         "type": "link_list",
         "label": "Social Linklist",
-        "info": "Update links in Online Store > Navigation."
+        "info": "Update social links and add additional links in Online Store > Navigation."
       },
       {
-        "id": "show_payment_icons",
+        "type": "header",
+        "content": "Copyright"
+      },
+      {
+        "id": "copyright",
+        "type": "richtext",
+        "label": "Copyright"
+      },
+      {
+        "id": "include_copyright_year",
         "type": "checkbox",
-        "label": "Show payment icons",
-        "default": false
+        "label": "Include Copyright Year",
+        "default": true,
+        "info": "If selected, year will be included in copyright and will automatically update each year."
       }
     ]
   }

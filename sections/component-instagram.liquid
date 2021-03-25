@@ -1,0 +1,91 @@
+<div class="instagram-section padded">
+  <div class="cols-3">
+    {% if section.settings.ig_link_text != blank %}
+      <a href="{{ section.settings.ig_link_url }}" class="scaling-image-wrapper">
+    {% endif %}
+      {% render 'block-image-cropped-lg', image: section.settings.image, alt_text: section.settings.image_alt, height: '101%' %}
+    {% if section.settings.ig_link_text != blank %}
+    </a>
+    {% endif %}
+
+    <div class="instagram-section__text">
+      <h2 class="hd-2">{{ section.settings.title }}</h2>
+
+      {% render 'icon-star' %}
+
+      {% if section.settings.ig_link_text != blank %}
+        <a href="{{ section.settings.ig_link_url }}"
+          class="text-only caps--12 instagram-section__link"
+          {% if section.settings.ig_link_alt != blank %}alt="{{ section.settings.ig_link_alt }}"{% endif %}>
+          {{ section.settings.ig_link_text }}
+        </a>
+      {% endif %}
+    </div>
+
+    {% if section.settings.ig_link_text != blank %}
+      <a href="{{ section.settings.ig_link_url }}" class="scaling-image-wrapper hide-mobile">
+    {% endif %}
+      {% render 'block-image-cropped-lg', image: section.settings.image_right, alt_text: section.settings.image_right_alt, height: '101%' %}
+    {% if section.settings.ig_link_text != blank %}
+    </a>
+    {% endif %}
+
+  </div>
+</div>
+
+
+{% schema %}
+{
+  "name": "Instagram Section Content",
+  "settings": [
+    {
+      "id": "title",
+      "type": "richtext",
+      "label": "Title"
+    },
+    {
+      "id": "ig_link_text",
+      "type": "text",
+      "label": "IG Link Text"
+    },
+    {
+      "id": "ig_link_url",
+      "type": "url",
+      "label": "IG Link URL"
+    },
+    {
+      "id": "ig_link_alt",
+      "type": "text",
+      "label": "Link ADA description",
+      "info": "Use for links with nondescriptive text like 'Learn More'"
+    },
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "id": "image",
+      "type": "image_picker",
+      "label": "Left Image"
+    },
+    {
+      "id": "image_alt",
+      "type": "text",
+      "label": "Left Image Alt",
+      "info": "Write a brief description of this image to improve search engine optimization (SEO) and ADA accessibility."
+    },
+
+    {
+      "id": "image_right",
+      "type": "image_picker",
+      "label": "Right Image"
+    },
+    {
+      "id": "image_right_alt",
+      "type": "text",
+      "label": "Right Image Alt",
+      "info": "Write a brief description of this image to improve search engine optimization (SEO) and ADA accessibility."
+    }
+  ]
+}
+{% endschema %}

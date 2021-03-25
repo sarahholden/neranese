@@ -2,7 +2,7 @@
   <div class="js-inner-form-wrap split-aligner">
     <div class="input-wrapper">
       <label for="popup-klaviyo-email{{ form_index }}" class="visually-hidden">Enter your email</label>
-      <input type="email" id="popup-klaviyo-email{{ form_index }}" placeholder="{{ section.settings.placeholder }}">
+      <input type="email" id="popup-klaviyo-email{{ form_index }}" placeholder="{{ section.settings.placeholder_text }}">
     </div>
     {% if section.settings.error != blank %}
       <div class="error-message hide">
@@ -10,7 +10,10 @@
       </div>
     {% endif %}
 
-    <button type="submit" class="btn" aria-label="Submit email">{{ section.settings.btn_text }}</button>
+    <button type="submit" class="btn link--arrow" aria-label="Submit email">
+      {{ section.settings.btn_text }}
+      <span class="icon-wrap">{% render 'icon-arrow-right' %}</span>
+    </button>
 
   </div>
   {% if section.settings.success != blank %}
