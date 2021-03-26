@@ -1253,6 +1253,14 @@ h1 {
   letter-spacing: 0.1rem;
 }
 
+@media (max-width: 767px) {
+  .hd-1,
+  h1 {
+    font-size: 5rem;
+    letter-spacing: 0.05rem;
+  }
+}
+
 .hd-2,
 h2 {
   font-size: 4.5rem;
@@ -1263,6 +1271,7 @@ h2 {
   .hd-2,
   h2 {
     font-size: 3.5rem;
+    letter-spacing: 0.05rem;
   }
 }
 
@@ -1274,16 +1283,41 @@ h3 {
   letter-spacing: 0.067rem;
 }
 
+@media (max-width: 767px) {
+  
+  .hd-3,
+  .page-general h1,
+  h3 {
+    font-size: 3.2rem;
+    letter-spacing: 0.05rem;
+  }
+}
+
 .hd-4,
 h4 {
   font-size: 3rem;
   letter-spacing: 0.05rem;
 }
 
+@media (max-width: 767px) {
+  .hd-4,
+  h4 {
+    font-size: 2.5rem;
+    letter-spacing: 0.035rem;
+  }
+}
+
 .hd-5,
 h5 {
   font-size: 2.5rem;
   letter-spacing: 0;
+}
+
+@media (max-width: 767px) {
+  .hd-5,
+  h5 {
+    font-size: 2rem;
+  }
 }
 
 .hd-6,
@@ -1293,11 +1327,18 @@ h6 {
   line-height: 1.25;
 }
 
+@media (max-width: 767px) {
+  .hd-6,
+  h6 {
+    font-size: 2rem;
+    letter-spacing: 0.025rem;
+  }
+}
+
 /* --------------------------------------------------------------------------
   SMALL CAPS
 -----------------------------------------------------------------------------*/
-.caps--12, .caps--10, .caps--8, .nav-wrapper__left ul, footer, .link--arrow,
-.accordion-panel h2 {
+.caps--12, .caps--10, .caps--8, .nav-wrapper__left ul, footer, .link--arrow {
   text-transform: uppercase;
   font-family: "Basis Grotesque Pro", sans-serif;
   font-weight: 500;
@@ -1306,6 +1347,12 @@ h6 {
 .caps--12 {
   font-size: 1.2rem;
   letter-spacing: 0.185rem;
+}
+
+@media (max-width: 767px) {
+  .caps--12 {
+    font-size: 1.1rem;
+  }
 }
 
 .caps--10 {
@@ -3477,9 +3524,11 @@ Buttons
   }
 }
 
-.instagram-section .scaling-image-wrapper {
-  padding-left: 1.8rem;
-  padding-right: 1.8rem;
+@media (max-width: 767px) {
+  .instagram-section .scaling-image-wrapper {
+    padding-left: 1.8rem;
+    padding-right: 1.8rem;
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -3500,6 +3549,27 @@ Set "0" for offest option ^^
 -----------------------------------------------------------------------------*/
 /*================ SECTIONS ================*/
 /* --------------------------------------------------------------------------
+  FAQs
+-----------------------------------------------------------------------------*/
+.page-faqs header {
+  text-align: center;
+}
+
+.page-faqs h1 {
+  margin-bottom: 3rem;
+}
+
+@media (max-width: 767px) {
+  .page-faqs h1 {
+    margin-bottom: 2.5rem;
+  }
+}
+
+.page-faqs h2 {
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------------
 Accordions
 -----------------------------------------------------------------------------*/
 /* Accordion Panel Styles ---------------- */
@@ -3512,8 +3582,20 @@ Accordions
   border-top: 1px solid #363636;
 }
 
-.accordion-panel h2 {
+.accordion-panel .accordion-toggle {
+  font-size: 1.1rem;
+  font-family: "Basis Grotesque Pro", sans-serif;
+  font-weight: 500;
+  color: #242424;
+  letter-spacing: 0;
+  line-height: 3.27273;
   margin-bottom: 0;
+}
+
+@media (max-width: 767px) {
+  .accordion-panel .accordion-toggle {
+    font-size: 1rem;
+  }
 }
 
 /* Accordion Text Styles ---------------- */
@@ -3613,6 +3695,33 @@ Accordions
 /* --------------------------------------------------------------------------
   CONTACT PAGE STYLES
 -----------------------------------------------------------------------------*/
+.page-contact {
+  text-align: center;
+}
+
+.page-contact header {
+  padding-bottom: 4.6rem;
+}
+
+@media (max-width: 767px) {
+  .page-contact header {
+    padding-bottom: 2.6rem;
+  }
+}
+
+.page-contact h1 {
+  margin-bottom: 0;
+}
+
+.page-contact h3 {
+  margin-bottom: 1.1rem;
+  line-height: 1.32;
+}
+
+.page-contact li {
+  padding-bottom: 4.3rem;
+}
+
 /* --------------------------------------------------------------------------
   Press page
 -----------------------------------------------------------------------------*/

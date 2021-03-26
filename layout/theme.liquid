@@ -111,12 +111,6 @@
   {% section 'footer' %}
   {% section 'cart-drawer' %}
 
-  {% comment %}
-  {%- if template == 'page.contact' -%}
-    <script src="{{ 'form-submission.js' | asset_url }}" defer="defer"></script>
-  {%- endif -%}
-  {% endcomment %}
-
   <!-- Initialize Cart.js for AJAX cart -->
   {{ 'option_selection.js' | shopify_asset_url | script_tag }}
   <script type="text/javascript"

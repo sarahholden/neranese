@@ -1,4 +1,22 @@
 /* --------------------------------------------------------------------------
+  FAQs
+-----------------------------------------------------------------------------*/
+.page-faqs {
+  header {
+    text-align: center;
+  }
+  h1 {
+    margin-bottom: 3rem;
+    @include mobile-only {
+      margin-bottom: 2.5rem;
+    }
+  }
+  h2 {
+    text-align: center;
+  }
+}
+
+/* --------------------------------------------------------------------------
 Accordions
 -----------------------------------------------------------------------------*/
 /* Accordion Panel Styles ---------------- */
@@ -8,9 +26,17 @@ Accordions
   &:first-of-type {
     border-top: 1px solid $borderColor;
   }
-  h2 {
-    @extend %smallCaps;
+  .accordion-toggle {
+    font-size: 1.1rem;
+    font-family: $basis;
+    font-weight: 500;
+    color: #242424;
+    letter-spacing: 0;
+    line-height: (36 / 11);
     margin-bottom: 0;
+    @include mobile-only {
+      font-size: 1rem;
+    }
   }
 }
 
