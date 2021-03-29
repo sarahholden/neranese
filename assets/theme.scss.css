@@ -3567,6 +3567,22 @@ Set "0" for offest option ^^
 
 .page-faqs h2 {
   text-align: center;
+  margin-top: 2rem;
+  outline: none;
+}
+
+.page-faqs h2 span {
+  cursor: pointer;
+}
+
+.page-faqs .accordion {
+  max-width: 79rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 1rem;
+  padding-bottom: 1.5rem;
+  display: none;
+  position: relative;
 }
 
 /* --------------------------------------------------------------------------
@@ -3588,7 +3604,7 @@ Accordions
   font-weight: 500;
   color: #242424;
   letter-spacing: 0;
-  line-height: 3.27273;
+  line-height: 1;
   margin-bottom: 0;
 }
 
@@ -3601,6 +3617,10 @@ Accordions
 /* Accordion Text Styles ---------------- */
 .accordion-text {
   display: none;
+  font-size: 1.1rem;
+  font-family: "Basis Grotesque Pro", sans-serif;
+  color: #242424;
+  line-height: 1.54545;
 }
 
 .accordion-text a {
@@ -3620,7 +3640,8 @@ Accordions
 }
 
 .accordion-text .accordion-inner {
-  padding-top: 2rem;
+  padding-top: 1rem;
+  max-width: 46.7rem;
 }
 
 /* Clickable accordion headings ---------------- */
@@ -3640,8 +3661,8 @@ Accordions
   right: 1.4rem;
   top: 47%;
   transform: translateY(-50%);
-  width: 1.1rem;
-  height: 1.1rem;
+  width: 0.5rem;
+  height: 0.5rem;
 }
 
 .accordion-toggle .icon::after,
@@ -3651,7 +3672,7 @@ Accordions
   position: absolute;
   top: 50%;
   width: 100%;
-  border-bottom: 2px solid #363636;
+  border-bottom: 1px solid #363636;
 }
 
 .accordion-toggle .icon::before {
@@ -3796,6 +3817,35 @@ Accordions
   .page-press .link--arrow-italic {
     padding-left: 0.6rem;
   }
+}
+
+/* --------------------------------------------------------------------------
+  HEADER
+-----------------------------------------------------------------------------*/
+.page-ethos header h1 {
+  max-width: 47rem;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.page-ethos .ethos-section {
+  margin-bottom: 3.4rem;
+}
+
+.page-ethos .ethos-section .cropped-image-wrapper {
+  padding-bottom: 122%;
+}
+
+.page-ethos .ethos-section .scaling-image-wrapper {
+  max-width: 46.5rem;
+  margin-bottom: 2rem;
+}
+
+.page-ethos .ethos-section .ethos-section__text {
+  max-width: 33.4rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .social-sharing svg {

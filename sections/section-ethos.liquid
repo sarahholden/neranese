@@ -1,1 +1,77 @@
-Ethos!
+
+<header class="page-padded-top container">
+  {%- if section.settings.desc != blank -%}
+    <h1 class="hd-6">{{ section.settings.desc }}</h1>
+  {%- endif -%}
+</header>
+
+<div class="container padded">
+  {% for block in section.blocks %}
+    {% case block.type %}
+    {% when 'ethos_row' %}
+      <div class="alt-grid ethos-section">
+        <div>
+          <div class="scaling-image-wrapper">
+            {% render 'block-image-cropped-lg', image: block.settings.image, alt_text: block.settings.image_alt %}
+          </div>
+        </div>
+        <div class="v-aligner">
+          <div class="ethos-section__text">
+            {% if block.settings.title != blank %}
+              <h2>{{ block.settings.title | newline_to_br }}</h2>
+            {% endif %}
+            {% if block.settings.desc != blank %}
+              <div class="desc">
+                {{ block.settings.desc }}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    {% endcase %}
+  {% endfor %}
+
+</div>
+
+{% schema %}
+{
+  "name": "Our Ethos Content",
+  "settings": [
+    {
+      "id": "desc",
+      "type": "richtext",
+      "label": "Intro Text"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "ethos_row",
+      "name": "Ethos Row",
+      "settings": [
+        {
+          "id": "title",
+          "type": "richtext",
+          "label": "Heading"
+        },
+        {
+          "id": "desc",
+          "type": "richtext",
+          "label": "Description"
+        },
+        {
+          "id": "image",
+          "type": "image_picker",
+          "label": "Image"
+        },
+        {
+          "id": "image_alt",
+          "type": "text",
+          "label": "Image Alt",
+          "info": "Write a brief description of this image to improve search engine optimization (SEO) and ADA accessibility."
+        }
+
+      ]
+    }
+  ]
+}
+{% endschema %}

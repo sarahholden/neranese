@@ -1,1 +1,40 @@
-About page!
+<div class="cols-2 page-padded-top padded container">
+  <div>
+    {% render 'block-image', image: section.settings.image, m_image: section.settings.image, alt_text: section.settings.image_alt %}
+  </div>
+  <div>
+    <h1>{{ section.settings.title }}</h1>
+    <div class="desc">
+      {{ section.settings.desc }}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "About Content",
+  "settings": [
+    {
+      "id": "title",
+      "type": "richtext",
+      "label": "Title"
+    },
+    {
+      "id": "desc",
+      "type": "richtext",
+      "label": "Description"
+    },
+    {
+      "id": "image",
+      "type": "image_picker",
+      "label": "Image"
+    },
+    {
+      "id": "image_alt",
+      "type": "text",
+      "label": "Image Alt",
+      "info": "Write a brief description of this image to improve search engine optimization (SEO) and ADA accessibility."
+    }
+  ]
+}
+{% endschema %}

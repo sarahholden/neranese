@@ -249,6 +249,28 @@ $(document).ready(function() {
 
   });
 
+  $('.js-accordion-heading').on('click', function() {
+    var $accordionWrapper = $(this).next('.accordion');
+    // $accordionWrapper.fadeToggle(300);
+    if ($accordionWrapper.hasClass('active-accordion')) {
+      // $accordionWrapper.stop(true, true).fadeOut({ duration: 600, queue: false }).slideUp(600);
+      $accordionWrapper.fadeOut(500);
+    } else {
+      // $accordionWrapper.stop(true, true).fadeIn({ duration: 600, queue: false }).css('display', 'none').slideDown(600);
+      $accordionWrapper.fadeIn(500);
+    }
+
+    $accordionWrapper.toggleClass('active-accordion');
+
+    // TOGGLE ARIA-EXPANDED FOR ADA
+    $accordionWrapper.attr('aria-expanded', function (i, attr) {
+      return attr == 'true' ? 'false' : 'true';
+    });
+
+  });
+
+
+
 
   /* ---------------------------------------------
   VIEW CART

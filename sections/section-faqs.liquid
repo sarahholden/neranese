@@ -1,35 +1,48 @@
-<!-- ============================
-HEADER
-================================= -->
-<header class="page-padded-top">
-  <div class="container">
-    <h1 class="hd-3">{{ section.settings.title }}</h1>
-  </div>
-</header>
+<div class="padded page-padded-top">
+  <!-- ============================
+  HEADER
+  ================================= -->
+  <header>
+    <div class="container">
+      <h1 class="hd-3">{{ section.settings.title }}</h1>
+    </div>
+  </header>
 
-<!-- ============================
-FAQs
-================================= -->
-<section class="container">
-  <div class="accordion list-animation-wrapper">
-    {% for block in section.blocks %}
-      {% case block.type %}
-        {% when 'faq_heading' %}
-          <h2 class=" hd-5">{{ block.settings.title }}</h2>
-        {% when 'faq_item' %}
-          <div class="accordion-panel animate-item">
-            <h3 class="accordion-toggle"><span class="text">{{ block.settings.title }}</span> <span class="icon"></span></h3>
-            <div class="accordion-text">
-              <div class="accordion-inner desc">
-                {{ block.settings.desc }}
+  <!-- ============================
+  FAQs
+  ================================= -->
+  <section class="container">
+    <div>
+      {% for block in section.blocks %}
+
+        {% case block.type %}
+          {% when 'faq_heading' %}
+            <h2 class="js-accordion-heading hd-5" tabindex="0" aria-label="Open Accordion Section"><span>{{ block.settings.title }}</span></h2>
+          {% when 'faq_item' %}
+            {% assign prev_index = forloop.index0 | minus: 1 %}
+            {% assign previous_block = section.blocks[prev_index] %}
+            {% assign next_index = forloop.index0 | plus: 1 %}
+            {% assign next_block = section.blocks[next_index] %}
+            {%- if previous_block.type == 'faq_heading' -%}
+              <div class="accordion list-animation-wrapper" aria-expanded="false">
+            {%- endif -%}
+              <div class="accordion-panel animate-item">
+                <h3 class="accordion-toggle"><span class="text">{{ block.settings.title }}</span> <span class="icon"></span></h3>
+                <div class="accordion-text">
+                  <div class="accordion-inner desc">
+                    {{ block.settings.desc }}
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-      {% endcase %}
-    {% endfor %}
-  </div>
-</section>
+            {%- if next_block == blank or next_block.type == 'faq_heading' -%}
+              </div>
+            {%- endif -%}
+        {% endcase %}
+      {% endfor %}
+    </div>
+  </section>
 
+</div>
 
 {% schema %}
 {

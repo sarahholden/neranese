@@ -1,1 +1,42 @@
 Fit Guide
+
+
+
+{% schema %}
+{
+  "name": "Fit Guide Content",
+  "settings": [
+    {
+      "id": "desc",
+      "type": "richtext",
+      "label": "Intro Text"
+    },
+    {
+      "id": "image",
+      "type": "image_picker",
+      "label": "Image"
+    },
+    {
+      "id": "image_alt",
+      "type": "text",
+      "label": "Image Alt",
+      "info": "Write a brief description of this image to improve search engine optimization (SEO) and ADA accessibility."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "measurements_block",
+      "name": "Measurements Block",
+      "settings": [
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Heading"
+        }
+
+
+      ]
+    }
+  ]
+}
+{% endschema %}
