@@ -1,0 +1,115 @@
+<section class="intro container">
+  {% if section.settings.url != blank %}
+    <a href="{{ section.settings.url }}">
+  {% endif %}
+
+    <div class="cols-2">
+      <!-- ====== IMAGE ======== -->
+      <div class="intro__image">
+        <span class="scaling-image-wrap">
+          {%- if section.settings.image -%}
+            {% render 'block-image-cropped', image: section.settings.image, m_image: section.settings.image, alt_text: section.settings.image_alt %}
+          {%- endif -%}
+
+        </span>
+      </div>
+
+      <!-- ====== TEXT COLUMN ======== -->
+      <div class="intro__text">
+        <div class="intro__top-text">
+          {% if section.settings.top_text != blank %}
+            {{ section.settings.top_text }}
+          {% elsif section.settings.top_text_image != blank %}
+            <img src="{{ section.settings.top_text_image }}" alt="Things of Beauty">
+          {% endif %}
+        </div>
+
+        {% if section.settings.heading != blank %}
+          <h2>{{ section.settings.heading }}</h2>
+        {% endif %}
+
+        <div class="intro__bottom-text">
+          {% if section.settings.bottom_text != blank %}
+            {{ section.settings.bottom_text }}
+          {% elsif section.settings.bottom_text_image != blank %}
+            <img src="{{ section.settings.bottom_text_image }}" alt="Made in Los Angeles">
+          {% endif %}
+        </div>
+      </div>
+
+    </div>
+
+  {% if section.settings.url != blank %}
+    </a>
+  {% endif %}
+</section>
+
+{% schema %}
+  {
+    "name": "Home Intro",
+    "settings": [
+      {
+        "id": "heading",
+        "type": "richtext",
+        "label": "Heading"
+      },
+
+      {
+        "id": "url",
+        "type": "url",
+        "label": "URL",
+        "info": "Link to collection, product, or page"
+      },
+      {
+        "type": "header",
+        "content": "Text with word spacing"
+      },
+      {
+        "id": "top_text_image",
+        "type": "url",
+        "label": "Top Text Image",
+        "info": "Choose between Top Text or Top Text Image. For top image add url for SVG in Settings > Files (upload image and copy path)"
+      },
+      {
+        "id": "top_text",
+        "type": "text",
+        "label": "Top Text",
+        "info": "Choose between Top Text or Top Text Image"
+      },
+      {
+        "id": "bottom_text_image",
+        "type": "url",
+        "label": "Bottom Text Image",
+        "info": "Choose between Bottom Text or Bottom Text Image. For bottom image add url for SVG in Settings > Files (upload image and copy path)"
+      },
+      {
+        "id": "bottom_text",
+        "type": "text",
+        "label": "Bottom Text",
+        "info": "Choose between Bottom Text or Bottom Text Image"
+      },
+
+      {
+        "type": "header",
+        "content": "Images"
+      },
+      {
+        "id": "image",
+        "type": "image_picker",
+        "label": "Image"
+      },
+      {
+        "id": "image_alt",
+        "type": "text",
+        "label": "Image Alt",
+        "info": "Write a brief description of this image to improve search engine optimization (SEO) and ADA accessibility."
+      }
+    ],
+    "presets": [
+      {
+        "name": "Home Intro",
+        "category": "Sections"
+      }
+    ]
+  }
+{% endschema %}

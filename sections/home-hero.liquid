@@ -1,0 +1,48 @@
+<header class="container">
+  {% if section.settings.url != blank %}
+    <a href="{{ section.settings.url }}">
+  {% endif %}
+    <span class="scaling-image-wrap">
+      {% render 'block-image-cropped', image: section.settings.image, m_image: section.settings.image_mobile, alt_text: section.settings.image_alt %}
+    </span>
+  {% if section.settings.url != blank %}
+    </a>
+  {% endif %}
+
+</header>
+
+{% schema %}
+  {
+    "name": "Home Hero",
+    "settings": [
+      {
+        "id": "url",
+        "type": "url",
+        "label": "URL",
+        "info": "Link to collection, product, or page"
+      },
+      {
+        "id": "image",
+        "type": "image_picker",
+        "label": "Image"
+      },
+      {
+        "id": "image_alt",
+        "type": "text",
+        "label": "Image Alt",
+        "info": "Write a brief description of this image to improve search engine optimization (SEO) and ADA accessibility."
+      },
+      {
+        "id": "image_mobile",
+        "type": "image_picker",
+        "label": "Image Mobile"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Home Hero",
+        "category": "Sections"
+      }
+    ]
+  }
+{% endschema %}

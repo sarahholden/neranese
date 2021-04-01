@@ -1,0 +1,75 @@
+
+/* --------------------------------------------------------------------------
+  HEADER
+-----------------------------------------------------------------------------*/
+.template-index header {
+  padding-top: 7.2rem;
+  .cropped-image-wrapper {
+    padding-bottom: 57%;
+    @include mobile-only {
+      padding-bottom: 110%;
+    }
+  }
+}
+
+/* --------------------------------------------------------------------------
+  INTRO
+-----------------------------------------------------------------------------*/
+.template-index .intro {
+  padding-top: 4.4rem;
+  padding-bottom: 4.4rem;
+  @include mobile-only {
+    padding-top: 3.4rem;
+    padding-bottom: 3.4rem;
+  }
+
+  /* INTRO IMAGE ================== */
+  .intro__image {
+    @include mobile-only {
+      margin-bottom: 3rem;
+    }
+  }
+
+  /* INTRO TEXT ================== */
+  .intro__text {
+    @extend .v-h-aligner;
+    position: relative;
+    @include mobile-only {
+      padding-top: 7rem;
+      padding-bottom: 7rem;
+    }
+  }
+  .cropped-image-wrapper {
+    padding-bottom: 122%;
+  }
+  .intro__bottom-text,
+  .intro__top-text {
+    @extend .caps--12;
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    word-spacing: 6rem;
+    @include mobile-only {
+      word-spacing: 3rem;
+    }
+    img {
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 90%;
+    }
+  }
+  .intro__top-text {
+    top: 0;
+
+    img {
+      width: 31.7rem;
+    }
+  }
+  .intro__bottom-text {
+    bottom: 0;
+    img {
+      width: 30.3rem;
+
+    }
+  }
+}

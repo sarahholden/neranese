@@ -1338,19 +1338,22 @@ h6 {
 /* --------------------------------------------------------------------------
   SMALL CAPS
 -----------------------------------------------------------------------------*/
-.caps--12, .caps--10, .caps--8, .nav-wrapper__left ul, footer, .link--arrow {
+.caps--12, .template-index .intro .intro__bottom-text,
+.template-index .intro .intro__top-text, .caps--10, .caps--8, .nav-wrapper__left ul, footer, .link--arrow {
   text-transform: uppercase;
   font-family: "Basis Grotesque Pro", sans-serif;
   font-weight: 500;
 }
 
-.caps--12 {
+.caps--12, .template-index .intro .intro__bottom-text,
+.template-index .intro .intro__top-text {
   font-size: 1.2rem;
   letter-spacing: 0.185rem;
 }
 
 @media (max-width: 767px) {
-  .caps--12 {
+  .caps--12, .template-index .intro .intro__bottom-text,
+  .template-index .intro .intro__top-text {
     font-size: 1.1rem;
   }
 }
@@ -1387,6 +1390,12 @@ h6 {
   font-size: 2.4rem;
   letter-spacing: 0.04rem;
   line-height: 1.25;
+}
+
+@media (max-width: 767px) {
+  .body--24 {
+    font-size: 2rem;
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -1677,7 +1686,8 @@ Vertical & Horizontal Alignment
 
 /* Center vertically and horizontally */
 
-.v-h-aligner {
+.v-h-aligner,
+.template-index .intro .intro__text {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -3787,6 +3797,99 @@ Accordions
 }
 
 /* --------------------------------------------------------------------------
+  HEADER
+-----------------------------------------------------------------------------*/
+.template-index header {
+  padding-top: 7.2rem;
+}
+
+.template-index header .cropped-image-wrapper {
+  padding-bottom: 57%;
+}
+
+@media (max-width: 767px) {
+  .template-index header .cropped-image-wrapper {
+    padding-bottom: 110%;
+  }
+}
+
+/* --------------------------------------------------------------------------
+  INTRO
+-----------------------------------------------------------------------------*/
+.template-index .intro {
+  padding-top: 4.4rem;
+  padding-bottom: 4.4rem;
+  /* INTRO IMAGE ================== */
+  /* INTRO TEXT ================== */
+}
+
+@media (max-width: 767px) {
+  .template-index .intro {
+    padding-top: 3.4rem;
+    padding-bottom: 3.4rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .template-index .intro .intro__image {
+    margin-bottom: 3rem;
+  }
+}
+
+.template-index .intro .intro__text {
+  position: relative;
+}
+
+@media (max-width: 767px) {
+  .template-index .intro .intro__text {
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+  }
+}
+
+.template-index .intro .cropped-image-wrapper {
+  padding-bottom: 122%;
+}
+
+.template-index .intro .intro__bottom-text,
+.template-index .intro .intro__top-text {
+  text-align: center;
+  width: 100%;
+  position: absolute;
+  word-spacing: 6rem;
+}
+
+@media (max-width: 767px) {
+  .template-index .intro .intro__bottom-text,
+  .template-index .intro .intro__top-text {
+    word-spacing: 3rem;
+  }
+}
+
+.template-index .intro .intro__bottom-text img,
+.template-index .intro .intro__top-text img {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 90%;
+}
+
+.template-index .intro .intro__top-text {
+  top: 0;
+}
+
+.template-index .intro .intro__top-text img {
+  width: 31.7rem;
+}
+
+.template-index .intro .intro__bottom-text {
+  bottom: 0;
+}
+
+.template-index .intro .intro__bottom-text img {
+  width: 30.3rem;
+}
+
+/* --------------------------------------------------------------------------
   Press page
 -----------------------------------------------------------------------------*/
 .page-press header {
@@ -3894,6 +3997,126 @@ Accordions
 .social-sharing svg {
   display: block;
   width: 2rem;
+}
+
+/* --------------------------------------------------------------------------
+  FIT GUIDE Header
+-----------------------------------------------------------------------------*/
+.page-fit-guide header {
+  text-align: center;
+  padding-bottom: 5.8rem;
+}
+
+@media (max-width: 767px) {
+  .page-fit-guide header {
+    padding-bottom: 3.5rem;
+  }
+}
+
+.page-fit-guide header .inner {
+  max-width: 48.5rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.page-fit-guide header img {
+  width: 44%;
+  max-width: 17.2rem;
+  margin-left: auto;
+  margin-right: auto;
+  transform: translateX(12%);
+}
+
+.page-fit-guide header h1 {
+  margin-bottom: 4.4rem;
+  letter-spacing: 0.01rem;
+}
+
+@media (max-width: 767px) {
+  .page-fit-guide header h1 {
+    margin-bottom: 3.5rem;
+  }
+}
+
+.page-fit-guide header h1 a:hover {
+  text-decoration: underline;
+}
+
+.page-fit-guide .chart {
+  max-width: 50rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 9rem;
+}
+
+@media (max-width: 767px) {
+  .page-fit-guide .chart {
+    padding-bottom: 6rem;
+  }
+}
+
+.page-fit-guide .chart h2 {
+  text-align: center;
+  letter-spacing: 0.01rem;
+}
+
+@media (max-width: 767px) {
+  .page-fit-guide .chart h2 {
+    margin-bottom: 2rem;
+  }
+}
+
+.page-fit-guide .chart table {
+  width: 100%;
+}
+
+@media (max-width: 767px) {
+  .page-fit-guide .chart table {
+    width: 86%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.page-fit-guide .chart td,
+.page-fit-guide .chart th {
+  border: none;
+  border-bottom: 1px solid #979797;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  font-weight: 500;
+  padding-top: 1.6rem;
+  padding-bottom: 1.6rem;
+}
+
+@media (max-width: 767px) {
+  .page-fit-guide .chart td,
+  .page-fit-guide .chart th {
+    font-size: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+}
+
+.page-fit-guide .chart tr:first-of-type td,
+.page-fit-guide .chart tr:first-of-type th {
+  letter-spacing: 0.165rem;
+}
+
+.page-fit-guide .chart td:first-of-type,
+.page-fit-guide .chart th:first-of-type {
+  letter-spacing: 0.165rem;
+  padding-left: 0;
+  text-align: left;
+  width: 20%;
+}
+
+.page-fit-guide .chart td:last-of-type,
+.page-fit-guide .chart th:last-of-type {
+  padding-right: 0.4rem;
+  text-align: right;
+  width: 20%;
 }
 
 .icon-fallback-text,

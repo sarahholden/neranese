@@ -1,0 +1,79 @@
+{% if section.settings.title != blank or section.blocks.size > 0 %}
+  <div class="container chart">
+    <div class="inner">
+      {% if section.settings.title != blank %}
+        <h2 class="hd-6">{{ section.settings.title }}</h2>
+      {% endif %}
+
+      {{ section.blocks[0].title }}
+      <script type="text/javascript">
+        console.log({{ section.blocks[0].settings | json }})
+      </script>
+
+      {%- if section.blocks.size > 0 -%}
+        <table class="">
+          {% for block in section.blocks %}
+            {% case block.type %}
+              {% when 'table_header' %}
+                  <thead>
+                    <tr>
+                      {% if block.settings.title != blank %}
+                        <th>{{ block.settings.title }}</th>
+                      {% endif %}
+                      {% if block.settings.column_2 != blank %}
+                        <th>{{ block.settings.column_2 }}</th>
+                      {% endif %}
+                      {% if block.settings.column_3 != blank %}
+                        <th>{{ block.settings.column_3 }}</th>
+                      {% endif %}
+                      {% if block.settings.column_4 != blank %}
+                        <th>{{ block.settings.column_4 }}</th>
+                      {% endif %}
+                      {% if block.settings.column_5 != blank %}
+                        <th>{{ block.settings.column_5 }}</th>
+                      {% endif %}
+                      {% if block.settings.column_6 != blank %}
+                        <th>{{ block.settings.column_6 }}</th>
+                      {% endif %}
+                    </tr>
+                  </thead>
+
+              {% when 'table_row' %}
+
+                {%- if forloop.index == 2 -%}
+                  <tbody>
+                {%- endif -%}
+
+                  <tr>
+                    {% if block.settings.title != blank %}
+                      <td data-label="{{ section.blocks[0].settings.title }}">{{ block.settings.title }}</td>
+                    {% endif %}
+                    {% if block.settings.column_2 != blank %}
+                      <td data-label="{{ section.blocks[0].settings.column_2 }}">{{ block.settings.column_2 }}</td>
+                    {% endif %}
+                    {% if block.settings.column_3 != blank %}
+                      <td data-label="{{ section.blocks[0].settings.column_3 }}">{{ block.settings.column_3 }}</td>
+                    {% endif %}
+                    {% if block.settings.column_4 != blank %}
+                      <td data-label="{{ section.blocks[0].settings.column_4 }}">{{ block.settings.column_4 }}</td>
+                    {% endif %}
+                    {% if block.settings.column_5 != blank %}
+                      <td data-label="{{ section.blocks[0].settings.column_5 }}">{{ block.settings.column_5 }}</td>
+                    {% endif %}
+                    {% if block.settings.column_6 != blank %}
+                      <td data-label="{{ section.blocks[0].settings.column_6 }}">{{ block.settings.column_6 }}</td>
+                    {% endif %}
+                  </tr>
+
+                {%- if forloop.index == section.blocks.size -%}
+                  </tbody>
+                {%- endif -%}
+
+            {% endcase %}
+          {% endfor %}
+
+        </table>
+      {%- endif -%}
+    </div>
+  </div>
+{% endif %}

@@ -1,10 +1,14 @@
-Fit Guide
-
+<header class="container page-padded-top">
+  <div class="inner">
+    <h1 class="body--24">{{ section.settings.desc }}</h1>
+    {% render 'block-image', image: section.settings.image, m_image: section.settings.image, alt_text: section.settings.image_alt %}
+  </div>
+</header>
 
 
 {% schema %}
 {
-  "name": "Fit Guide Content",
+  "name": "Fit Guide Intro",
   "settings": [
     {
       "id": "desc",
@@ -21,21 +25,6 @@ Fit Guide
       "type": "text",
       "label": "Image Alt",
       "info": "Write a brief description of this image to improve search engine optimization (SEO) and ADA accessibility."
-    }
-  ],
-  "blocks": [
-    {
-      "type": "measurements_block",
-      "name": "Measurements Block",
-      "settings": [
-        {
-          "id": "title",
-          "type": "text",
-          "label": "Heading"
-        }
-
-
-      ]
     }
   ]
 }

@@ -1,0 +1,97 @@
+/* --------------------------------------------------------------------------
+  FIT GUIDE Header
+-----------------------------------------------------------------------------*/
+.page-fit-guide header {
+  text-align: center;
+  padding-bottom: 5.8rem;
+  @include mobile-only {
+    padding-bottom: 3.5rem;
+  }
+  .inner {
+    max-width: 48.5rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  img {
+    width: 44%;
+    max-width: 17.2rem;
+    margin-left: auto;
+    margin-right: auto;
+    transform: translateX(12%);
+  }
+  h1 {
+    margin-bottom: 4.4rem;
+    letter-spacing: 0.01rem;
+    @include mobile-only {
+      margin-bottom: 3.5rem;
+    }
+    a {
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.page-fit-guide .chart {
+  max-width: 50rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 9rem;
+  @include mobile-only {
+    padding-bottom: 6rem;
+  }
+  h2 {
+    text-align: center;
+    letter-spacing: 0.01rem;
+    @include mobile-only {
+      margin-bottom: 2rem;
+    }
+  }
+  table {
+    width: 100%;
+    @include mobile-only {
+      width: 86%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  td,
+  th {
+    border: none;
+    border-bottom: 1px solid #979797;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    font-weight: 500;
+    padding-top: 1.6rem;
+    padding-bottom: 1.6rem;
+    @include mobile-only {
+      font-size: 1rem;
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+
+  }
+  tr {}
+  tr:first-of-type td,
+  tr:first-of-type th {
+    letter-spacing: 0.165rem;
+  }
+  td:first-of-type,
+  th:first-of-type {
+    letter-spacing: 0.165rem;
+    padding-left: 0;
+    text-align: left;
+    width: 20%;
+
+  }
+  td:last-of-type,
+  th:last-of-type {
+    padding-right: 0.4rem;
+    text-align: right;
+    width: 20%;
+  }
+
+}
