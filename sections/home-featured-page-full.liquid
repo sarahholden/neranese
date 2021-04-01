@@ -1,10 +1,14 @@
-<section class="image-callout image-callout--page container padded">
+<section class="full-width-image-callout">
   {% if section.settings.url != blank %}
     <a href="{{ section.settings.url }}">
   {% endif %}
-    <div class="image-wrap">
-      {% render 'block-image', image: section.settings.image, m_image: section.settings.image, alt_text: section.settings.image_alt %}
-      <h2 class="hd-1">{{ section.settings.title }}</h2>
+    <div class="scaling-image-wrap">
+      {% render 'block-image-cropped', image: section.settings.image, m_image: section.settings.image, alt_text: section.settings.image_alt %}
+      <h2>
+        <span><em>{{ section.settings.left_text }}</em></span>
+        <span class="dividing-line"></span>
+        <span>{{ section.settings.right_text }}</span>
+      </h2>
     </div>
   {% if section.settings.url != blank %}
     </a>
@@ -14,12 +18,17 @@
 
 {% schema %}
   {
-    "name": "Centered Image Page Link",
+    "name": "Full Image Page Link",
     "settings": [
       {
-        "id": "title",
-        "type": "richtext",
-        "label": "Heading"
+        "id": "left_text",
+        "type": "text",
+        "label": "Left Text"
+      },
+      {
+        "id": "right_text",
+        "type": "text",
+        "label": "Right Text"
       },
       {
         "id": "url",
@@ -41,7 +50,7 @@
     ],
     "presets": [
       {
-        "name": "Centered Image Page Link",
+        "name": "Full Width Image Page Link",
         "category": "Sections"
       }
     ]

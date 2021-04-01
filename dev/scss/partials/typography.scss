@@ -71,7 +71,7 @@ h1 {
   font-size: 6rem;
   letter-spacing: 0.1rem;
   @include mobile-only {
-    font-size: 5rem;
+    font-size: 4rem;
     letter-spacing: 0.05rem;
   }
 }

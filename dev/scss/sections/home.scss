@@ -26,7 +26,7 @@
   /* INTRO IMAGE ================== */
   .intro__image {
     @include mobile-only {
-      margin-bottom: 3rem;
+      margin-top: 2rem;
     }
   }
 
@@ -71,5 +71,65 @@
       width: 30.3rem;
 
     }
+  }
+}
+
+/* --------------------------------------------------------------------------
+  IMAGE CUTOUT LINK
+-----------------------------------------------------------------------------*/
+.template-index .image-callout {
+  text-align: center;
+  position: relative;
+  background: white;
+  .image-wrap {
+    width: 45.2rem;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    img {
+      width: 100%;
+    }
+
+  }
+  h2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: $cream;
+    width: 90%;
+  }
+  &.image-callout--page {
+    padding-top: 4.2rem;
+    padding-bottom: 4.2rem;
+    .image-wrap {
+      width: 50rem;
+    }
+  }
+}
+
+/* --------------------------------------------------------------------------
+  IMAGE CUTOUT LINK
+-----------------------------------------------------------------------------*/
+.template-index .full-width-image-callout {
+  color: $cream;
+  position: relative;
+  h2 {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 2.6rem;
+    right: 2.6rem;
+    display: flex;
+    align-items: center;
+    @include mobile-only {
+      bottom: 0.7rem;
+    }
+  }
+  .dividing-line {
+    margin-left: 2rem;
+    margin-right: 2rem;
+    flex-grow: 1;
+    border-bottom: 1px solid $cream;
   }
 }
