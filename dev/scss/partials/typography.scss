@@ -145,6 +145,13 @@ h6 {
   }
 }
 
+.caps--11 {
+  @extend %caps;
+  font-size: 1.1rem;
+  letter-spacing: 0.169rem;
+
+}
+
 .caps--10 {
   @extend %caps;
   font-size: 1rem;

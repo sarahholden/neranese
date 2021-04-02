@@ -1,7 +1,7 @@
 
 {%- if section.blocks.size > 0 -%}
-  <div class="container padded">
-    <div class="cols-3">
+  <div class="featured-products container padded">
+    <div class="cols-3 product-grid">
       {%- for block in section.blocks -%}
         {%- if block.settings.product != blank -%}
           {% render 'product-card', product: all_products[block.settings.product] %}

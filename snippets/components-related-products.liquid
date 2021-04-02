@@ -1,9 +1,5 @@
-<!--
-SETUP: Create 'related_products' field in custom fields
--->
-
 <div class="container">
-  <div class="cols-3">
+  <div class="cols-3 product-grid">
     <!-- RELATED PRODUCTS -->
     {% if product.metafields.accentuate.product != blank %}
       {% assign product_refs = product.metafields.accentuate.product | split: "|" %}
