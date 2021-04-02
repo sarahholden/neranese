@@ -51,6 +51,7 @@
     word-spacing: 6rem;
     @include mobile-only {
       word-spacing: 3rem;
+      width: 80%;
     }
     img {
       margin-left: auto;

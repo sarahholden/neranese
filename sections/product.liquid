@@ -10,194 +10,255 @@
   <meta itemprop="description" content="{{ product.description | strip_html | escape }}">
 
 
-  <section class="cols-2 no-gutters">
+  <section class="page-padded-top-sm container">
 
-    <!-- Add class "sticky" if this column should stick while the other column scrolls. -->
-    <div class="text-col">
+    <div class="cols-2 swiper-cols no-gutters">
+      <!-- ====== IMAGE ======== -->
+      <div class="image-col">
+        <!-- ====== GALLERY ======== -->
+        {% if product.images.size > 1 %}
+          <div class="swiper-container swiper-container-pdp">
+            <div class="swiper-wrapper">
+              {% for image in product.images %}
+                <section class="swiper-slide">
+                  {% assign alt_text = image.alt | escape %}
+                  {% assign img_url = image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+                  <img
+                  class="lazyload fade-in"
+                  data-src="{{ img_url }}"
+                  data-widths="[360, 540, 720, 900, 1080, 1600, 2200, 2800]"
+                  data-aspectratio="{{ image.aspect_ratio }}"
+                  data-sizes="auto"
+                  alt="{{ alt_text }}"
+                  data-anim="scale"
+                  >
+                </section>
+              {% endfor %}
+            </div>
+            <button type="button" class="text-only swiper-prev" aria-label="Previous Slide">
+              {% render 'icon-caret-left' %}
+            </button>
+            <button type="button" class="text-only swiper-next" aria-label="Next Slide">
+              {% render 'icon-caret-right' %}
+            </button>
+          </div>
 
-      <!-- ====== INTRO TEXT ======== -->
-      <h1>{{ product.title }}</h1>
-      <div class="rte desc body--sans-lg">
-        {{ product.description }}
+        <!-- ====== SINGLE IMAGE ======== -->
+        {% elsif featured_image != blank %}
+          <div class="cropped-image-wrapper">
+            {% assign image = featured_image %}
+            {% assign alt_text = featured_image.alt | escape %}
+            {% assign img_url = image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+            <img
+            class="lazyload fade-in"
+            data-src="{{ img_url }}"
+            data-widths="[360, 540, 720, 900, 1080, 1600, 2200, 2800]"
+            data-aspectratio="{{ image.aspect_ratio }}"
+            data-sizes="auto"
+            alt="{{ alt_text }}"
+            data-anim="scale"
+            >
+          </div>
+        {% endif %}
+
       </div>
 
-      <!-- ====== ACCENTUATE ACCORDION (Delete if not needed, use for product info accordion)======== -->
-      <!--
-      1. Create a repeatable section under "Products" in apps > Accentuate.
-      2. Create a text field and name it accordion_heading
-      3. Create a HTML field and name it accordion_body_text
-      4. Delete this comment
-       -->
-       {% comment %}
-       {%- if product.metafields.accentuate.accordion_heading -%}
-         <div class="accordion list-animation-wrapper">
-           {% for accordion_heading in product.metafields.accentuate.accordion_heading %}
-           <div class="accordion-panel animate-item">
-             <h3 class="accordion-toggle"><span class="text">{{ accordion_heading }}</span> <span class="icon"></span></h3>
-             <div class="accordion-text">
-               <div class="accordion-inner desc">
-                 {{ product.metafields.accentuate.accordion_body_text[forloop.index0] }}
-               </div>
-             </div>
-           </div>
-           {% endfor %}
-         </div>
-       {%- endif -%}
-       {% endcomment %}
 
+      <div class="text-col v-aligner">
 
-      <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-        <meta itemprop="priceCurrency" content="{{ shop.currency }}">
-        <meta itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">
-        <link itemprop="availability" href="http://schema.org/{% if current_variant.available %}InStock{% else %}OutOfStock{% endif %}">
+        <div class="inner">
+          <!-- ====== INTRO TEXT ======== -->
+          <h1 class="hd-4">{{ product.title }}</h1>
 
-        <!-- ====== FORM ======== -->
-        <form action="/cart/add" method="post" class="js-add-to-cart-form" enctype="multipart/form-data">
-          {% unless product.has_only_default_variant %}
-            {% for option in product.options_with_values %}
-              <div class="selector-wrapper js">
-                <label for="SingleOptionSelector-{{ forloop.index0 }}">
-                  {{ option.name }}
-                </label>
-
-                <select
-                  id="SingleOptionSelector-{{ forloop.index0 }}"
-                  data-single-option-selector
-                  data-index="option{{ option.position }}">
-                  {% for value in option.values %}
-                    <option
-                      value="{{ value | escape }}"
-                      {% if option.selected_value == value %}selected="selected"{% endif %}>
-                        {{ value }}
-                    </option>
-                  {% endfor %}
-                </select>
-              </div>
-            {% endfor %}
-          {% endunless %}
-
-          <!-- RADIO SELECT - DELETE IF SITE HAS DROPDOWNS INSTEAD OF RADIOS -->
-          <!-- {% unless product.has_only_default_variant %}
-            <div class="{% if product.variants.size > 1 %}cols-2-sm no-gutters{% endif %} js-radio-group-wrapper">
-              {% for variant in product.variants %}
-                <input
-                  id="variant-{{ forloop.index0 }}"
-                  type="radio"
-                  name="variantId"
-                  class="visually-hidden"
-                  data-variant-price="{{ variant.price }}"
-                  {% if product.variants.size == 1 or variant == current_variant %}checked="checked"{% endif %}
-                  {% unless variant.available %}disabled="disabled"{% endunless %}
-                  value="{{ variant.id }}"/>
-
-                <label class="cart-bar-cell option-cell" for="variant-{{ forloop.index0 }}">
-                  <span>{{ variant.title }}</span> <span class="variant-price">{{ variant.price | money }}</span> <span class="separator">&ndash;</span> {% if variant.weight != blank %}{{ variant.weight | weight_with_unit: variant.weight_unit }}{% endif %}
-                </label>
-              {% endfor %}
-
-            </div>
-          {% else %}
-            <input class="js-variant-id visually-hidden" type="text" name="" value="{{ product.variants[0].id }}">
-
-          {% endunless %} -->
-
-          <select name="id" class="js-variant-id visually-hidden no-js" data-product-select>
-            {% for variant in product.variants %}
-              <option
-                {% if variant == current_variant %}selected="selected"{% endif %}
-                {% unless variant.available %}disabled="disabled"{% endunless %}
-                value="{{ variant.id }}">
-                  {{ variant.title }}
-              </option>
-            {% endfor %}
-          </select>
-
-          <label for="quantity">{{ 'products.product.quantity' | t }}</label>
-          <input type="number" id="quantity" class="js-quantity" name="quantity" value="1" min="1">
-
+          <!-- ====== PRICE ======== -->
           <span data-price-wrapper class="price-wrapper">
             <span class="js-price" data-raw-price="{{ current_variant.price }}" data-product-price>
-              {{ current_variant.price | money }}
+              {{ current_variant.price | money_without_trailing_zeros }}
             </span>
 
             {% if product.compare_at_price_max > product.price %}
             <span class="visually-hidden" data-compare-text>{{ 'products.product.regular_price' | t }}</span>
             <s data-compare-price>
               {% if current_variant.compare_at_price > current_variant.price %}
-              {{ current_variant.compare_at_price | money }}
+              {{ current_variant.compare_at_price | money_without_trailing_zeros }}
               {% endif %}
             </s>
             {% endif %}
           </span>
 
-          <button
-            type="submit"
-            name="add"
-            data-add-to-cart
-            {% unless current_variant.available %}disabled="disabled"{% endunless %}>
-              <span data-add-to-cart-text>
-                {% if current_variant.available %}
-                  {{ 'products.product.add_to_cart' | t }}
-                {% else %}
-                  {{ 'products.product.sold_out' | t }}
-                {% endif %}
-              </span>
-          </button>
-        </form>
-
-      </div>
-    </div>
-
-    <!-- ====== IMAGE ======== -->
-    <div class="image-col">
-      <!-- ====== GALLERY ======== -->
-      {% if product.images.size > 1 %}
-        <div class="swiper-container">
-          <div class="swiper-wrapper">
-            {% for image in product.images %}
-              <section class="swiper-slide">
-                {% assign alt_text = image.alt | escape %}
-                {% assign img_url = image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
-                <img
-                class="lazyload fade-in"
-                data-src="{{ img_url }}"
-                data-widths="[360, 540, 720, 900, 1080, 1600, 2200, 2800]"
-                data-aspectratio="{{ image.aspect_ratio }}"
-                data-sizes="auto"
-                alt="{{ alt_text }}"
-                data-anim="scale"
-                >
-              </section>
-            {% endfor %}
+          <!-- ====== BODY ======== -->
+          <div class="rte desc body--11">
+            {{ product.description }}
           </div>
-          <div class="swiper-pagination"></div>
-        </div>
 
-      <!-- ====== SINGLE IMAGE ======== -->
-      {% elsif featured_image != blank %}
-        <div class="cropped-image-wrapper">
-          {% assign image = featured_image %}
-          {% assign alt_text = featured_image.alt | escape %}
-          {% assign img_url = image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
-          <img
-          class="lazyload fade-in"
-          data-src="{{ img_url }}"
-          data-widths="[360, 540, 720, 900, 1080, 1600, 2200, 2800]"
-          data-aspectratio="{{ image.aspect_ratio }}"
-          data-sizes="auto"
-          alt="{{ alt_text }}"
-          data-anim="scale"
-          >
+          <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+            <meta itemprop="priceCurrency" content="{{ shop.currency }}">
+            <meta itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">
+            <link itemprop="availability" href="http://schema.org/{% if current_variant.available %}InStock{% else %}OutOfStock{% endif %}">
+
+            <!-- ====== FORM ======== -->
+            <form action="/cart/add" method="post" class="js-add-to-cart-form add-to-cart-form" enctype="multipart/form-data">
+              {% unless product.has_only_default_variant %}
+                {% for option in product.options_with_values %}
+                  <div class="selector-wrapper js">
+                    <label for="SingleOptionSelector-{{ forloop.index0 }}">
+                      {{ option.name }}
+                    </label>
+
+                    <select
+                      id="SingleOptionSelector-{{ forloop.index0 }}"
+                      data-single-option-selector
+                      data-index="option{{ option.position }}">
+                      {% for value in option.values %}
+                        <option
+                          value="{{ value | escape }}"
+                          {% if option.selected_value == value %}selected="selected"{% endif %}>
+                            {{ value }}
+                        </option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                {% endfor %}
+              {% endunless %}
+
+              <!-- RADIO SELECT - DELETE IF SITE HAS DROPDOWNS INSTEAD OF RADIOS -->
+              <!-- {% unless product.has_only_default_variant %}
+                <div class="{% if product.variants.size > 1 %}cols-2-sm no-gutters{% endif %} js-radio-group-wrapper">
+                  {% for variant in product.variants %}
+                    <input
+                      id="variant-{{ forloop.index0 }}"
+                      type="radio"
+                      name="variantId"
+                      class="visually-hidden"
+                      data-variant-price="{{ variant.price }}"
+                      {% if product.variants.size == 1 or variant == current_variant %}checked="checked"{% endif %}
+                      {% unless variant.available %}disabled="disabled"{% endunless %}
+                      value="{{ variant.id }}"/>
+
+                    <label class="cart-bar-cell option-cell" for="variant-{{ forloop.index0 }}">
+                      <span>{{ variant.title }}</span> <span class="variant-price">{{ variant.price | money }}</span> <span class="separator">&ndash;</span> {% if variant.weight != blank %}{{ variant.weight | weight_with_unit: variant.weight_unit }}{% endif %}
+                    </label>
+                  {% endfor %}
+
+                </div>
+              {% else %}
+                <input class="js-variant-id visually-hidden" type="text" name="" value="{{ product.variants[0].id }}">
+
+              {% endunless %} -->
+
+              <select name="id" class="js-variant-id visually-hidden no-js" data-product-select>
+                {% for variant in product.variants %}
+                  <option
+                    {% if variant == current_variant %}selected="selected"{% endif %}
+                    {% unless variant.available %}disabled="disabled"{% endunless %}
+                    value="{{ variant.id }}">
+                      {{ variant.title }}
+                  </option>
+                {% endfor %}
+              </select>
+
+              <!-- ====== QUANTITY ======== -->
+              <label for="quantity" class="visually-hidden">{{ 'products.product.quantity' | t }}</label>
+              <input type="hidden" id="quantity" class="js-quantity" name="quantity" value="1" min="1">
+
+              <button
+                type="submit"
+                name="add"
+                class="btn btn--black btn--star"
+                data-add-to-cart
+                {% unless current_variant.available %}disabled="disabled"{% endunless %}>
+                  <span data-add-to-cart-text>
+                    {% if current_variant.available %}
+                      {{ 'products.product.add_to_cart' | t }}
+                    {% else %}
+                      {{ 'products.product.sold_out' | t }}
+                    {% endif %}
+                  </span>
+                  <span class="icon-wrap">
+                    {% render 'icon-star' %}
+                  </span>
+              </button>
+            </form>
+
+          </div>
+
+          {%- if product.metafields.accentuate.panel_heading -%}
+            <div class="panel-switcher">
+              <div class="panel-switcher__tabs">
+                {%- for panel_heading in product.metafields.accentuate.panel_heading -%}
+                  <button type="button" class="panel-switcher__tab text-only {% if forloop.index == 1 %}active{% endif %}" data-panel="{{ panel_heading | handleize }}"><span class="text">{{ panel_heading }}</span></button>
+                {%- endfor -%}
+              </div>
+
+              <div class="panel-switcher__panels">
+                {%- for panel_heading in product.metafields.accentuate.panel_heading -%}
+                  <div class="panel-switcher__text" data-panel="{{ panel_heading | handleize }}">
+                    <div class="panel-switcher__text--inner desc">
+                      {{ product.metafields.accentuate.panel_body_text[forloop.index0] }}
+                    </div>
+                  </div>
+                {%- endfor -%}
+              </div>
+            </div>
+          {%- endif -%}
+
+          {% if section.settings.show_share_buttons %}
+            {% render 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
+          {% endif %}
+
         </div>
-      {% endif %}
+      </div>
+
 
     </div>
   </section>
 
 
+  <!-- ======================================
+  IMAGES ROW
+  =========================================== -->
+  {%- if product.metafields.accentuate.two_image_row_left or product.metafields.accentuate.full_width_image -%}
+    <section class="lifestyle container padded">
+      {%- if product.metafields.accentuate.two_image_row_left -%}
+        <div class="cols-2 row lifestyle__half">
+          {%- for left_image in product.metafields.accentuate.two_image_row_left -%}
+            <div>
+              {%- assign img_url = left_image[0].cloudinary_src | append: 'w_1' | replace: 'w_1', 'w_{width}' -%}
+              {% render 'block-image-cropped-lg', img_url: img_url, alt_text: left_image[0].alt_text %}
+            </div>
+            <div>
+              {%- if product.metafields.accentuate.two_image_row__right[forloop.index0] -%}
+                {% assign right_image = product.metafields.accentuate.two_image_row__right[forloop.index0] %}
+                {%- assign img_url = right_image[0].cloudinary_src | append: 'w_1' | replace: 'w_1', 'w_{width}' -%}
+                {% render 'block-image-cropped-lg', img_url: img_url, alt_text: right_image[0].alt_text %}
+              {%- endif -%}
+            </div>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+      {%- if product.metafields.accentuate.full_width_image -%}
+        {%- for full_width_image in product.metafields.accentuate.full_width_image -%}
+          <div class="row lifestyle__full">
+            {%- assign img_url = full_width_image[0].cloudinary_src | append: 'w_1' | replace: 'w_1', 'w_{width}' -%}
+            {% render 'block-image-cropped-lg', img_url: img_url, alt_text: left_image[0].alt_text %}
+          </div>
+        {%- endfor -%}
+      {%- endif -%}
+    </section>
+  {%- endif -%}
 
 
 
+
+  <!-- ======================================
+  RECOMMENDED PRODUCTS
+  =========================================== -->
+  {%- unless product.metafields.accentuate.hide_recommended_products == 'true' -%}
+    <section class="recommended-products">
+      <h2 class="hd-1 container">{{ section.settings.recommended_products_heading | default: 'You may also like' }}</h2>
+      {%- include 'components-related-products' -%}
+    </section>
+  {%- endunless -%}
 
   {% unless product == empty %}
     <script type="application/json" data-product-json>
@@ -217,6 +278,17 @@
         "id": "show_share_buttons",
         "label": "Show social sharing buttons",
         "default": true
+      },
+      {
+        "id": "social_share_heading",
+        "type": "text",
+        "label": "Social Share Heading",
+        "default": "Share this Item"
+      },
+      {
+        "id": "recommended_products_heading",
+        "type": "richtext",
+        "label": "Recommended Products Heading"
       }
     ]
   }

@@ -39,7 +39,6 @@ function vendorScripts() {
       'js/vendor/lazysizes.min.js',
       'js/vendor/shopifyHelpers.js',
       'js/vendor/swiper.min.js',
-      'js/vendor/selectric.min.js',
     ])
     .pipe(concat('vendor.js'))
     .pipe(uglify())

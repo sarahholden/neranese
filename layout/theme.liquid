@@ -108,6 +108,10 @@
     {{ content_for_layout }}
   </main>
 
+  {%- if template == 'index' or template == 'page.contact' -%}
+    {% section 'component-instagram' %}
+  {%- endif -%}
+
   {% section 'footer' %}
   {% section 'cart-drawer' %}
 

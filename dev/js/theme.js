@@ -233,6 +233,20 @@ $(document).ready(function() {
   //   }
   // });
 
+  const pdpSwiper = new Swiper('.swiper-container-pdp', {
+    navigation: {
+      nextEl: '.swiper-next',
+      prevEl: '.swiper-prev',
+    },
+    speed: 600,
+    allowTouchMove: true,
+    loop: true,
+    effect: 'fade',
+    fadeEffect: {
+      crossFade: true
+    },
+  });
+
 
   /* ---------------------------------------------
   Accordion
@@ -270,6 +284,19 @@ $(document).ready(function() {
   });
 
 
+  /* ---------------------------------------------
+  Panel
+  ------------------------------------------------ */
+  $('.panel-switcher__tab').on('click', function () {
+    var parent = $(this).closest('.panel-switcher');
+    var panelToShow = $(this).data('panel');
+    $(parent).find('.panel-switcher__tab').removeClass('active');
+    $(this).addClass('active');
+
+    $(parent).find('.panel-switcher__text').hide();
+    $(parent).find('.panel-switcher__text[data-panel="' + panelToShow + '"]').fadeIn();
+
+  });
 
 
   /* ---------------------------------------------
@@ -295,13 +322,6 @@ $(document).ready(function() {
   //   // Set a custom cart note.
   //   CartJS.setNote($(this).val());
   // })
-
-
-  /* ---------------------------------------------
-  SELECTRIC
-  ------------------------------------------------ */
-  $('select').selectric();
-
 
   /* ---------------------------------------------
   SMOOTH SCROLL

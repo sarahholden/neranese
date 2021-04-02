@@ -2,11 +2,11 @@
 SETUP: Create 'related_products' field in custom fields
 -->
 
-<section class="container">
+<div class="container">
   <div class="cols-3">
     <!-- RELATED PRODUCTS -->
-    {% if product.metafields.custom_fields['related_products'] != blank %}
-      {% assign product_refs = product.metafields.custom_fields['related_products'] | split: "|" %}
+    {% if product.metafields.accentuate.product != blank %}
+      {% assign product_refs = product.metafields.accentuate.product | split: "|" %}
       {% for product_handle in product_refs %}
         {% assign product_ref = all_products[product_handle] %}
         {%- include 'product-card', product: product_ref -%}
@@ -26,4 +26,4 @@ SETUP: Create 'related_products' field in custom fields
       {% endfor %}
     {% endif %}
   </div>
-</section>
+</div>

@@ -1,7 +1,6 @@
 <div class="cropped-image-wrapper" {% if height != blank %}style="padding-bottom: {{ height }};"{% endif %}>
   {%- unless img_url -%}
     {% assign img_url = image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
-    {% assign mobile_img_url = m_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
   {%- endunless -%}
 
   <img class="lazyload {{ img_class }}"

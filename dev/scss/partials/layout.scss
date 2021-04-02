@@ -99,6 +99,14 @@ $mobileSidePadding: 1.8rem;
 	}
 }
 
+.page-padded-top-sm,
+.page-padding-top-sm {
+	padding-top: 7rem;
+	@include mobile-only {
+		padding-top: 5rem;
+	}
+}
+
 /* --------------------------------------------------------------------------
 Sticky Footer
 -----------------------------------------------------------------------------*/
