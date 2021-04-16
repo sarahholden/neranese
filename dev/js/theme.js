@@ -5,6 +5,7 @@ $(document).ready(function() {
   console.log('Design by Kati Forner Design:');
   console.log('https://katiforner.com/');
 
+  let isTabletDown = $(window).innerWidth() <= 1024;
 
   /* ---------------------------------------------
   HAMBURGER MENU
@@ -24,6 +25,65 @@ $(document).ready(function() {
       $('body').addClass('open-mobile-nav');
     }
   });
+
+
+  /* ---------------------------------------------
+  DROPDOWN SUBMENU
+  ------------------------------------------------ */
+  function closeNavDropdowns () {
+    $('.expanded').removeClass('expanded');
+    $('.nav-wrapper').removeClass('has-open-inner-menu');
+    $('.nav-wrapper_dropdown').attr('aria-expanded', 'false');
+  }
+
+  function openNavDropdown (self) {
+
+    var listItemWrapper = $(self).closest('li');
+    $(listItemWrapper).addClass('expanded');
+    $('.nav-wrapper').addClass('has-open-inner-menu');
+    // TOGGLE ARIA-EXPANDED FOR ADA
+    $(listItemWrapper).find('.nav-wrapper_dropdown').attr('aria-expanded', 'true');
+
+  }
+
+  $('.nav-wrapper_dropdown-trigger').on('mouseenter', function (e) {
+    if (!isTabletDown) {
+      closeNavDropdowns();
+      openNavDropdown(this);
+    }
+
+  });
+
+  $('.js-solo-link, .logo-wrapper, .nav-wrapper__right').on('mouseenter', function (e) {
+    if (!isTabletDown) {
+      closeNavDropdowns();
+    }
+  });
+
+  $('.nav-wrapper').on('mouseleave', function () {
+    if (!isTabletDown) {
+      closeNavDropdowns();
+    }
+  });
+
+  // MOBILE SUBNAV
+  $('.nav-wrapper_dropdown-trigger').on('click', function (e) {
+    if (isTabletDown) {
+      e.preventDefault();
+
+      if ($(this).closest('li').hasClass('expanded')) {
+        // Close Submenus
+        closeNavDropdowns();
+      } else {
+
+        // Otherwise, open submenu
+        closeNavDropdowns();
+        openNavDropdown(this);
+      }
+    }
+
+  });
+
 
 
   /* ---------------------------------------------
@@ -445,6 +505,8 @@ $(document).ready(function() {
       $($form).find('.error-message').fadeIn();
     }
   });
+
+
 
   // $('.js-close-email-popup').on('click', function () {
   //   // DON'T SHOW AGAIN

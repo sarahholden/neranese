@@ -3,9 +3,12 @@
     <a href="{{ section.settings.url }}">
   {% endif %}
 
-    <div class="cols-2 m-flex-reverse">
+    <div class="cols-2">
       <!-- ====== IMAGE ======== -->
       <div class="intro__image">
+        {% if section.settings.heading != blank %}
+          <h2 class=" hd-1 show-mobile">{{ section.settings.heading }}</h2>
+        {% endif %}
         <span class="scaling-image-wrap">
           {%- if section.settings.image -%}
             {% render 'block-image-cropped', image: section.settings.image, m_image: section.settings.image, alt_text: section.settings.image_alt %}
@@ -25,7 +28,7 @@
         </div>
 
         {% if section.settings.heading != blank %}
-          <h2>{{ section.settings.heading }}</h2>
+          <h2 class="hide-mobile hd-1">{{ section.settings.heading }}</h2>
         {% endif %}
 
         <div class="intro__bottom-text">

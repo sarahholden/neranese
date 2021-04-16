@@ -2,11 +2,30 @@
   <div class="nav-wrapper" role="banner">
 
     <div class="container">
-      <div class="inner">
+      <div class="inner mobile-flyout">
         <!--   NAV   -->
         <div class="nav-wrapper__left">
-          {%- render 'nav-menu', current_linklist: section.settings.main_linklist -%}
+          {%- render 'nav-menu', current_linklist: section.settings.main_linklist, has_dropdown: true -%}
         </div>
+
+        <!-- ====== MOBILE MENU ======== -->
+        {%- if section.settings.mobile_linklist != blank or section.settings.mobile_social != blank -%}
+          <div class="nav-wrapper__bottom">
+
+            {%- if section.settings.mobile_social -%}
+              <div class="nav-wrapper__mobile show-tablet-down">
+                {%- render 'nav-menu', current_linklist: section.settings.mobile_linklist -%}
+              </div>
+            {%- endif -%}
+
+            {%- if section.settings.mobile_social -%}
+              <div class="nav-wrapper__social show-tablet-down">
+                {%- render 'nav-menu', current_linklist: section.settings.mobile_social -%}
+              </div>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+
         <div class="nav-wrapper__right">
           <ul>
             <li>
@@ -20,7 +39,7 @@
             </li>
             <!--   CART   -->
             <li>
-              <a href="/cart" data-cart-view="data-cart-view" class="hide-mobile cart-icon-wrapper js-view-cart">{{ section.settings.cart_text | default: 'Bag' }}</a>
+              <a href="/cart" data-cart-view="data-cart-view" class="cart-icon-wrapper js-view-cart">{{ section.settings.cart_text | default: 'Bag' }}</a>
             </li>
           </ul>
 
@@ -41,8 +60,10 @@
     <button type="button" class="hamburger text-only" aria-label="Open nav menu">
       <span></span>
       <span></span>
-      <span></span>
     </button>
+
+    <!-- ====== MOBILE CART ======== -->
+    <a href="/cart" data-cart-view="data-cart-view" class="show-tablet-down mobile-cart-text js-view-cart">{{ section.settings.cart_text | default: 'Bag' }}</a>
 
   </div>
 </div>
@@ -56,11 +77,33 @@
         "label": "Logo image"
       },
       {
+        "type": "header",
+        "content": "MENUS"
+      },
+      {
         "id": "main_linklist",
         "type": "link_list",
         "label": "Menu",
         "default": "main-menu",
         "info": "Update links in Online Store > Navigation."
+      },
+      {
+        "id": "mobile_linklist",
+        "type": "link_list",
+        "label": "Mobile Linklist",
+        "default": "main-menu",
+        "info": "Update links in Online Store > Navigation."
+      },
+      {
+        "id": "mobile_social",
+        "type": "link_list",
+        "label": "Mobile Social Linklist",
+        "default": "main-menu",
+        "info": "Update links in Online Store > Navigation."
+      },
+      {
+        "type": "header",
+        "content": "LINK TEXT"
       },
       {
         "id": "search_text",
@@ -79,6 +122,31 @@
         "type": "text",
         "label": "Cart Nav Link Text",
         "default": "bag"
+      },
+      {
+        "type": "header",
+        "content": "DROPDOWN FEATURE"
+      },
+      {
+        "id": "feature_link_text",
+        "type": "text",
+        "label": "Link Text"
+      },
+      {
+        "id": "feature_link_url",
+        "type": "url",
+        "label": "Link URL"
+      },
+      {
+        "id": "feature_image",
+        "type": "image_picker",
+        "label": "Feature Image"
+      },
+      {
+        "id": "feature_image_alt",
+        "type": "text",
+        "label": "Feature Image Alt",
+        "info": "Write a brief description of this image to improve search engine optimization (SEO) and ADA accessibility."
       }
     ]
   }

@@ -7,10 +7,9 @@
   top: 0;
   bottom: 0;
   height: 100%;
-  width: 55rem;
+  width: 34.4rem;
   z-index: 300;
-  background: white;
-  padding: 4.5rem 4rem;
+  background: $brown;
   transform: translateX(110%);
   transition: all 0.3s ease-in-out 0.3s;
   overflow: scroll;
@@ -21,6 +20,14 @@
   .cart-inner {
     opacity: 0;
     transition: all 0.4s ease-in-out;
+  }
+  .cart-price,
+  .cart-quantity,
+  .cart-variants,
+  .order-notes {
+    @extend .caps--10;
+    font-weight: 500;
+    line-height: (17 / 10);
   }
 }
 
@@ -38,31 +45,29 @@
 }
 
 .open-cart {
-  @include tablet-up {
-    .cart-drawer {
-      transform: none;
-      transition: all 0.4s ease-in-out 0.1s;
-    }
-    .cart-inner {
-      transition: all 0.4s ease-in-out 0.4s;
-      opacity: 1;
-    }
+  .cart-drawer {
+    transform: none;
+    transition: all 0.4s ease-in-out 0.1s;
+  }
+  .cart-inner {
+    transition: all 0.4s ease-in-out 0.4s;
+    opacity: 1;
+  }
 
-    .close-cart-overlay {
-      opacity: 0.7;
-      visibility: visible;
-      transition: all 0.3s ease-in-out;
-    }
+  .close-cart-overlay {
+    opacity: 0.7;
+    visibility: visible;
+    transition: all 0.3s ease-in-out;
   }
 }
 
 /* --------------------------------------------------------------------------
   CART LAYOUT
 -----------------------------------------------------------------------------*/
-$footerHeight: 27.8rem;
-$mFooterHeight: 23.8rem;
-$cartHeaderHeight: 10.7rem;
-$mCartHeaderHeight: 8rem;
+$footerHeight: 17.2rem;
+$mFooterHeight: 17.2rem;
+$cartHeaderHeight: 7rem;
+$mCartHeaderHeight: 7rem;
 .cart-drawer .cart-inner {
   .top-row {
     width: 100%;
@@ -77,6 +82,7 @@ $mCartHeaderHeight: 8rem;
     @include mobile-only {
       bottom: $mFooterHeight;
       top: $mCartHeaderHeight;
+      padding-bottom: 2rem;
     }
   }
   .footer-content {
@@ -86,7 +92,7 @@ $mCartHeaderHeight: 8rem;
     position: absolute;
     top: auto;
     height: $footerHeight;
-    background: white;
+    background: $brown;
     @include mobile-only {
       height: $mFooterHeight;
     }
@@ -108,12 +114,18 @@ $mCartHeaderHeight: 8rem;
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  margin-bottom: 4rem;
+  padding: 2.6rem 2.4rem 2.8rem;
+  border-bottom: 1px solid #4E4E4E;
   h2 {
     margin-bottom: 0;
   }
   .close-cart-text {
     margin-bottom: 0;
+    width: 1.3rem;
+    svg {
+      width: 100%;
+      display: block;
+    }
   }
 }
 
@@ -121,28 +133,80 @@ $mCartHeaderHeight: 8rem;
     CART DRAWER - PRODUCTS
 -----------------------------------------------------------------------------*/
 .cart-product-wrap {
-  margin-bottom: 3rem;
-  .cart-remove {
-    img {
-      width: 100%;
-      display: block;
-    }
+  border-bottom: 1px solid #4E4E4E;
+  padding: 3.4rem 3.1rem;
+  display: flex;
+  .cart-image {
+    width: 8.2rem;
+  }
+  .info-col {
+    flex-grow: 1;
+    padding-left: 4.6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  h3 {
+    font-size: 1.6rem;
+    letter-spacing: 0;
+    margin-bottom: 0.3rem;
   }
 
+  .cart-remove {
+    text-decoration: underline;
+    margin-top: 2rem;
+    display: block;
+  }
+
+}
+
+/* --------------------------------------------------------------------------
+  ORDER NOTES
+-----------------------------------------------------------------------------*/
+.order-notes {
+  width: 100%;
+  padding: 2rem 3rem;
+  textarea {
+    @extend .caps--10;
+    display: block;
+    width: 100%;
+    resize: none;
+  }
+  :focus::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    color: rgba($primaryTextColor, .8);
+  }
+  :focus::-moz-placeholder {
+    /* Firefox 19+ */
+    color: rgba($primaryTextColor, .8);
+  }
+  :focus:-ms-input-placeholder {
+    /* IE 10+ */
+    color: rgba($primaryTextColor, .8);
+  }
+  :focus:-moz-placeholder {
+    /* Firefox 18- */
+    color: rgba($primaryTextColor, .8);
+  }
 }
 
 /* --------------------------------------------------------------------------
   SUBTOTAL AND TOTAL ROW
 -----------------------------------------------------------------------------*/
 .cart-inner .footer-content {
-  margin-top: 4rem;
-  padding: 0;
+  margin-top: 3rem;
+  padding: 2rem 3rem 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-top: 1px solid #4E4E4E;
   .btn {
     width: 100%;
     text-align: center;
   }
   .cart-total-row {
     margin-bottom: 0.6rem;
+    margin-bottom: 3rem;
   }
 }
 
@@ -150,8 +214,13 @@ $mCartHeaderHeight: 8rem;
   CART FULL PAGE
 -----------------------------------------------------------------------------*/
 .page-cart .cart-inner {
-  max-width: 80rem;
+  max-width: 50rem;
   margin-left: auto;
   margin-right: auto;
-  display: flex;
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+  .footer-content {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }

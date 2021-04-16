@@ -1,0 +1,231 @@
+.page-branded {
+  padding-top: 7.2rem;
+}
+
+/* --------------------------------------------------------------------------
+  HEADER
+-----------------------------------------------------------------------------*/
+.page-branded header {
+  position: relative;
+
+  .text-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: $cream;
+    z-index: 3;
+    @include tablet-up {
+      min-width: 54rem;
+      max-width: 100%;
+    }
+    @include mobile-only {
+      width: 80%;
+      text-align: center;
+
+    }
+    h1 {
+      @include tablet-up {
+        display: flex;
+        align-items: center;
+
+        .dividing-line {
+          margin-left: 2rem;
+          margin-right: 2rem;
+          flex-grow: 1;
+          border-bottom: 1px solid $cream;
+        }
+      }
+    }
+  }
+  .image-wrap {
+    .cropped-image-wrapper {
+      @include mobile-only {
+        padding-bottom: 150%;
+      }
+    }
+  }
+}
+
+.page-branded .intro {
+
+  img {
+    max-width: 37.8rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+  + section {
+    padding-top: 0;
+  }
+}
+
+/* --------------------------------------------------------------------------
+  REPEATING IMAGE ROWS
+-----------------------------------------------------------------------------*/
+.single-image-100-width {}
+.page-branded .image-section {
+  padding-top: 4.3rem;
+  padding-bottom: 4.3rem;
+  @include mobile-only {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  a {
+    display: block;
+  }
+}
+
+/* SMALL RIGHT IMAGE ================== */
+.page-branded .two-images-small-right {
+  @include mobile-only {
+    padding-left: 1.8rem;
+    padding-right: 1.8rem;
+    .image-left {
+      margin-bottom: 4rem;
+    }
+  }
+  @include tablet-up {
+    display: flex;
+    padding-left: 6.3rem;
+    padding-right: 6.3rem;
+
+    .image-left {
+      width: 50%;
+    }
+    .image-right {
+      width: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      a {
+        width: 84%;
+        display: block;
+        margin-left: auto;
+        img {}
+      }
+    }
+  }
+}
+
+/* SMALL LEFT IMAGE ================== */
+.page-branded .two-images-small-left {
+  @include mobile-only {
+    .image-left {
+      margin-bottom: 4rem;
+    }
+  }
+  @include tablet-up {
+    display: flex;
+    padding-left: 6.3rem;
+    padding-right: 6.3rem;
+
+    .image-right {
+      width: 50%;
+    }
+    .image-left {
+      width: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      a {
+        width: 84%;
+        display: block;
+        img {}
+      }
+    }
+  }
+}
+
+/* TWO EQUAL IMAGES ================== */
+.page-branded .two-equal-images {
+  padding-left: 2.6rem;
+  padding-right: 2.6rem;
+  @include mobile-only {
+    .image-left {
+      margin-bottom: 4rem;
+    }
+  }
+  @include tablet-up {
+
+    display: flex;
+    justify-content: space-between;
+    .image-left {
+      width: calc(50% - 2.65rem);
+    }
+    .image-right {
+      width: calc(50% - 2.65rem);
+    }
+  }
+  + .two-equal-images {
+    padding-top: 1.7rem;
+  }
+}
+
+/* SINGLE 90% WIDTH IMAGE ================== */
+.page-branded .single-image-90-width {
+  @extend .container;
+}
+
+/* SINGLE 75% WIDTH IMAGE ================== */
+.page-branded .single-image-75-width {
+  .image-left {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    @include tablet-up {
+      width: 72%;
+    }
+  }
+}
+
+/* SINGLE 45% WIDTH IMAGE ================== */
+.page-branded .single-image-45-width {
+  .image-left {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    @include tablet-up {
+      width: 42%;
+    }
+  }
+}
+
+/* SINGLE IMAGE LEFT SIDE ================== */
+.page-branded .single-image-left-side {
+  @extend .container;
+  .image-left {
+    width: calc(50% - 2.65rem);
+    @include mobile-only {
+      width: 70%;
+    }
+  }
+}
+
+/* SINGLE IMAGE RIGHT SIDE ================== */
+.page-branded .single-image-right-side {
+  @extend .container;
+  .image-left,
+  .image-right {
+    width: calc(50% - 2.65rem);
+    margin-left: auto;
+    @include mobile-only {
+      width: 70%;
+    }
+  }
+}
+
+/* --------------------------------------------------------------------------
+  ICON STAR (END)
+-----------------------------------------------------------------------------*/
+.page-branded .end-icon {
+  padding-bottom: 6.3rem;
+  margin-top: -2rem;
+  .icon-star {
+    max-width: 7rem;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+
+  }
+}

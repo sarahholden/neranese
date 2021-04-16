@@ -82,8 +82,8 @@
     justify-content: center;
     align-items: center;
     @include mobile-only {
-      padding-top: 3.5rem;
-      padding-bottom: 3.5rem;
+      padding-top: 2.5rem;
+      padding-bottom: 0;
     }
   }
   h2 {
@@ -92,6 +92,9 @@
   .icon-star {
     width: 3.2rem;
     margin-bottom: 2.7rem;
+    @include mobile-only {
+      margin-bottom: 3.2rem;
+    }
   }
   .instagram-section__link {
     display: inline-block;

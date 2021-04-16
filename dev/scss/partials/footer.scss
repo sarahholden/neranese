@@ -7,6 +7,10 @@ footer {
 	letter-spacing: 0.08rem;
 	padding-bottom: 2rem;
 	padding-top: 3.6rem;
+	@include mobile-only {
+		padding-top: 1rem;
+		padding-bottom: 1rem;
+	}
 	.inner {
 		@include tablet-up {
 			display: flex;
@@ -24,7 +28,10 @@ footer {
 			display: flex;
 			justify-content: flex-end;
 			@include mobile-only {
-				justify-content: center;
+				justify-content: space-between;
+				max-width: 28rem;
+				margin-left: auto;
+				margin-right: auto;
 			}
 		}
 		li {
@@ -44,10 +51,7 @@ footer {
 		column-gap: 0;
 		width: 22rem;
 		@include mobile-only {
-			margin-left: auto;
-			margin-right: auto;
-			text-align: center;
-			margin-bottom: 2rem;
+			display: none;
 		}
 	}
 	a {}
@@ -64,8 +68,7 @@ Site Credit
 	letter-spacing: 0.111rem;
 	line-height: (17 / 8);
 	@include mobile-only {
-		margin-top: 1rem;
-		text-align: center;
+		display: none;
 	}
 	p {
 		display: inline-block;

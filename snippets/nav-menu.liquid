@@ -1,32 +1,47 @@
 <nav role="navigation" class="{{ class_name }}">
   <ul>
     {% for link in linklists[current_linklist].links %}
-      {% if link.links != blank %}
-        <li {% if link.active %}class="current"{% endif %}>
-          <a href="{{ link.url }}">{{ link.title | escape }}</a>
-          <ul>
-            {% for childlink in link.links %}
-              {% if childlink.links != blank %}
-                <li>
-                  <a href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
-                  <ul>
-                    {% for grandchildlink in childlink.links %}
-                      <li>
-                        <a href="{{ grandchildlink.url }}">{{ grandchildlink.title | escape }}</a>
-                      </li>
-                    {% endfor %}
-                  </ul>
-                </li>
-              {% else %}
-                <li>
-                  <a href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
-                </li>
-              {% endif %}
-            {% endfor %}
-          </ul>
+      {% if link.links != blank and has_dropdown == true %}
+        <li class="outer-dropdown-wrap {% if link.active %}current{% endif %}">
+          <a href="{{ link.url }}" class="nav-wrapper_dropdown-trigger">{{ link.title | escape }} <span class="icon show-tablet-down">+</span></a>
+          <div class="nav-wrapper__dropdown" aria-expanded="false">
+            <ul>
+              {% for childlink in link.links %}
+                {% if childlink.links != blank %}
+                  <li>
+                    <a href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
+                    <ul>
+                      {% for grandchildlink in childlink.links %}
+                        <li>
+                          <a href="{{ grandchildlink.url }}">{{ grandchildlink.title | escape }}</a>
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  </li>
+                {% else %}
+                  <li>
+                    <a href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
+                  </li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+            {%- if section.settings.feature_link_url != blank and section.settings.feature_image != blank -%}
+              <div class="nav-wrapper__callout hide-tablet-down">
+                <a href="{{ section.settings.feature_link_url }}"
+                  class="btn"
+                  {% if section.settings.button_alt != blank %}alt="{{ section.settings.button_alt }}"{% endif %}>
+                  {% render 'block-image-cropped-lg', image: section.settings.feature_image, alt_text: section.settings.feature_image_alt %}
+                  <p class="caps--12">
+                    {{ section.settings.feature_link_text }}
+                  </p>
+                </a>
+              </div>
+            {%- endif -%}
+
+          </div>
         </li>
       {% else %}
-        <li {% if link.active %}class="current"{% endif %}>
+        <li class="js-solo-link {% if link.active %}current{% endif %}">
           <a href="{{ link.url }}" {% if open_in_new_tab != blank %}target="_blank"{% endif %}>{{ link.title | escape }}</a>
         </li>
       {% endif %}

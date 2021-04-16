@@ -1,10 +1,13 @@
+$navBorder: 1px solid #B5B4B4;
+
 /* --------------------------------------------------------------------------
 Body Open Mobile Nav Styles
 -----------------------------------------------------------------------------*/
 .open-mobile-nav {
   /* Prevent the body from scrolling under the mobile navigation */
-  position: fixed;
-  overflow: hidden;
+  // position: fixed;
+  // overflow: hidden;
+  // width: 100%;
 }
 
 /* --------------------------------------------------------------------------
@@ -13,8 +16,23 @@ GENERAL Navigation Styles
 .nav-wrapper {
   position: absolute;
   width: 100%;
+  @include tablet-down {
+    height: 6rem;
+    &::before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 201;
+      background: $cream;
+      pointer-events: none;
+    }
+  }
   .inner {
-    @include tablet-up {
+    @include desktop-up {
       padding: 3rem 0 2rem;
       display: flex;
       justify-content: space-between;
@@ -41,8 +59,8 @@ SCROLLED NAV
   }
 }
 
-.open-mobile-nav .nav-wrapper.is-fixed-hidden {
-  top: 0;
+.has-open-inner-menu.is-fixed-hidden {
+  top: 0 !important;
 }
 
 /* --------------------------------------------------------------------------
@@ -55,8 +73,12 @@ LOGO WRAPPER
   top: calc(50% - .2rem);
   left: 50%;
   transform: translate(-50%, -50%);
-  @include mobile-only {
+  @include tablet-down {
     max-width: 14rem;
+    top: 1.6rem;
+    transform: translateX(-50%);
+    z-index: 204;
+
   }
   img {
     width: 100%;
@@ -69,73 +91,99 @@ LOGO WRAPPER
 /* --------------------------------------------------------------------------
 Header Navigation Styles
 -----------------------------------------------------------------------------*/
-.nav-wrapper__left ul {
-  @extend .caps--8;
-  @include tablet-up {
-    display: flex;
+.nav-wrapper__left {
+  li {
+    @extend .caps--8;
+  }
+  @include desktop-up {
+    ul {
+      display: flex;
+    }
     li {
       margin-right: 2rem;
     }
   }
 }
 
-.nav-wrapper__right ul {
-  @include tablet-up {
+.nav-wrapper__right {
+  ul {
     display: flex;
+  }
+  @include tablet-down {
+    position: fixed;
+    top: 6rem;
+    border-top: $navBorder;
+    border-bottom: $navBorder;
+    padding: 0.8rem 6rem 0.8rem 5.1rem;
+    width: 100%;
+    left: 0;
+    background: $cream;
+  }
+  ul {
+    justify-content: space-between;
+  }
+  li {
+    font-family: $cardinal;
+    font-size: 1.2rem;
+    letter-spacing: 0.154rem;
+    font-style: italic;
+  }
+  @include desktop-up {
 
     li {
       margin-left: 2rem;
-      font-family: $cardinal;
       font-size: 1rem;
-      letter-spacing: 0.154rem;
-      font-style: italic;
       transform: translateY(-.15rem);
     }
-
   }
-}
 
-.nav-wrapper__left,
-.nav-wrapper__right {
-  a {}
-  a:hover {}
-  .current a {
-    /* Styles for the currently active link */
-
-  }
 }
 
 /* ==============   MOBILE NAV STYLES  ============== */
-@include mobile-only {
-  .nav-wrapper nav {
+@include tablet-down {
+  .mobile-flyout {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(255, 255, 255, .95);
-    opacity: 0;
+    background-color: $cream;
+    transform: translateX(-103%);
     visibility: hidden;
     transition: all 0.3s ease-in-out;
     z-index: 200;
+    padding: 12.5rem 0 0;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
+    &::-webkit-scrollbar {
+      width: 0;
+      background: transparent;
+    }
+
+  }
+  .nav-wrapper__left {
+    padding-left: 6rem;
+    padding-right: 3rem;
     a {
+      font-size: 1.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18rem;
+      margin-bottom: 3rem;
+      margin-top: 1rem;
       display: block;
-      margin: 0;
-      font-size: 2rem;
-      line-height: 2;
     }
   }
 }
 
 /* ==============   OPEN MOBILE NAV  ============== */
 .open-mobile-nav {
-  .nav-wrapper nav {
+  .nav-wrapper .mobile-flyout {
     /* Styles for when the user clicks the hamburger icon */
-    opacity: 1;
+    transform: none;
     visibility: visible;
   }
 }
@@ -144,17 +192,17 @@ Header Navigation Styles
 Hamburger Icon styles
 -----------------------------------------------------------------------------*/
 .hamburger {
-  width: 3rem;
-  height: 1.5rem;
+  width: 27px;
+  height: 8px;
   position: absolute;
-  right: 3rem;
-  top: 1.5rem;
+  left: 1.6rem;
+  top: 2.7rem;
   display: none;
-  z-index: 201;
+  z-index: 202;
   cursor: pointer;
   span {
     display: block;
-    border-bottom: 2px solid $borderColor;
+    border-bottom: 1px solid $primaryTextColor;
     width: 100%;
     position: absolute;
     height: 1px;
@@ -163,41 +211,239 @@ Hamburger Icon styles
   span:first-of-type {
     top: 0;
   }
-  span:nth-of-type(2) {
-    top: 50%;
-  }
   span:last-of-type {
-    top: 100%;
+    bottom: 0;
   }
 }
 
 /* ==============   HAMBURGER MOBILE STYLES  ============== */
-@include mobile-only {
+@include tablet-down {
   .hamburger {
     display: block;
-    position: fixed;
   }
 }
 
 /* ==============   OPEN MOBILE NAV HAMBURGER STYLES  ============== */
 .open-mobile-nav {
-  /* Rotate lines to form an X */
-  .hamburger {
-    position: fixed;
-    span:first-of-type {
-      top: 50%;
-      transform: rotate(-45deg);
+  @include tablet-down {
+    /* Rotate lines to form an X */
+    .hamburger {
+      position: fixed;
+      span:first-of-type {
+        top: 50%;
+        transform: rotate(32deg);
+      }
+      span:last-of-type {
+        bottom: 50%;
+        transform: translateY(50%);
+      }
     }
-    span:nth-of-type(2) {
-      transform: translateX(-20%);
+    .nav-wrapper .logo-wrapper {
+      position: fixed;
+    }
+    .nav-wrapper .mobile-cart-text {
       opacity: 0;
-    }
-    span:last-of-type {
-      top: 50%;
-      transform: rotate(45deg);
     }
   }
 }
 
 /* ==============   CART ICON  ============== */
-.nav-wrapper .cart-icon-wrapper {}
+.nav-wrapper .mobile-cart-text {
+  @include tablet-down {
+    position: absolute;
+    right: 1.6rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    font-style: italic;
+    font-family: $cardinal;
+    letter-spacing: 0.185rem;
+    z-index: 202;
+    transition: all 0.4s ease;
+  }
+}
+
+/* --------------------------------------------------------------------------
+  DROPDOWN MENU
+-----------------------------------------------------------------------------*/
+.nav-wrapper__dropdown {
+  @include desktop-up {
+    width: 50.8rem;
+    background: rgba($cream, .85);
+    position: absolute;
+    left: 0;
+    bottom: 2px;
+    transform: translateY(100%);
+    padding: 5rem 4rem 2.6rem 8.5rem;
+    z-index: 201;
+    display: flex;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: all 0.8s ease;
+    ul {
+      display: block;
+      flex-grow: 1;
+      padding-right: 4rem;
+      counter-reset: dropdown-counter;
+    }
+    li {
+      display: block;
+      margin-bottom: 0;
+      counter-increment: dropdown-counter;
+      position: relative;
+      padding-left: 5rem;
+      &::before {
+        content: "0" counter(dropdown-counter);
+        display: block;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 0;
+        width: 1.5rem;
+      }
+      &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 1.8rem;
+        width: 1.9rem;
+        height: 1px;
+        background: rgba($primaryTextColor, .6);
+      }
+    }
+    a {
+      font-size: 1.2rem;
+      letter-spacing: 0.185rem;
+      font-weight: 500;
+      padding: 1.1rem 0 1.2rem;
+      display: block;
+    }
+    .nav-wrapper__callout {
+      width: 14.3rem;
+      a {
+        display: block;
+        width: 100%;
+        padding: 0;
+      }
+      .cropped-image-wrapper {
+        padding-bottom: 122%;
+        margin-bottom: 0.9rem;
+      }
+      p {
+        display: block;
+        text-align: justify;
+        &:after {
+          content: "";
+          display: inline-block;
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+/* DROPDOWN MOBILE ================== */
+.nav-wrapper__dropdown {
+  @include tablet-down {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.6s ease, opacity 0.6s ease;
+    ul {
+      overflow: hidden;
+    }
+    li:first-of-type a {
+      margin-top: 0;
+      padding-top: 0.6rem;
+    }
+    li:last-of-type {
+      padding-bottom: 2.1rem;
+    }
+    li a {
+      font-size: 1.2rem;
+      color: #727272;
+      letter-spacing: 0.185rem;
+      line-height: (28 / 12);
+      margin-bottom: 0;
+    }
+  }
+}
+
+.expanded {
+  .nav-wrapper__dropdown {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    max-height: 3000px;
+  }
+}
+
+a.nav-wrapper_dropdown-trigger {
+  @include tablet-down {
+    margin-bottom: 2.1rem;
+    .icon {
+      font-size: 1.2rem;
+      display: inline-block;
+      position: relative;
+      top: -.2rem;
+
+    }
+  }
+
+}
+
+/* --------------------------------------------------------------------------
+  MOBILE BOTTOM NAV
+-----------------------------------------------------------------------------*/
+.nav-wrapper__bottom {
+  @include tablet-down {
+    margin-top: 3.4rem;
+    width: 100%;
+  }
+
+}
+
+.nav-wrapper__mobile {
+  padding: 0 3rem 0 6rem;
+  border-top: $navBorder;
+  ul {
+    padding: 2rem 0;
+
+    column-count: 2;
+    column-gap: 0;
+    width: 27.5rem;
+    margin-left: auto;
+    margin-right: auto;
+    a {
+      font-size: 1.1rem;
+      letter-spacing: 0.11rem;
+      display: inline-block;
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+      text-transform: uppercase;
+    }
+  }
+}
+
+.nav-wrapper__social {
+  @include tablet-down {
+    padding: 0 6rem;
+    border-top: $navBorder;
+    ul {
+
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    a {
+      display: block;
+      padding: 1.2rem 0 1rem;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08rem;
+    }
+  }
+}

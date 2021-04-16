@@ -1,9 +1,9 @@
 <div class="cart-inner">
   <div class="top-row">
-    <h2>Your Cart</h2>
+    <span></span>
     {%- if location == 'cart_drawer' -%}
       <button class="text-button js-close-cart close-cart-text text-only" type="button">
-        Close
+        {% render 'icon-close-kati' %}
       </button>
     {%- endif -%}
   </div>
@@ -12,32 +12,36 @@
 
       <div class="cart-image">
         <a rv-href="item.url">
-          <img rv-src="item.image | productImageSize '220x213_crop_center'" src="">
+          <img rv-src="item.image | productImageSize '180x272_crop_center'" src="">
         </a>
       </div>
-      <div class="info-col v-aligner">
+      <div class="info-col">
         <div>
           <div class=" cart-title-price">
-            <h3 class="cart-title split-aligner" >
+            <h3 class="cart-title" >
               <a rv-href="item.url">
                 <span rv-text="item.product_title"></span>
               </a>
-              <a href="#" rv-data-cart-remove="index | plus 1" class="cart-remove">
-                {%- include 'icon-close' -%}
-              </a>
             </h3>
           </div>
-          <div class="desc">
-            <p rv-text="item.product_description"></p>
+          <div class="cart-variants" rv-each-variant="item.options_with_values">
+            <span rv-text="variant.name"></span>:&nbsp;
+            <span rv-text="variant.value"></span>
           </div>
-          <div class="split-aligner">
+          <div>
             <div class="cart-quantity">
+              QTY:&nbsp;
               <a href="#" rv-data-cart-quantity="item.quantity | minus 1" rv-data-cart-update="index | plus 1">&ndash;</a>
               <span rv-text="item.quantity"></span>
               <a href="#" rv-data-cart-quantity="item.quantity | plus 1" rv-data-cart-update="index | plus 1">+</a>
             </div>
             <span class="cart-price" rv-html="item.line_price | money Currency.currentCurrency"></span>
           </div>
+        </div>
+        <div>
+          <a href="#" rv-data-cart-remove="index | plus 1" class="cart-remove caps--8">
+            Remove
+          </a>
         </div>
       </div>
     </div>
@@ -55,12 +59,11 @@
 
   </main>
   <div class="footer-content" data-cart-view="data-cart-view" rv-show="cart.item_count | gt 0">
-    <div class="cart-total-row split-aligner">
-      <h6>Subtotal: <span rv-html="cart.total_price | money Currency.currentCurrency"></span></h6>
+    <div class="cart-total-row ">
+      <p class="caps--12 split-aligner"><span>Subtotal:</span> <span rv-html="cart.total_price | money Currency.currentCurrency"></span></p>
 
     </div>
 
-    <div class="shipping-note">Shipping & taxes calculated at checkout</div>
-    <a class="btn" href="/checkout">Checkout</a>
+    <a href="/checkout" class="btn btn--black">Checkout</a>
   </div>
 </div>

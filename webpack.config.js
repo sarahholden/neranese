@@ -5,7 +5,7 @@ module.exports = {
   entry: '/js/theme.js',
   optimization: {
 		// During development - don't minify
-		// minimize: false
+		minimize: false
 	},
   output: {
     path: path.resolve(__dirname, './assets'),

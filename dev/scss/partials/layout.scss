@@ -74,8 +74,8 @@ $mobileSidePadding: 1.8rem;
 	padding-top: 6.4rem;
 	padding-bottom: 6.4rem;
 	@include mobile-only {
-		padding-top: 3rem;
-		padding-bottom: 3rem;
+		padding-top: 4rem;
+		padding-bottom: 4rem;
 
 	}
 }
@@ -152,4 +152,13 @@ Clearfix helpers (for floats)
 	content: "";
 	display: table;
 	clear: both;
+}
+
+.disable-scrollbars {
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+	&::-webkit-scrollbar {
+		width: 0;
+		background: transparent;
+	}
 }

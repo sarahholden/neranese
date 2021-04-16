@@ -1,0 +1,111 @@
+<header class="container">
+  {% if collection.metafields.accentuate.collection_hero_image_link != blank %}
+    <a href="/products/{{ collection.metafields.accentuate.collection_hero_image_link }}">
+  {% endif %}
+
+    {% if collection.metafields.accentuate.left_heading != blank %}
+      <div class="text-content">
+        <h1>
+          {{ collection.metafields.accentuate.left_heading | default: collection.title }}
+          {%- if collection.metafields.accentuate.right_heading -%}
+            <div class="dividing-line"></div>
+            <em>{{ collection.metafields.accentuate.right_heading }}</em>
+          {%- endif -%}
+        </h1>
+      </div>
+    {% endif %}
+
+    {% if collection.metafields.accentuate.collection_hero_image != blank %}
+      <span class="image-wrap">
+        <div class="cropped-image-wrapper">
+          {% for cl_image in collection.metafields.accentuate.collection_hero_image %}
+            {%- assign img_url = cl_image.cloudinary_src | append: 'w_1' | replace: 'w_1', 'w_{width}' -%}
+            {%- assign mobile_img_url = collection.metafields.accentuate.collection_mobile_hero_image[0].cloudinary_src | append: 'w_1' | replace: 'w_1', 'w_{width}' -%}
+            {% render 'block-image-cropped', img_url: img_url, mobile_img_url: mobile_img_url, alt_text: collection.metafields.accentuate.collection_hero_alt_text %}
+          {% endfor %}
+        </div>
+      </span>
+    {% endif %}
+
+
+  {% if collection.metafields.accentuate.collection_hero_image_link != blank %}
+    </a>
+  {% endif %}
+
+</header>
+
+{% if collection.metafields.accentuate.collection_intro_text != blank %}
+  <section class="intro padded container">
+    {% for cl_image in collection.metafields.accentuate.collection_intro_text %}
+      <img class="lazyload"
+          data-src="{{ cl_image.cloudinary_src }}"
+          data-widths="[360, 540, 720, 900, 1080, 1600, 2200, 2800]"
+          data-aspectratio="{{ cl_image.aspect_ratio }}"
+          data-sizes="auto"
+          alt="{{ alt_text }}">
+    {% endfor %}
+  </section>
+{% endif %}
+
+
+{% for row_format in collection.metafields.accentuate.row_format %}
+  <section class="image-section {{ row_format | handleize }}">
+
+    {%- if collection.metafields.accentuate.image_1[forloop.index0] -%}
+
+      <div class="image-left">
+        {% if collection.metafields.accentuate.image_1_product_link[forloop.index0] != blank %}
+          <a href="/products/{{ collection.metafields.accentuate.image_1_product_link[forloop.index0] }}">
+        {% endif %}
+          {% if collection.metafields.accentuate.image_1[forloop.index0] != blank %}
+            {% for cl_image in collection.metafields.accentuate.image_1[forloop.index0] %}
+              {%- assign img_url = cl_image.cloudinary_src | append: 'w_1' | replace: 'w_1', 'w_{width}' -%}
+              <div class="image-wrap">
+                <img class="lazyload"
+                    data-src="{{ img_url }}"
+                    data-widths="[360, 540, 720, 900, 1080, 1600, 2200, 2800]"
+                    data-aspectratio="{{ cl_image.aspect_ratio }}"
+                    data-sizes="auto"
+                    alt="{{ collection.metafields.accentuate.image_1_alt_text[forloop.index0] }}">
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% if collection.metafields.accentuate.image_1_product_link[forloop.index0] != blank %}
+          </a>
+        {% endif %}
+      </div>
+
+    {%- endif -%}
+    {%- if collection.metafields.accentuate.image_2[forloop.index0] -%}
+
+      <div class="image-right">
+        {% if collection.metafields.accentuate.image_2_product_link[forloop.index0] != blank %}
+          <a href="/products/{{ collection.metafields.accentuate.image_2_product_link[forloop.index0] }}">
+        {% endif %}
+          {% if collection.metafields.accentuate.image_2[forloop.index0] != blank %}
+            {% for cl_image in collection.metafields.accentuate.image_2[forloop.index0] %}
+              {%- assign img_url = cl_image.cloudinary_src | append: 'w_1' | replace: 'w_1', 'w_{width}' -%}
+              <div class="image-wrap">
+                <img class="lazyload"
+                    data-src="{{ img_url }}"
+                    data-widths="[360, 540, 720, 900, 1080, 1600, 2200, 2800]"
+                    data-aspectratio="{{ cl_image.aspect_ratio }}"
+                    data-sizes="auto"
+                    alt="{{ collection.metafields.accentuate.image_2_alt_text[forloop.index0] }}">
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% if collection.metafields.accentuate.image_2_product_link[forloop.index0] != blank %}
+          </a>
+        {% endif %}
+
+      </div>
+
+    {%- endif -%}
+  </section>
+{% endfor %}
+
+
+<section class="end-icon image-section container">
+  {% render 'icon-star' %}
+</section>
