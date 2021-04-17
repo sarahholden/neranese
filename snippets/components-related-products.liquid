@@ -5,7 +5,10 @@
       {% assign product_refs = product.metafields.accentuate.product | split: "|" %}
       {% for product_handle in product_refs %}
         {% assign product_ref = all_products[product_handle] %}
-        {%- include 'product-card', product: product_ref -%}
+        {%- if product_ref.handle != blank -%}
+          {%- include 'product-card', product: product_ref -%}
+        {%- endif -%}
+
       {% endfor %}
 
     <!-- BACKUP: CURRENT COLLECTION -->

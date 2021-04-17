@@ -537,12 +537,13 @@ slate.Image = (function() {
  */
 
 slate.Variants = (function() {
-
+  let productSwiper;
   /**
    * Variant constructor
    *
    * @param {object} options - Settings from `product.js`
    */
+
   function Variants(options) {
     this.$container = options.$container;
     this.product = options.product;
@@ -550,6 +551,10 @@ slate.Variants = (function() {
     this.originalSelectorId = options.originalSelectorId;
     this.enableHistoryState = options.enableHistoryState;
     this.currentVariant = this._getVariantFromOptions();
+
+    this._initializeProductSwiper(this.currentVariant);
+    this._filterThumbnails(this.currentVariant);
+    this._updateSwatches(this.currentVariant);
 
     $(this.singleOptionSelector, this.$container).on('change', this._onSelectChange.bind(this));
   }
@@ -636,12 +641,28 @@ slate.Variants = (function() {
 
       this._updateMasterSelect(variant);
       this._updateImages(variant);
+      this._filterThumbnails(variant);
       this._updatePrice(variant);
       this.currentVariant = variant;
 
       if (this.enableHistoryState) {
         this._updateHistoryState(variant);
       }
+
+      // BEGIN SWATCHES
+      const selector = this.originalSelectorId;
+
+      if (variant) {
+        var form = $('.js-add-to-cart-form');
+        for (var i = 0, length = variant.options.length; i < length; i++) {
+          var radioButton = form.find('.swatch[data-option-index="' + i + '"] :radio[value="' + variant.options[i] +'"]');
+          if (radioButton.length) {
+            radioButton.get(0).checked = true;
+          }
+        }
+      }
+
+      // END SWATCHES
     },
 
     /**
@@ -650,6 +671,105 @@ slate.Variants = (function() {
      * @param  {object} variant - Currently selected variant
      * @return {event}  variantImageChange
      */
+    _initializeProductSwiper: function(variant) {
+
+      // breakpoint where swiper will be destroyed
+      // and switches to a dual-column layout
+      const breakpoint = window.matchMedia( '(min-width:769px)' );
+      // keep track of swiper instances to destroy later
+      //////////////////////////////////////////////////////////////////
+      //////////////////////////////////////////////////////////////////
+      //////////////////////////////////////////////////////////////////
+      const breakpointChecker = function() {
+         // if larger viewport and multi-row layout needed
+         if ( breakpoint.matches === true ) {
+            // clean up old instances and inline styles when available
+            if ( productSwiper !== undefined ) productSwiper.destroy( true, true );
+            // or/and do nothing
+            return;
+         // else if a small viewport and single column layout needed
+         } else if ( breakpoint.matches === false ) {
+            // fire small viewport version of swiper
+            return enableSwiper();
+         }
+      };
+      //////////////////////////////////////////////////////////////////
+      //////////////////////////////////////////////////////////////////
+      //////////////////////////////////////////////////////////////////
+      const enableSwiper = function() {
+        // debugger;
+         productSwiper = new Swiper ('.swiper-container-products-mobile', {
+           pagination: {
+             el: '.swiper-pagination',
+             clickable: 'true'
+           },
+           speed: 600,
+           allowTouchMove: true,
+           loop: false,
+           watchOverflow: true
+         });
+      };
+      //////////////////////////////////////////////////////////////////
+      //////////////////////////////////////////////////////////////////
+      //////////////////////////////////////////////////////////////////
+      // keep an eye on viewport size changes
+      breakpoint.addListener(breakpointChecker);
+      // kickstart
+      breakpointChecker();
+    },
+    _updateProductSwiper: function() {
+      // debugger;
+      // UPDATE SWIPER
+      if (productSwiper != undefined) {
+        productSwiper.update(true);
+        productSwiper.slideTo(0);
+        // productSwiper.updateSize();
+        // productSwiper.updateSlides();
+        // productSwiper.updateProgress();
+        // productSwiper.updateSlidesClasses();
+        // productSwiper.slideTo(0);
+        // productSwiper.scrollbar.updateSize();
+      }
+
+    },
+
+    _updateSwatches: function(variant) {
+      // BEGIN SWATCHES
+      if (variant) {
+        var form = jQuery('.js-add-to-cart-form');
+        for (var i = 0,length = variant.options.length; i < length; i++) {
+          var radioButton = form.find('.swatch[data-option-index="' + i + '"] :radio[value="' + variant.options[i] +'"]');
+          if (radioButton != null && radioButton.length > 0) {
+            radioButton.get(0).checked = true;
+          }
+        }
+      }
+      // END SWATCHES
+    },
+
+    _filterThumbnails: function(variant) {
+      if (variant.featured_image != null && variant.featured_image.alt != null) {
+        // Hide all thumbnails
+        $('[data-thumbnail-color]').hide();
+        $('[data-thumbnail-color]').removeClass('selected-thumb');
+
+        // Show thumbs for selected color
+        var selectedColor = variant.featured_image.alt;
+        $('[data-thumbnail-color="' + selectedColor + '"]').show();
+        $('[data-thumbnail-color="' + selectedColor + '"]').eq(0).addClass('selected-thumb')
+      } else {
+        // Show all thumbnails
+        $('[data-thumbnail-color]').show();
+        $('[data-thumbnail-color]').removeClass('selected-thumb');
+        $('[data-thumbnail-color]').eq(0).addClass('selected-thumb')
+      }
+
+      this._updateProductSwiper();
+
+    },
+
+
+
     _updateImages: function(variant) {
       var variantImage = variant.featured_image || {};
       var currentVariantImage = this.currentVariant.featured_image || {};
@@ -972,40 +1092,3 @@ theme.customerLogin = (function() {
     $('#ResetSuccess').removeClass('hide');
   }
 })();
-
-
-$(document).ready(function() {
-
-  var sections = new slate.Sections();
-  sections.register('product', theme.Product);
-
-  // Common a11y fixes
-  slate.a11y.pageLinkFocus($(window.location.hash));
-
-  $('.in-page-link').on('click', function(evt) {
-    slate.a11y.pageLinkFocus($(evt.currentTarget.hash));
-  });
-
-  // Target tables to make them scrollable
-  var tableSelectors = '.rte table';
-
-  slate.rte.wrapTable({
-    $tables: $(tableSelectors),
-    tableWrapperClass: 'rte__table-wrapper',
-  });
-
-  // Target iframes to make them responsive
-  var iframeSelectors =
-    '.rte iframe[src*="youtube.com/embed"],' +
-    '.rte iframe[src*="player.vimeo"]';
-
-  slate.rte.wrapIframe({
-    $iframes: $(iframeSelectors),
-    iframeWrapperClass: 'rte__video-wrapper'
-  });
-
-  // Apply a specific class to the html element for browser support of cookies.
-  if (slate.cart.cookiesEnabled()) {
-    document.documentElement.className = document.documentElement.className.replace('supports-no-cookies', 'supports-cookies');
-  }
-});

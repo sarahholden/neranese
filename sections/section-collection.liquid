@@ -6,44 +6,10 @@
     =========================================== -->
     <section class="js-product-list container">
       <div class="cols-3 product-grid">
-
         {% for product in collection.products %}
-
-          {%- if product.options_by_name['Color'] != blank -%}
-
-            {%- for option in product.options -%}
-             {%- if option == 'Color' -%}
-              {%- assign index = forloop.index0 -%}
-              {%- assign colorlist = '' -%}
-              {%- assign color = '' -%}
-              {%- for variant in product.variants -%}
-                 {%- capture color -%}
-                  {{ variant.options[index] }}
-                 {%- endcapture -%}
-
-                 {%- unless colorlist contains color -%}
-                   <div data-stagger>
-                     {%- include 'product-card', current_variant: variant -%}
-                   </div>
-                    {%- capture tempList -%}
-                      {{colorlist | append: color | append: " " }}
-                    {%- endcapture -%}
-                    {%- assign colorlist = tempList -%}
-                  {%- endunless -%}
-
-
-                {%- endfor -%}
-              {%- endif -%}
-
-            {%- endfor -%}
-
-
-          {%- else -%}
-            <div data-stagger>
-              {%- include 'product-card' -%}
-            </div>
-          {%- endif -%}
-
+          <div data-stagger>
+            {%- include 'product-card' -%}
+          </div>
         {% endfor %}
       </div>
 

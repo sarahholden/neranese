@@ -309,6 +309,20 @@ $(document).ready(function() {
 
 
   /* ---------------------------------------------
+  SWATCHES
+  ------------------------------------------------ */
+  $('.swatch :radio').change(function() {
+    var optionIndex = $(this).closest('.swatch').attr('data-option-index');
+    var optionValue = $(this).val();
+    $(this)
+      .closest('form')
+      .find('.js-single-option-selector')
+      .eq(optionIndex)
+      .val(optionValue)
+      .trigger('change');
+  });
+
+  /* ---------------------------------------------
   Accordion
   ------------------------------------------------ */
   $('.accordion').on('click', '.accordion-toggle', function() {
