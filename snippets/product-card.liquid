@@ -1,42 +1,49 @@
+{%- if current_variant != blank -%}
+  {% assign product_or_variant = current_variant %}
+{%- else -%}
+  {% assign product_or_variant = product %}
+{%- endif -%}
+
+
 <div class="product-card">
-  <a href="{{ product.url | within: collection }}">
+  <a href="{{ product_or_variant.url | within: collection }}">
   <div class="product-card__image">
-    {%- if product.featured_image.alt -%}
-      {%- assign alt_text = product.featured_image.alt -%}
+    {%- if product_or_variant.featured_image.alt -%}
+      {%- assign alt_text = product_or_variant.featured_image.alt -%}
     {%- else -%}
       {%- assign alt_text = product.title -%}
     {%- endif -%}
-    {%- render 'block-image-cropped-lg', image: product.featured_image, alt_text: alt_text -%}
+    {%- render 'block-image-cropped-lg', image: product_or_variant.featured_image, alt_text: alt_text -%}
   </div>
 
   <div class="product-card__text">
     <p class="product-card__title">{{ product.title }}</p>
       <div class="product-card__bottom">
         <p class="product-card__price">
-          {%- if product.compare_at_price > product.price -%}
-            {%- if product.price_varies -%}
-              {%- assign sale_price = product.price | money_without_trailing_zeros -%}
-              {{ 'products.product.on_sale_from_html' | t: price: sale_price }}
+          {%- if product_or_variant.compare_at_price > product_or_variant.price -%}
+            {%- if product_or_variant.price_varies -%}
+              {%- assign sale_price = product_or_variant.price | money_without_trailing_zeros -%}
+              {{ 'products.product_or_variant.on_sale_from_html' | t: price: sale_price }}
             {%- else -%}
-              {{ 'products.product.on_sale' | t }}
-              {{ product.price | money_without_trailing_zeros }}
+              {{ 'products.product_or_variant.on_sale' | t }}
+              {{ product_or_variant.price | money_without_trailing_zeros }}
             {%- endif -%}
           {%- else -%}
-            {%- if product.price_varies -%}
-              {%- assign price = product.price | money_without_trailing_zeros -%}
-              {{ 'products.product.from_text_html' | t: price: price }}
+            {%- if product_or_variant.price_varies -%}
+              {%- assign price = product_or_variant.price | money_without_trailing_zeros -%}
+              {{ 'products.product_or_variant.from_text_html' | t: price: price }}
             {%- else -%}
-              {{ product.price | money_without_trailing_zeros }}
+              {{ product_or_variant.price | money_without_trailing_zeros }}
             {%- endif -%}
           {%- endif -%}
 
-          {%- if product.compare_at_price > product.price -%}
-            <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
-            <s>{{ product.compare_at_price | money_without_trailing_zeros }}</s>
+          {%- if product_or_variant.compare_at_price > product_or_variant.price -%}
+            <span class="visually-hidden">{{ 'products.product_or_variant.regular_price' | t }}</span>
+            <s>{{ product_or_variant.compare_at_price | money_without_trailing_zeros }}</s>
           {%- endif -%}
 
-          {%- unless product.available -%}
-            {{ 'products.product.sold_out' | t }}
+          {%- unless product_or_variant.available -%}
+            {{ 'products.product_or_variant.sold_out' | t }}
           {%- endunless -%}
         </p>
         <p>Shop</p>

@@ -103,8 +103,14 @@ $mCartHeaderHeight: 7rem;
     CART DRAWER - EMPTY CART
 -----------------------------------------------------------------------------*/
 .empty-cart {
-  font-weight: 400;
   margin-bottom: 2rem;
+
+  font-family: $cardinal;
+  font-size: 1.8rem;
+  letter-spacing: 0.154rem;
+  font-style: italic;
+  padding: 4rem 2.4rem;
+  text-align: center;
 }
 
 /* --------------------------------------------------------------------------
