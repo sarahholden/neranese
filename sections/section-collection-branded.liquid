@@ -37,7 +37,7 @@
 {% if collection.metafields.accentuate.collection_intro_text != blank %}
   <section class="intro padded container">
     {% for cl_image in collection.metafields.accentuate.collection_intro_text %}
-      <img class="lazyload"
+      <img class="lazyload fade-in"
           data-src="{{ cl_image.cloudinary_src }}"
           data-widths="[360, 540, 720, 900, 1080, 1600, 2200, 2800]"
           data-aspectratio="{{ cl_image.aspect_ratio }}"
@@ -61,7 +61,7 @@
             {% for cl_image in collection.metafields.accentuate.image_1[forloop.index0] %}
               {%- assign img_url = cl_image.cloudinary_src | append: 'w_1' | replace: 'w_1', 'w_{width}' -%}
               <div class="image-wrap">
-                <img class="lazyload"
+                <img class="lazyload fade-in"
                     data-src="{{ img_url }}"
                     data-widths="[360, 540, 720, 900, 1080, 1600, 2200, 2800]"
                     data-aspectratio="{{ cl_image.aspect_ratio }}"
@@ -86,7 +86,7 @@
             {% for cl_image in collection.metafields.accentuate.image_2[forloop.index0] %}
               {%- assign img_url = cl_image.cloudinary_src | append: 'w_1' | replace: 'w_1', 'w_{width}' -%}
               <div class="image-wrap">
-                <img class="lazyload"
+                <img class="lazyload fade-in"
                     data-src="{{ img_url }}"
                     data-widths="[360, 540, 720, 900, 1080, 1600, 2200, 2800]"
                     data-aspectratio="{{ cl_image.aspect_ratio }}"

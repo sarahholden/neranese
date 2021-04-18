@@ -82,9 +82,8 @@
   .btn[type="submit"] {
     margin-top: 1.6rem;
     width: 100%;
-
     @include mobile-only {
-      margin-top: 2.7rem;
+      margin-top: 1rem;
     }
   }
 }
@@ -181,6 +180,9 @@
   }
   .cols-2 {
     grid-gap: 1rem;
+    @include mobile-only {
+      grid-row-gap: 2.7rem;
+    }
   }
   .lifestyle__full {
     .cropped-image-wrapper {
@@ -258,7 +260,7 @@ $swatchHeight: 2.4rem;
   .variant-row__right {
     font-size: 0.9rem;
     letter-spacing: 0;
-
+    min-width: 5.8rem;
   }
   .fit-guide-link {
     color: #9E9E9E;
@@ -314,9 +316,6 @@ $swatchHeight: 2.4rem;
 
 .swatch {
   @include mobile-only {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     flex-wrap: wrap;
   }
 }
@@ -356,6 +355,7 @@ $swatchHeight: 2.4rem;
   &::before {
     content: none !important;
   }
+
 }
 
 .swatch-element label {

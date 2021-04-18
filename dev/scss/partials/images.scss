@@ -92,21 +92,25 @@ img.fade-in {
   }
 }
 
-img.fade-and-scale {
-  opacity: 0;
-  &.lazyloaded {
-    animation: fadeAndScaleImg 0.6s $easeInOutSoft forwards;
+.fade-and-scale {
+  img {
+    opacity: 0;
+    &.lazyloaded {
+      animation: fadeAndScaleImg 2s $easeOutCustomFast forwards;
+    }
   }
+
 }
 
 @keyframes fadeAndScaleImg {
   0% {
     opacity: 0;
-    transform: scale(1.08);
+    transform: scale(1.02) translate(-50%, -50%);
   }
+
   100% {
     opacity: 1;
-    transform: none;
+    transform: scale(1) translate(-50%, -50%);
 
   }
 }

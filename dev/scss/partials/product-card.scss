@@ -31,8 +31,10 @@
     opacity: 0;
   }
   &:hover {
-    .hover-image {
-      opacity: 1;
+    @include desktop-up {
+      .hover-image {
+        opacity: 1;
+      }
     }
   }
 
@@ -55,8 +57,10 @@
     pointer-events: none;
   }
   &:hover {
-    .product-card__text {
-      opacity: 1;
+    @include desktop-up {
+      .product-card__text {
+        opacity: 1;
+      }
     }
   }
   a {

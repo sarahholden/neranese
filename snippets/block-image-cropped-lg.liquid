@@ -3,7 +3,7 @@
     {% assign img_url = image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
   {%- endunless -%}
 
-  <img class="lazyload {{ img_class }}"
+  <img class="lazyload {{ img_class }} fade-in"
       data-src="{{ img_url }}"
       data-sizes="auto"
       alt="{{ alt_text }}">

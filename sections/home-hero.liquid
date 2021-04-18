@@ -3,7 +3,7 @@
     <a href="{{ section.settings.url }}">
   {% endif %}
     <span class="scaling-image-wrap">
-      {% render 'block-image-cropped', image: section.settings.image, m_image: section.settings.image_mobile, alt_text: section.settings.image_alt %}
+      <span class="fade-and-scale">{% render 'block-image-cropped', image: section.settings.image, m_image: section.settings.image_mobile, alt_text: section.settings.image_alt %}</span>
     </span>
   {% if section.settings.url != blank %}
     </a>

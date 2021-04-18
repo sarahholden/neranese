@@ -127,7 +127,9 @@
             <!-- ====== FORM ======== -->
             <form action="/cart/add" method="post" class="js-add-to-cart-form add-to-cart-form" enctype="multipart/form-data">
 
-              {%- if product.options_by_name['Color'].values.size > 0 or product.options_by_name['color'].values.size > 0 -%}
+
+              <!-- ====== COLOR SWATCHES ======== -->
+              {%- if product.options_by_name['Color'].values.size > 0 -%}
                 <div class="variant-row">
                   <div class="caps--10">Color</div>
                   {%- assign tag_alt = "BLANK" -%}
@@ -165,12 +167,21 @@
                         {%- endpaginate -%}
                       {%- endcapture -%}
                     {%- endif -%}
+                  {%- else -%}
+                    <!-- ====== NO OTHER COLORS, BUT SHOW SWATCH ======== -->
+                    {%- capture products_output -%}
+                      <div class="product-color current-color">
+                        {% for color_option in product.options_by_name['Color'].values %}
+                          <img src="{{ color_option | handle | append: '.' | append: 'jpg' | file_img_url: '40x40' }}" alt="{{ color_option }}">
+                        {% endfor %}
+                      </div>
+                    {%- endcapture -%}
                   {%- endunless -%}
-                  {%- if alt_products_total > 0 -%}
-                    <div class="product-alt-colours">
-                    {{ products_output }}
-                    </div>
-                  {%- endif -%}
+
+                  <div class="product-alt-colours">
+                  {{ products_output }}
+                  </div>
+
                   <div class="variant-row__right">
                     {{ product.options_by_name['Color'].values[0] }}
                   </div>
