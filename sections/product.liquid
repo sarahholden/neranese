@@ -60,11 +60,10 @@
             >
           </div>
         {% endif %}
-
       </div>
 
 
-      <div class="text-col v-aligner">
+      <div class="text-col">
 
         <div class="inner">
           <!-- ====== INTRO TEXT ======== -->
@@ -98,42 +97,101 @@
 
             <!-- ====== FORM ======== -->
             <form action="/cart/add" method="post" class="js-add-to-cart-form add-to-cart-form" enctype="multipart/form-data">
-              <!-- {% unless product.has_only_default_variant %}
-                {% for option in product.options_with_values %}
-                  <div class="selector-wrapper js">
-                    <label for="SingleOptionSelector-{{ forloop.index0 }}">
+
+              <div class="variant-row">
+                {%- if product.options_by_name['Color'].values.size > 0 or product.options_by_name['color'].values.size > 0 -%}
+                  <div class="caps--10">Color</div>
+                  {%- assign tag_alt = "BLANK" -%}
+                  {%- for tag in product.tags -%}
+                    {%- assign tag_prefix = tag | slice: 0, 5 -%}
+                    {%- if tag_prefix == "_alt_" -%}
+                      {%- assign tag_alt = tag -%}
+                      {%- break -%}
+                    {%- endif -%}
+                  {%- endfor -%}
+                  {%- unless tag_alt == "BLANK" -%}
+                    {%- assign vendor_handle = product.vendor | handle -%}
+                    {%- if collections['all'].products.size > 0 -%}
+                      {%- assign alt_products_total = 0 -%}
+                      {%- capture products_output -%}
+                        {%- paginate collections['all'].products by 200 -%}
+                          {%- for alt_product in collections['all'].products -%}
+                            {%- if alt_product.tags contains tag_alt -%}
+
+                              {%- assign alt_products_total = alt_products_total | plus: 1 -%}
+                              <div class="product-color {% if alt_product.id == product.id %}current-color{% endif %}">
+                                {%- unless alt_product.id == product.id -%}
+                                  <a href="{{ alt_product.url }}" title="{{ alt_product.title }}">
+                                {%- endunless -%}
+                                  {% for color_option in alt_product.options_by_name['Color'].values %}
+                                    <img src="{{ color_option | handle | append: '.' | append: 'jpg' | file_img_url: '40x40' }}" alt="{{ color_option }}">
+                                  {% endfor %}
+                                {%- unless alt_product.id == product.id -%}
+                                  </a>
+                                {%- endunless -%}
+                              </div>
+
+                            {%- endif -%}
+                          {%- endfor -%}
+                        {%- endpaginate -%}
+                      {%- endcapture -%}
+                    {%- endif -%}
+                  {%- endunless -%}
+                  {%- if alt_products_total > 0 -%}
+                    <div class="product-alt-colours">
+                    {{ products_output }}
+                    </div>
+                  {%- endif -%}
+                {%- endif -%}
+
+                <div class="variant-row__right">
+                  {{ product.options_by_name['Color'].values[0] }}
+                </div>
+              </div>
+
+
+
+
+              <!-- ====== HIDDEN OPTION SELECT ======== -->
+              {%- unless product.has_only_default_variant -%}
+                {%- for option in product.options_with_values -%}
+                  <div class="selector-wrapper js hide">
+                    <label for="SingleOptionSelector-{{ forloop.index0 }}" class="caps--10">
                       {{ option.name }}
                     </label>
 
                     <select
                       id="SingleOptionSelector-{{ forloop.index0 }}"
+                      class="js-single-option-selector"
                       data-single-option-selector
                       data-index="option{{ option.position }}">
-                      {% for value in option.values %}
+                      {%- for value in option.values -%}
                         <option
                           value="{{ value | escape }}"
                           {% if option.selected_value == value %}selected="selected"{% endif %}>
                             {{ value }}
                         </option>
-                      {% endfor %}
+                      {%- endfor -%}
                     </select>
                   </div>
-                {% endfor %}
-              {% endunless %} -->
+                {%- endfor -%}
+              {%- endunless -%}
 
-              {% if product.available and product.variants.size > 1 %}
+              <!-- ====== SWATCHES ======== -->
+              {%- if product.available and product.variants.size > 1 -%}
                 {% render 'swatch' for product.options as swatch %}
-              {% endif %}
+              {%- endif -%}
 
-              <select name="id" class="js-variant-id visually-hidden no-js" data-product-select>
-                {% for variant in product.variants %}
+              <!-- ====== HIDDEN VARIANT ID SELECT ======== -->
+              <select name="id" class="js-variant-id selector-wrapper visually-hidden no-js" data-product-select>
+                {%- for variant in product.variants -%}
                   <option
                     {% if variant == current_variant %}selected="selected"{% endif %}
                     {% unless variant.available %}disabled="disabled"{% endunless %}
                     value="{{ variant.id }}">
                       {{ variant.title }}
                   </option>
-                {% endfor %}
+                {%- endfor -%}
               </select>
 
               <!-- ====== QUANTITY ======== -->
@@ -268,7 +326,19 @@
         "id": "recommended_products_heading",
         "type": "richtext",
         "label": "Recommended Products Heading"
+      },
+      {
+        "id": "fit_guide_link",
+        "type": "url",
+        "label": "Fit Guide Link"
+      },
+      {
+        "id": "fit_guide_text",
+        "type": "text",
+        "label": "Fit Guide Text",
+        "default": "Fit Guide"
       }
+
     ]
   }
 {% endschema %}

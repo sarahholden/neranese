@@ -39,7 +39,9 @@
             </li>
             <!--   CART   -->
             <li>
-              <a href="/cart" data-cart-view="data-cart-view" class="cart-icon-wrapper js-view-cart">{{ section.settings.cart_text | default: 'Bag' }}</a>
+              <a href="/cart" data-cart-view="data-cart-view" class="cart-icon-wrapper js-view-cart">
+                {{ section.settings.cart_text | default: 'Bag' }} <span rv-show="cart.item_count | gt 0">(<span rv-text="cart.item_count"></span>)</span>
+              </a>
             </li>
           </ul>
 
