@@ -35,6 +35,7 @@
   <div>
     {% for variant in product.variants %}
       {% assign value = variant.options[option_index] %}
+
       {% unless values contains value %}
         {% assign values = values | join: ',' %}
         {% assign values = values | append: ',' | append: value %}
@@ -43,7 +44,7 @@
           {% if is_color %}
           <div class="tooltip">{{ value }}</div>
           {% endif %}
-          <input id="swatch-{{ option_index }}-{{ value | handle }}" type="radio" class="visually-hidden" name="option-{{ option_index }}" value="{{ value | escape }}"{% if forloop.first %} checked{% endif %}  />
+          <input id="swatch-{{ option_index }}-{{ value | handle }}" type="radio" class="visually-hidden" name="option-{{ option_index }}" value="{{ value | escape }}"  />
           {% if is_color %}
             <label for="swatch-{{ option_index }}-{{ value | handle }}" style="background-color: {{ value | split: ' ' | last | handle }}; background-image: url({{ value | handle | append: '.' | append: file_extension | file_url }})">
               <img class="crossed-out" src="{{ 'soldout.png' | file_url }}" />

@@ -552,6 +552,16 @@ slate.Variants = (function() {
     this.currentVariant = this._getVariantFromOptions();
 
     $(this.singleOptionSelector, this.$container).on('change', this._onSelectChange.bind(this));
+
+    if (this.currentVariant) {
+      var form = $('.js-add-to-cart-form');
+      for (var i = 0, length = this.currentVariant.options.length; i < length; i++) {
+        var radioButton = form.find('.swatch[data-option-index="' + i + '"] :radio[value="' + this.currentVariant.options[i] +'"]');
+        if (radioButton.length) {
+          radioButton.get(0).checked = true;
+        }
+      }
+    }
   }
 
   Variants.prototype = $.extend({}, Variants.prototype, {
@@ -625,6 +635,7 @@ slate.Variants = (function() {
     _onSelectChange: function() {
       var variant = this._getVariantFromOptions();
 
+
       this.$container.trigger({
         type: 'variantChange',
         variant: variant
@@ -642,6 +653,7 @@ slate.Variants = (function() {
       if (this.enableHistoryState) {
         this._updateHistoryState(variant);
       }
+
 
       if (variant) {
         var form = $('.js-add-to-cart-form');
