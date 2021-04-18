@@ -15,9 +15,24 @@
   PRODUCT CARD IMAGE
 -----------------------------------------------------------------------------*/
 .product-card {
+  position: relative;
+  overflow: hidden;
   .product-card__image {
     .cropped-image-wrapper {
       padding-bottom: 153%;
+    }
+  }
+  .hover-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+  }
+  &:hover {
+    .hover-image {
+      opacity: 1;
     }
   }
 
@@ -29,7 +44,6 @@
   position: relative;
   .product-card__text {
     @extend .caps--11;
-    background: rgba(#F2EFE8, .48);
     opacity: 0;
     transition: all 0.5s ease;
     position: absolute;
@@ -40,13 +54,13 @@
     z-index: 4;
     pointer-events: none;
   }
-  a {
-    display: block;
-  }
   &:hover {
     .product-card__text {
       opacity: 1;
     }
+  }
+  a {
+    display: block;
   }
   .product-card__title {
     position: absolute;
@@ -55,6 +69,7 @@
     left: 1.6rem;
     display: block;
     text-align: justify;
+    pointer-events: none;
     &:after {
       content: "";
       display: inline-block;
@@ -68,5 +83,26 @@
     left: 1.6rem;
     display: flex;
     justify-content: space-between;
+    pointer-events: none;
   }
+  .product-card__middle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    text-align: center;
+  }
+  .product-card__form {
+    pointer-events: auto;
+  }
+
+}
+
+/* QUICK SHOP (COLLECTION ONLY) ================== */
+.has-quick-shop {
+  .product-card__text {
+    background: rgba(#F2EFE8, .48);
+  }
+
 }

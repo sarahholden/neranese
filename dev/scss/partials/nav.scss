@@ -70,7 +70,7 @@ LOGO WRAPPER
   max-width: 17.2rem;
   width: 100%;
   position: absolute;
-  top: calc(50% - .2rem);
+  top: calc(50% - .1rem);
   left: 50%;
   transform: translate(-50%, -50%);
   @include tablet-down {

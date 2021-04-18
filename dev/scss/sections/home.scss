@@ -1,3 +1,8 @@
+.template-index .is-padded + .is-padded {
+  .padded {
+    padding-top: 0;
+  }
+}
 
 /* --------------------------------------------------------------------------
   HEADER
@@ -141,8 +146,12 @@
     right: 2.6rem;
     display: flex;
     align-items: center;
+    @include tablet-down {
+      font-size: 4.5rem;
+    }
     @include mobile-only {
       bottom: 0.7rem;
+
     }
   }
   .dividing-line {

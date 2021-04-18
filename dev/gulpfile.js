@@ -41,7 +41,7 @@ function vendorScripts() {
       'js/vendor/swiper.min.js',
     ])
     .pipe(concat('vendor.js'))
-    // .pipe(uglify())
+    .pipe(uglify())
     .pipe(gulp.dest('../assets'))
 }
 

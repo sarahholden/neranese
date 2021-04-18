@@ -1,6 +1,14 @@
 /* --------------------------------------------------------------------------
 Footer Navigation Styles
 -----------------------------------------------------------------------------*/
+.newsletter-signup,
+footer .container {
+	@include desktop-up {
+		padding-left: 3.8rem;
+		padding-right: 3.8rem;
+	}
+}
+
 footer {
 	@extend .caps--8;
 	line-height: (17 / 8);
@@ -35,7 +43,7 @@ footer {
 			}
 		}
 		li {
-			margin-left: 2rem;
+			margin-left: 2.5rem;
 			@include mobile-only {
 				margin: 0;
 				a {

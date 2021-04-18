@@ -17,30 +17,58 @@
       <div class="image-col">
         <!-- ====== GALLERY ======== -->
         {% if product.images.size > 1 %}
-          <div class="swiper-container swiper-container-pdp">
-            <div class="swiper-wrapper">
+
+          <div class="swiper-outer-wrapper">
+            <div class="swiper-container swiper-container-pdp">
+              <div class="swiper-wrapper">
+                {% for image in product.images %}
+                  <section class="swiper-slide">
+                    {%- if image.alt -%}
+                      {%- assign alt_text = image.alt | escape -%}
+                    {%- else -%}
+                      {%- assign alt_text = product.title -%}
+                    {%- endif -%}
+
+                    {% assign img_url = image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+                    <div class="cropped-image-wrapper">
+                      <img
+                      class="lazyload fade-in"
+                      data-src="{{ img_url }}"
+                      data-widths="[360, 540, 720, 900, 1080, 1600, 2200, 2800]"
+                      data-aspectratio="{{ image.aspect_ratio }}"
+                      data-sizes="auto"
+                      alt="{{ alt_text }}"
+                      >
+                    </div>
+                  </section>
+                {% endfor %}
+              </div>
+              <button type="button" class="text-only swiper-prev" aria-label="Previous Slide">
+                {% render 'icon-caret-left' %}
+              </button>
+              <button type="button" class="text-only swiper-next" aria-label="Next Slide">
+                {% render 'icon-caret-right' %}
+              </button>
+            </div>
+
+            <div class="js-product-thumbs product-thumbs">
               {% for image in product.images %}
-                <section class="swiper-slide">
-                  {% assign alt_text = image.alt | escape %}
                   {% assign img_url = image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
-                  <img
-                  class="lazyload fade-in"
-                  data-src="{{ img_url }}"
-                  data-widths="[360, 540, 720, 900, 1080, 1600, 2200, 2800]"
-                  data-aspectratio="{{ image.aspect_ratio }}"
-                  data-sizes="auto"
-                  alt="{{ alt_text }}"
-                  data-anim="scale"
-                  >
-                </section>
+                  <a href="#" class="product-thumbs__thumb" title='Slide to product image {{forloop.index0 }}'>
+                    <div class="cropped-image-wrapper">
+                      <img
+                      class="lazyload fade-in"
+                      data-src="{{ img_url }}"
+                      data-widths="[40, 800, 100, 300, 400]"
+                      data-aspectratio="{{ image.aspect_ratio }}"
+                      data-sizes="auto"
+                      alt="{{ alt_text }}"
+
+                      >
+                    </div>
+                  </a>
               {% endfor %}
             </div>
-            <button type="button" class="text-only swiper-prev" aria-label="Previous Slide">
-              {% render 'icon-caret-left' %}
-            </button>
-            <button type="button" class="text-only swiper-next" aria-label="Next Slide">
-              {% render 'icon-caret-right' %}
-            </button>
           </div>
 
         <!-- ====== SINGLE IMAGE ======== -->
@@ -49,15 +77,16 @@
             {% assign image = featured_image %}
             {% assign alt_text = featured_image.alt | escape %}
             {% assign img_url = image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
-            <img
-            class="lazyload fade-in"
-            data-src="{{ img_url }}"
-            data-widths="[360, 540, 720, 900, 1080, 1600, 2200, 2800]"
-            data-aspectratio="{{ image.aspect_ratio }}"
-            data-sizes="auto"
-            alt="{{ alt_text }}"
-            data-anim="scale"
-            >
+            <div class="cropped-image-wrapper">
+              <img
+                class="lazyload fade-in"
+                data-src="{{ img_url }}"
+                data-widths="[360, 540, 720, 900, 1080, 1600, 2200, 2800]"
+                data-aspectratio="{{ image.aspect_ratio }}"
+                data-sizes="auto"
+                alt="{{ alt_text }}"
+                >
+            </div>
           </div>
         {% endif %}
       </div>
@@ -76,12 +105,12 @@
             </span>
 
             {% if product.compare_at_price_max > product.price %}
-            <span class="visually-hidden" data-compare-text>{{ 'products.product.regular_price' | t }}</span>
-            <s data-compare-price>
-              {% if current_variant.compare_at_price > current_variant.price %}
-              {{ current_variant.compare_at_price | money_without_trailing_zeros }}
-              {% endif %}
-            </s>
+              <span class="visually-hidden" data-compare-text>{{ 'products.product.regular_price' | t }}</span>
+              <s data-compare-price>
+                {% if current_variant.compare_at_price > current_variant.price %}
+                {{ current_variant.compare_at_price | money_without_trailing_zeros }}
+                {% endif %}
+              </s>
             {% endif %}
           </span>
 
@@ -98,8 +127,8 @@
             <!-- ====== FORM ======== -->
             <form action="/cart/add" method="post" class="js-add-to-cart-form add-to-cart-form" enctype="multipart/form-data">
 
-              <div class="variant-row">
-                {%- if product.options_by_name['Color'].values.size > 0 or product.options_by_name['color'].values.size > 0 -%}
+              {%- if product.options_by_name['Color'].values.size > 0 or product.options_by_name['color'].values.size > 0 -%}
+                <div class="variant-row">
                   <div class="caps--10">Color</div>
                   {%- assign tag_alt = "BLANK" -%}
                   {%- for tag in product.tags -%}
@@ -142,14 +171,11 @@
                     {{ products_output }}
                     </div>
                   {%- endif -%}
-                {%- endif -%}
-
-                <div class="variant-row__right">
-                  {{ product.options_by_name['Color'].values[0] }}
+                  <div class="variant-row__right">
+                    {{ product.options_by_name['Color'].values[0] }}
+                  </div>
                 </div>
-              </div>
-
-
+              {%- endif -%}
 
 
               <!-- ====== HIDDEN OPTION SELECT ======== -->
@@ -178,7 +204,7 @@
               {%- endunless -%}
 
               <!-- ====== SWATCHES ======== -->
-              {%- if product.available and product.variants.size > 1 -%}
+              {%- if product.variants.size > 1 -%}
                 {% render 'swatch' for product.options as swatch %}
               {%- endif -%}
 

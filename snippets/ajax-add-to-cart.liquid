@@ -1,4 +1,4 @@
-<script type="text/javascript">
+<script type="text/javascript" defer>
   $('.js-add-to-cart-form').on('submit', function (e) {
     e.preventDefault();
     var $form = $(this);
@@ -25,6 +25,8 @@
     var variantPriceTimesQuantity = selectedQuantity * variantPrice;
     $('.js-price').html(slate.Currency.formatMoney(variantPriceTimesQuantity, theme.moneyFormat));
   });
+
+
 
 
 </script>

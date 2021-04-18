@@ -1,30 +1,63 @@
-<div class="product-card">
-  <a href="{{ product.url | within: collection }}">
-  <div class="product-card__image">
-    {%- if product.featured_image.alt -%}
-      {%- assign alt_text = product.featured_image.alt -%}
-    {%- else -%}
-      {%- assign alt_text = product.title -%}
-    {%- endif -%}
-    {%- render 'block-image-cropped-lg', image: product.featured_image, alt_text: alt_text -%}
-  </div>
 
+{%- if product.handle != blank -%}
+<div class="product-card {% if has_quick_shop == true or product.available == false %}has-quick-shop{% endif %}">
+  <a href="{{ product.url | within: collection }}">
+    <div class="product-card__image">
+      {%- if product.featured_image.alt -%}
+        {%- assign alt_text = product.featured_image.alt | escape -%}
+      {%- else -%}
+        {%- assign alt_text = product.title -%}
+      {%- endif -%}
+      {%- render 'block-image-cropped-lg', image: product.featured_image, alt_text: alt_text -%}
+      {%- if product.images[1] != blank -%}
+        <div class="hover-image">
+          {%- render 'block-image-cropped-lg', image: product.images[1], alt_text: product.title -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </a>
   <div class="product-card__text">
     <p class="product-card__title">{{ product.title }}</p>
+      {%- if has_quick_shop == true or product.available == false -%}
+        <div class="product-card__middle">
+          {%- unless product.available -%}
+            {{ 'products.product.sold_out' | t }}
+          {%- else -%}
+
+
+            <div class="product-card__form">
+              {%- if product.has_only_default_variant == false -%}
+                QUICK ADD IN PROGRESS :)
+                {% for product_option in product.options_with_values %}
+                  {%- if product_option.name == 'Size' -%}
+                    <label class="hide">
+                      {{ product_option.name }}
+                      <select>
+                        {% for value in product_option.values %}
+                          <option {% if product_option.selected_value == value %}selected{% endif %}>
+                            {{ value }}
+                          </option>
+                        {% endfor %}
+                      </select>
+                    </label>
+                  {%- endif -%}
+                {% endfor %}
+              {%- endif -%}
+
+            </div>
+          {%- endunless -%}
+
+        </div>
+      {%- endif -%}
       <div class="product-card__bottom">
         <p class="product-card__price">
-          {%- if product.compare_at_price > product.price -%}
-            {%- if product.price_varies -%}
-              {%- assign sale_price = product.price | money_without_trailing_zeros -%}
-              {{ 'products.product.on_sale_from_html' | t: price: sale_price }}
-            {%- else -%}
-              {{ 'products.product.on_sale' | t }}
-              {{ product.price | money_without_trailing_zeros }}
-            {%- endif -%}
+
+          {%- if product.compare_at_price > product.price and product.price_varies == false -%}
+            {{ product.price | money_without_trailing_zeros }}
           {%- else -%}
             {%- if product.price_varies -%}
-              {%- assign price = product.price | money_without_trailing_zeros -%}
-              {{ 'products.product.from_text_html' | t: price: price }}
+              {{ product.price_min | money_without_trailing_zeros }} -
+              {{ product.price_max | money_without_trailing_zeros }}
             {%- else -%}
               {{ product.price | money_without_trailing_zeros }}
             {%- endif -%}
@@ -32,15 +65,17 @@
 
           {%- if product.compare_at_price > product.price -%}
             <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
-            <s>{{ product.compare_at_price | money_without_trailing_zeros }}</s>
+            {%- if product.price_varies == false -%}
+              <s>{{ product.compare_at_price | money_without_trailing_zeros }}</s>
+            {%- endif -%}
+
           {%- endif -%}
 
-          {%- unless product.available -%}
-            {{ 'products.product.sold_out' | t }}
-          {%- endunless -%}
         </p>
         <p>Shop</p>
       </div>
     </div>
-  </a>
+
 </div>
+
+{%- endif -%}

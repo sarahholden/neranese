@@ -12,6 +12,7 @@ Buttons
   background-color: transparent;
   text-align: center;
   padding: 1rem 3rem;
+
   &:hover {}
   &:disabled,
   &[disabled] {
@@ -30,14 +31,23 @@ Buttons
   font-size: 1rem;
   letter-spacing: 0.154rem;
   border: 2px solid $black;
-  &:hover {
-    background: transparent;
-    color: $black;
+  @include mobile-only {
+    border: 1px solid $black;
+  }
+  @include desktop-up {
+    &:hover {
+      background: transparent;
+      color: $black;
+    }
+  }
+  &:active,
+  &:focus {
+    color: $cream;
   }
 }
 
 .btn--star {
-  padding: 0.7rem 0.9rem 0.7rem 2rem;
+  padding: 0.6rem 0.9rem 0.6rem 2rem;
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
@@ -46,13 +56,17 @@ Buttons
     width: 1.9rem;
     color: white;
     display: inline-block;
+    position: relative;
+    top: 0.1rem;
   }
   svg path {
     fill: currentColor;
   }
-  &:hover {
-    .icon {
-      color: $black;
+  @include desktop-up {
+    &:hover {
+      .icon {
+        color: $black;
+      }
     }
   }
 }
@@ -71,10 +85,12 @@ Buttons
       width: 2.4rem;
     }
   }
-  &:hover {
-    @include tablet-up {
-      .icon-wrap {
-        transform: translate(.3rem, .1rem);
+  @include desktop-up {
+    &:hover {
+      @include tablet-up {
+        .icon-wrap {
+          transform: translate(.3rem, .1rem);
+        }
       }
     }
   }
