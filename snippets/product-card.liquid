@@ -25,21 +25,20 @@
           {%- else -%}
 
 
-            <div class="product-card__form">
+            <div class="product-card__sizes">
               {%- if product.has_only_default_variant == false -%}
-                QUICK ADD IN PROGRESS :)
                 {% for product_option in product.options_with_values %}
                   {%- if product_option.name == 'Size' -%}
-                    <label class="hide">
-                      {{ product_option.name }}
-                      <select>
-                        {% for value in product_option.values %}
-                          <option {% if product_option.selected_value == value %}selected{% endif %}>
-                            {{ value }}
-                          </option>
-                        {% endfor %}
-                      </select>
-                    </label>
+                    <div class="product-card__sizes-heading">
+                      Available Sizes
+                    </div>
+                    <div class="product-card__size">
+                      {% for value in product_option.values %}
+                        <span>
+                          {{ value }}
+                        </span>
+                      {% endfor %}
+                    </div>
                   {%- endif -%}
                 {% endfor %}
               {%- endif -%}

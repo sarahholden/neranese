@@ -3645,8 +3645,22 @@ Buttons
   text-align: center;
 }
 
-.product-card .product-card__form {
-  pointer-events: auto;
+.product-card .product-card__sizes {
+  pointer-events: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+.product-card .product-card__sizes-heading {
+  text-transform: none;
+  margin-bottom: 0.6rem;
+}
+
+.product-card .product-card__size span {
+  display: inline-block;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
 }
 
 /* QUICK SHOP (COLLECTION ONLY) ================== */
