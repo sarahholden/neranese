@@ -1,0 +1,201 @@
+.page-login.page-account {
+
+  form {
+    max-width: 35rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 4rem;
+
+  }
+  .form-inner-wrap {
+    border-top: 1px solid $black;
+    margin-top: 2rem;
+    padding-top: 1rem;
+  }
+  .btn-row {
+    text-align: center;
+    margin-top: 2rem;
+  }
+  .end-note {
+    text-align: center;
+    color: $black;
+    margin-top: 3rem;
+  }
+  h1 {
+    @include tablet-up {
+      margin-bottom: 4rem;
+    }
+    @include mobile-only {
+      margin-bottom: 3rem;
+    }
+  }
+  .desc {
+    @include tablet-up {
+      font-size: 2.2rem;
+      text-align: center;
+    }
+    @include tablet-up {
+      font-size: 2.2rem;
+      max-width: 43rem;
+      margin-left: auto;
+      margin-bottom: 6rem;
+      margin-right: auto;
+    }
+    @include mobile-only {
+      margin-bottom: 4rem;
+    }
+  }
+}
+
+.page-account {
+  text-align: center;
+  h1 {
+    @extend .hd-4;
+    margin-bottom: 4rem;
+  }
+  h2 {
+    font-size: 2.4rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: $black;
+    @include mobile-only {
+      font-size: 1.8rem;
+    }
+  }
+  .select-label {
+    text-align: left;
+    margin-bottom: 0;
+    margin-top: 1.2rem;
+  }
+  .select-row {
+    text-align: left;
+  }
+  .address-overview {
+    text-align: center;
+    @include tablet-up {
+      font-size: 1.8rem;
+    }
+  }
+  .link-with-underline {
+    text-decoration: underline;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+  .address-new-toggle {
+    margin-bottom: 2rem;
+    display: inline-block;
+  }
+  .address-list {
+    margin-top: 4rem;
+  }
+  .default-heading {
+    margin-top: 3rem;
+  }
+  h6 {
+    margin-top: 4rem;
+  }
+  .checkbox-wrapper,
+  .selectric-wrapper {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    text-align: left;
+  }
+  .edit-address-form {
+    margin-top: 5rem;
+  }
+
+}
+
+/* --------------------------------------------------------------------------
+  RECHARGE
+-----------------------------------------------------------------------------*/
+body #ReCharge {
+  @extend .page-padded-top !optional;
+  @extend .container !optional;
+  padding-top: 16rem;
+  padding-bottom: 12rem;
+  min-height: 100vh;
+  font-size: 1.8rem;
+  @include mobile-only {
+    padding-top: 9rem;
+    padding-bottom: 6rem;
+  }
+  h2 {
+    font-size: 5rem;
+    @include mobile-only {
+      font-size: 3.5rem;
+    }
+  }
+  a {
+    text-decoration: underline;
+  }
+
+  .rc_header-settings {
+    margin-bottom: 4rem;
+  }
+  .rc_table__container {
+    margin-top: 2rem;
+  }
+  .rc_sidebar__menu {
+    a {
+      @extend .small-caps !optional;
+      display: inline-block;
+      margin-bottom: 0.5rem;
+      text-decoration: none;
+      &.rc_active,
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  .rc_button--fa-plus-circle {
+    &::before {
+      margin-right: 1rem;
+    }
+  }
+  .edit_address_link {
+    text-decoration: underline;
+  }
+  .rc_toggler form {
+    margin-left: 0;
+    margin-top: 3rem;
+    button {
+      margin-top: 1rem;
+    }
+    input[type="number"],
+    input[type="date"] {
+      width: 20rem;
+    }
+  }
+  input,
+  textarea {
+    margin-bottom: 2rem;
+  }
+  select {
+    max-width: 100%;
+    margin-top: 0.6rem;
+    margin-bottom: 2rem;
+  }
+  .form-vertical {
+    margin-left: 0;
+  }
+
+}
+
+div#rc_login {
+  color: $black;
+  margin-top: 4rem !important;
+}
+
+#login_verification {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.page-account {
+  .errors {
+    ul {
+      list-style: none;
+    }
+  }
+}

@@ -1222,6 +1222,7 @@ Headings
 .hd-3,
 .page-general h1,
 .hd-4,
+.page-account h1,
 .hd-5,
 .hd-6,
 h1,
@@ -1240,6 +1241,7 @@ h6 {
   .hd-3,
   .page-general h1,
   .hd-4,
+  .page-account h1,
   .hd-5,
   .hd-6,
   h1,
@@ -1282,14 +1284,18 @@ h3 {
   }
 }
 
+
 .hd-4,
+.page-account h1,
 h4 {
   font-size: 3rem;
   letter-spacing: 0.05rem;
 }
 
 @media (max-width: 767px) {
+  
   .hd-4,
+  .page-account h1,
   h4 {
     font-size: 2.5rem;
     letter-spacing: 0.035rem;
@@ -1557,11 +1563,17 @@ sup {
     border-collapse: collapse;
     margin-bottom: 2rem;
   }
+  .responsive-table.has-max-width,
+  table.has-max-width {
+    max-width: 80rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
   .responsive-table td,
   .responsive-table th,
   table td,
   table th {
-    border: 1px solid #dfdfdf;
+    border: 1px solid #979797;
     padding: 1rem 2rem;
   }
 }
@@ -1704,7 +1716,7 @@ Vertical & Horizontal Alignment
 /* --------------------------------------------------------------------------
 Centered Layout
 -----------------------------------------------------------------------------*/
-.container, .page-branded .single-image-90-width, .page-branded .single-image-left-side, .page-branded .single-image-right-side,
+.container, .page-branded .single-image-90-width, .page-branded .single-image-left-side, .page-branded .single-image-right-side, body #ReCharge,
 .page-width {
   width: 100%;
   padding-left: 2.6rem;
@@ -1712,7 +1724,7 @@ Centered Layout
 }
 
 @media (max-width: 767px) {
-  .container, .page-branded .single-image-90-width, .page-branded .single-image-left-side, .page-branded .single-image-right-side,
+  .container, .page-branded .single-image-90-width, .page-branded .single-image-left-side, .page-branded .single-image-right-side, body #ReCharge,
   .page-width {
     padding-left: 1.8rem;
     padding-right: 1.8rem;
@@ -1750,7 +1762,7 @@ Centered Layout
   }
 }
 
-.page-padded-top,
+.page-padded-top, body #ReCharge,
 .page-padding-top,
 .page-404,
 .page-general,
@@ -1759,7 +1771,7 @@ Centered Layout
 }
 
 @media (max-width: 767px) {
-  .page-padded-top,
+  .page-padded-top, body #ReCharge,
   .page-padding-top,
   .page-404,
   .page-general,
@@ -2560,7 +2572,9 @@ Footer Navigation Styles
   footer .page-branded .single-image-left-side,
   .page-branded footer .single-image-left-side,
   footer .page-branded .single-image-right-side,
-  .page-branded footer .single-image-right-side {
+  .page-branded footer .single-image-right-side,
+  footer body #ReCharge,
+  body footer #ReCharge {
     padding-left: 3.8rem;
     padding-right: 3.8rem;
   }
@@ -2721,7 +2735,7 @@ textarea {
   border-bottom: 1px solid #363636;
   background-color: transparent;
   box-shadow: none;
-  padding-bottom: 4px;
+  padding-bottom: 1.2rem;
   letter-spacing: inherit;
   border-radius: 0;
   font-family: inherit;
@@ -2898,25 +2912,25 @@ input[type="radio"]:checked + label:after {
 input:focus::-webkit-input-placeholder,
 textarea:focus::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
-  color: dimgray;
+  color: rgba(54, 54, 54, 0.4);
 }
 
 input:focus::-moz-placeholder,
 textarea:focus::-moz-placeholder {
   /* Firefox 19+ */
-  color: dimgray;
+  color: rgba(54, 54, 54, 0.4);
 }
 
 input:focus:-ms-input-placeholder,
 textarea:focus:-ms-input-placeholder {
   /* IE 10+ */
-  color: dimgray;
+  color: rgba(54, 54, 54, 0.4);
 }
 
 input:focus:-moz-placeholder,
 textarea:focus:-moz-placeholder {
   /* Firefox 18- */
-  color: dimgray;
+  color: rgba(54, 54, 54, 0.4);
 }
 
 .form-vertical {
@@ -3000,6 +3014,10 @@ Buttons
 }
 
 .btn--black:active, .btn--black:focus {
+  color: #F2EFE8;
+}
+
+.btn--black:hover:active, .btn--black:hover:focus {
   color: #363636;
 }
 
@@ -5237,6 +5255,240 @@ Accordions
   padding-right: 0.4rem;
   text-align: right;
   width: 20%;
+}
+
+.page-login.page-account form {
+  max-width: 35rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 4rem;
+}
+
+.page-login.page-account .form-inner-wrap {
+  border-top: 1px solid #363636;
+  margin-top: 2rem;
+  padding-top: 1rem;
+}
+
+.page-login.page-account .btn-row {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.page-login.page-account .end-note {
+  text-align: center;
+  color: #363636;
+  margin-top: 3rem;
+}
+
+@media (min-width: 768px) {
+  .page-login.page-account h1 {
+    margin-bottom: 4rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .page-login.page-account h1 {
+    margin-bottom: 3rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .page-login.page-account .desc {
+    font-size: 2.2rem;
+    text-align: center;
+  }
+}
+
+@media (min-width: 768px) {
+  .page-login.page-account .desc {
+    font-size: 2.2rem;
+    max-width: 43rem;
+    margin-left: auto;
+    margin-bottom: 6rem;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 767px) {
+  .page-login.page-account .desc {
+    margin-bottom: 4rem;
+  }
+}
+
+.page-account {
+  text-align: center;
+}
+
+.page-account h1 {
+  margin-bottom: 4rem;
+}
+
+.page-account h2 {
+  font-size: 2.4rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: #363636;
+}
+
+@media (max-width: 767px) {
+  .page-account h2 {
+    font-size: 1.8rem;
+  }
+}
+
+.page-account .select-label {
+  text-align: left;
+  margin-bottom: 0;
+  margin-top: 1.2rem;
+}
+
+.page-account .select-row {
+  text-align: left;
+}
+
+.page-account .address-overview {
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .page-account .address-overview {
+    font-size: 1.8rem;
+  }
+}
+
+.page-account .link-with-underline {
+  text-decoration: underline;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.page-account .address-new-toggle {
+  margin-bottom: 2rem;
+  display: inline-block;
+}
+
+.page-account .address-list {
+  margin-top: 4rem;
+}
+
+.page-account .default-heading {
+  margin-top: 3rem;
+}
+
+.page-account h6 {
+  margin-top: 4rem;
+}
+
+.page-account .checkbox-wrapper,
+.page-account .selectric-wrapper {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.page-account .edit-address-form {
+  margin-top: 5rem;
+}
+
+/* --------------------------------------------------------------------------
+  RECHARGE
+-----------------------------------------------------------------------------*/
+body #ReCharge {
+  padding-top: 16rem;
+  padding-bottom: 12rem;
+  min-height: 100vh;
+  font-size: 1.8rem;
+}
+
+@media (max-width: 767px) {
+  body #ReCharge {
+    padding-top: 9rem;
+    padding-bottom: 6rem;
+  }
+}
+
+body #ReCharge h2 {
+  font-size: 5rem;
+}
+
+@media (max-width: 767px) {
+  body #ReCharge h2 {
+    font-size: 3.5rem;
+  }
+}
+
+body #ReCharge a {
+  text-decoration: underline;
+}
+
+body #ReCharge .rc_header-settings {
+  margin-bottom: 4rem;
+}
+
+body #ReCharge .rc_table__container {
+  margin-top: 2rem;
+}
+
+body #ReCharge .rc_sidebar__menu a {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  text-decoration: none;
+}
+
+body #ReCharge .rc_sidebar__menu a.rc_active, body #ReCharge .rc_sidebar__menu a:hover {
+  text-decoration: underline;
+}
+
+body #ReCharge .rc_button--fa-plus-circle::before {
+  margin-right: 1rem;
+}
+
+body #ReCharge .edit_address_link {
+  text-decoration: underline;
+}
+
+body #ReCharge .rc_toggler form {
+  margin-left: 0;
+  margin-top: 3rem;
+}
+
+body #ReCharge .rc_toggler form button {
+  margin-top: 1rem;
+}
+
+body #ReCharge .rc_toggler form input[type="number"],
+body #ReCharge .rc_toggler form input[type="date"] {
+  width: 20rem;
+}
+
+body #ReCharge input,
+body #ReCharge textarea {
+  margin-bottom: 2rem;
+}
+
+body #ReCharge select {
+  max-width: 100%;
+  margin-top: 0.6rem;
+  margin-bottom: 2rem;
+}
+
+body #ReCharge .form-vertical {
+  margin-left: 0;
+}
+
+div#rc_login {
+  color: #363636;
+  margin-top: 4rem !important;
+}
+
+#login_verification {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.page-account .errors ul {
+  list-style: none;
 }
 
 .icon-fallback-text,

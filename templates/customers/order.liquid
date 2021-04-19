@@ -2,7 +2,7 @@
   The data-label attributes on <td> elements are mobile-friendly
   helpers used for responsive-table labels
 {% endcomment %}
-<div class="page-account container page-padding-top">
+<div class="page-account container page-padding-top page-general"  data-scroll-section>
   <h1>{{ 'customer.account.title' | t }}</h1>
 
   <p><a href="/account">{{ 'customer.account.return' | t }}</a></p>
@@ -17,7 +17,7 @@
     <p>{{ 'customer.order.cancelled_reason' | t: reason: order.cancel_reason }}</p>
   {% endif %}
 
-  <table class="responsive-table">
+  <table class="responsive-table has-max-width">
     <thead>
       <tr>
         <th>{{ 'customer.order.product' | t }}</th>
@@ -97,15 +97,19 @@
     </tfoot>
   </table>
 
-  <h3>{{ 'customer.order.billing_address' | t }}</h3>
+  <section>
+    <h6 class="sm-caps-l">{{ 'customer.order.billing_address' | t }}</h6>
 
-  <p>{{ 'customer.order.payment_status' | t }}: {{ order.financial_status_label }}</p>
+    <p>{{ 'customer.order.payment_status' | t }}: {{ order.financial_status_label }}</p>
 
-  {{ order.billing_address | format_address }}
+    {{ order.billing_address | format_address }}
+  </section>
 
-  <h3>{{ 'customer.order.shipping_address' | t }}</h3>
+  <section>
+    <h6 class="sm-caps-l">{{ 'customer.order.shipping_address' | t }}</h6>
 
-  <p>{{ 'customer.order.fulfillment_status' | t }}: {{ order.fulfillment_status_label }}</p>
+    <p>{{ 'customer.order.fulfillment_status' | t }}: {{ order.fulfillment_status_label }}</p>
 
-  {{ order.shipping_address | format_address }}
+    {{ order.shipping_address | format_address }}
+  </section>
 </div>

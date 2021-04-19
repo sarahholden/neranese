@@ -1,46 +1,57 @@
-<div class="page-account container page-padding-top">
-  <h1>{{ 'customer.account.title' | t }}</h1>
+<div class="page-account container page-padding-top page-general"  data-scroll-section>
+  <h1 class="hd-4">{{ 'customer.account.title' | t }}</h1>
 
-  <h2>{{ 'customer.orders.title' | t }}</h2>
+  <div class="cols-2">
+    <div>
+      <h2 class="text--italic">{{ 'customer.orders.title' | t }}</h2>
 
-  {% paginate customer.orders by 20 %}
-    {% if customer.orders.size != 0 %}
-      <table class="responsive-table">
-        <thead>
-          <tr>
-            <th>{{ 'customer.orders.order_number' | t }}</th>
-            <th>{{ 'customer.orders.date' | t }}</th>
-            <th>{{ 'customer.orders.payment_status' | t }}</th>
-            <th>{{ 'customer.orders.fulfillment_status' | t }}</th>
-            <th>{{ 'customer.orders.total' | t }}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for order in customer.orders %}
-            <tr class="responsive-table-row">
-              <td data-label="{{ 'customer.orders.order_number' | t }}">{{ order.name | link_to: order.customer_url }}</td>
-              <td data-label="{{ 'customer.orders.date' | t }}">{{ order.created_at | date: format: 'month_day_year' }}</td>
-              <td data-label="{{ 'customer.orders.payment_status' | t }}">{{ order.financial_status_label }}</td>
-              <td data-label="{{ 'customer.orders.fulfillment_status' | t }}">{{ order.fulfillment_status_label }}</td>
-              <td data-label="{{ 'customer.orders.total' | t }}">{{ order.total_price | money }}</td>
-            </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    {% else %}
-      <p>{{ 'customer.orders.none' | t }}</p>
-    {% endif %}
+      {% paginate customer.orders by 20 %}
+        {% if customer.orders.size != 0 %}
+          <table class="responsive-table">
+            <thead>
+              <tr>
+                <th>{{ 'customer.orders.order_number' | t }}</th>
+                <th>{{ 'customer.orders.date' | t }}</th>
+                <th>{{ 'customer.orders.payment_status' | t }}</th>
+                <th>{{ 'customer.orders.fulfillment_status' | t }}</th>
+                <th>{{ 'customer.orders.total' | t }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for order in customer.orders %}
+                <tr class="responsive-table-row">
+                  <td data-label="{{ 'customer.orders.order_number' | t }}">{{ order.name | link_to: order.customer_url }}</td>
+                  <td data-label="{{ 'customer.orders.date' | t }}">{{ order.created_at | date: format: 'month_day_year' }}</td>
+                  <td data-label="{{ 'customer.orders.payment_status' | t }}">{{ order.financial_status_label }}</td>
+                  <td data-label="{{ 'customer.orders.fulfillment_status' | t }}">{{ order.fulfillment_status_label }}</td>
+                  <td data-label="{{ 'customer.orders.total' | t }}">{{ order.total_price | money }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        {% else %}
+          <p>{{ 'customer.orders.none' | t }}</p>
+        {% endif %}
 
-    {% if paginate.pages > 1 %}
-      {% include 'pagination' %}
-    {% endif %}
+        {% if paginate.pages > 1 %}
+          {% include 'pagination' %}
+        {% endif %}
 
-  {% endpaginate %}
+      {% endpaginate %}
+    </div>
+    <div class="address-overview">
+      <h2 class="text--italic">{{ 'customer.account.details' | t }}</h2>
 
-  <h2>{{ 'customer.account.details' | t }}</h2>
+      <div class="body--11">
+        {{ customer.default_address | format_address }}
+      </div>
 
-  {{ customer.default_address | format_address }}
+      <a href="/account/addresses" class="body--11">{{ 'customer.account.view_addresses' | t }} ({{ customer.addresses_count }})</a><br>
+      <a href="/account/logout" class="body--11">Log Out</a>
 
-  <a href="/account/addresses">{{ 'customer.account.view_addresses' | t }} ({{ customer.addresses_count }})</a>
+    </div>
+  </div>
+
+
 
 </div>

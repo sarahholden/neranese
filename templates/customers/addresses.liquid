@@ -3,7 +3,7 @@
 
     <header role="banner">
       <h1>{{ 'customer.account.title' | t }}</h1>
-      <button type="button" class="btn address-new-toggle">{{ 'customer.addresses.add_new' | t }}</button>
+      <button type="button" class="btn btn--black address-new-toggle">{{ 'customer.addresses.add_new' | t }}</button>
     </header>
 
     <p>
@@ -75,25 +75,29 @@
                  autocapitalize="words"
                  placeholder="{{ 'customer.addresses.city' | t }}">
 
-          <label for="AddressCountryNew" class="visually-hidden">
-            {{ 'customer.addresses.country' | t }}
-          </label>
-          <select
-            name="address[country]"
-            id="AddressCountryNew"
-            data-default="{{ form.country }}">
-            {{ country_option_tags }}
-          </select>
-
-          <div id="AddressProvinceContainerNew" style="display: none">
-            <label for="AddressProvinceNew" class="visually-hidden">
-              {{ 'customer.addresses.province' | t }}
+          <div class="select-row">
+            <label for="AddressCountryNew" class="select-label">
+              {{ 'customer.addresses.country' | t }}
             </label>
             <select
-              name="address[province]"
-              id="AddressProvinceNew"
-              data-default="{{ form.province }}">
+              name="address[country]"
+              id="AddressCountryNew"
+              data-default="{{ form.country }}">
+              {{ country_option_tags }}
             </select>
+
+          </div>
+          <div class="select-row">
+            <div id="AddressProvinceContainerNew" style="display: none">
+              <label for="AddressProvinceNew" class="select-label">
+                {{ 'customer.addresses.province' | t }}
+              </label>
+              <select
+                name="address[province]"
+                id="AddressProvinceNew"
+                data-default="{{ form.province }}">
+              </select>
+            </div>
           </div>
 
           <label for="AddressZipNew" class="visually-hidden">
@@ -116,13 +120,15 @@
                  pattern="[0-9\-]*"
                  placeholder="{{ 'customer.addresses.phone' | t }}">
 
-          {{ form.set_as_default_checkbox }}
-          <label for="address_default_address_new" >
-            {{ 'customer.addresses.set_default' | t }}
-          </label>
+          <div class="checkbox-wrapper">
+            {{ form.set_as_default_checkbox }}
+            <label for="address_default_address_new" >
+              {{ 'customer.addresses.set_default' | t }}
+            </label>
+          </div>
 
-          <input type="submit" class="btn" value="{{ 'customer.addresses.add' | t }}">
-          <button type="button" class="address-new-toggle">
+          <input type="submit" class="btn btn--black" value="{{ 'customer.addresses.add' | t }}">
+          <button type="button" class="address-new-toggle text-only link-with-underline">
             {{ 'customer.addresses.cancel' | t }}
           </button>
 
@@ -141,18 +147,18 @@
             {% endif %}
             {{ address | format_address }}
 
-            <button type="button" class="address-edit-toggle link-with-underline" data-form-id="{{ address.id }}">
+            <button type="button" class="address-edit-toggle text-only link-with-underline" data-form-id="{{ address.id }}">
               {{ 'customer.addresses.edit' | t }}
             </button>
-            <button type="button" class="address-delete link-with-underline" data-form-id="{{ address.id }}" data-confirm-message="{{ 'customer.addresses.delete_confirm' | t }}">
+            <button type="button" class="address-delete text-only link-with-underline" data-form-id="{{ address.id }}" data-confirm-message="{{ 'customer.addresses.delete_confirm' | t }}">
               {{ 'customer.addresses.delete' | t }}
             </button>
 
             <div id="EditAddress_{{ address.id }}" class="hide">
               {% form 'customer_address', address %}
 
-                <div class="form-vertical">
-                  <h4>{{ 'customer.addresses.edit_address' | t }}</h4>
+                <div class="form-vertical edit-address-form">
+                  <h5>{{ 'customer.addresses.edit_address' | t }}</h5>
 
                   <label for="AddressFirstName_{{ form.id }}" class="visually-hidden">
                     {{ 'customer.addresses.first_name' | t }}
@@ -214,27 +220,31 @@
                          autocapitalize="words"
                          placeholder="{{ 'customer.addresses.city' | t }}">
 
-                  <label for="AddressCountry_{{ form.id }}" class="visually-hidden">
-                    {{ 'customer.addresses.country' | t }}
-                  </label>
-                  <select
-                    name="address[country]"
-                    id="AddressCountry_{{ form.id }}"
-                    class="address-country-option"
-                    data-form-id="{{ form.id }}"
-                    data-default="{{ form.country }}">
-                    {{ country_option_tags }}
-                  </select>
-
-                  <div id="AddressProvinceContainer_{{ form.id }}" style="display: none">
-                    <label for="AddressProvince_{{ form.id }}">
-                      {{ 'customer.addresses.province' | t }}
+                  <div class="select-row">
+                    <label for="AddressCountry_{{ form.id }}" class="select-label">
+                      {{ 'customer.addresses.country' | t }}
                     </label>
                     <select
-                      name="address[province]"
-                      id="AddressProvince_{{ form.id }}"
-                      data-default="{{ form.province }}">
+                      name="address[country]"
+                      id="AddressCountry_{{ form.id }}"
+                      class="address-country-option"
+                      data-form-id="{{ form.id }}"
+                      data-default="{{ form.country }}">
+                      {{ country_option_tags }}
                     </select>
+
+                  </div>
+                  <div class="select-row">
+                    <div id="AddressProvinceContainer_{{ form.id }}" style="display: none">
+                      <label for="AddressProvince_{{ form.id }}" class="select-label">
+                        {{ 'customer.addresses.province' | t }}
+                      </label>
+                      <select
+                        name="address[province]"
+                        id="AddressProvince_{{ form.id }}"
+                        data-default="{{ form.province }}">
+                      </select>
+                    </div>
                   </div>
 
                   <label for="AddressZip_{{ form.id }}" class="visually-hidden">
@@ -257,13 +267,15 @@
                          pattern="[0-9\-]*"
                          placeholder="{{ 'customer.addresses.phone' | t }}">
 
-                  {{ form.set_as_default_checkbox }}
-                  <label for="address_default_address_{{ form.id }}">
-                    {{ 'customer.addresses.set_default' | t }}
-                  </label>
+                  <div class="checkbox-wrapper">
+                    {{ form.set_as_default_checkbox }}
+                    <label for="address_default_address_{{ form.id }}">
+                      {{ 'customer.addresses.set_default' | t }}
+                    </label>
+                  </div>
 
-                  <input type="submit" class="btn" value="{{ 'customer.addresses.update' | t }}">
-                  <button type="button" class="address-edit-toggle" data-form-id="{{ form.id }}">
+                  <input type="submit" class="btn btn--black" value="{{ 'customer.addresses.update' | t }}">
+                  <button type="button" class="text-only link-with-underline address-edit-toggle" data-form-id="{{ form.id }}">
                     {{ 'customer.addresses.cancel' | t }}
                   </button>
 

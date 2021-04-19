@@ -42,6 +42,10 @@ Buttons
   }
   &:active,
   &:focus {
+    color: $cream;
+  }
+  &:hover:active,
+  &:hover:focus {
     color: $black;
   }
 }
