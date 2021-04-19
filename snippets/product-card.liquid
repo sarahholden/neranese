@@ -24,8 +24,52 @@
             {{ 'products.product.sold_out' | t }}
           {%- else -%}
 
-
             <div class="product-card__sizes">
+              <!-- ====== HIDDEN OPTION SELECT ======== -->
+              <!-- {%- unless product.has_only_default_variant -%}
+                {%- for option in product.options_with_values -%}
+                  <div class="selector-wrapper js hide">
+                    <label for="SingleOptionSelector-{{ forloop.index0 }}" class="caps--10">
+                      {{ option.name }}
+                    </label>
+
+                    <select
+                      id="SingleOptionSelector-{{ forloop.index0 }}"
+                      class="js-single-option-selector"
+                      data-single-option-selector
+                      data-index="option{{ option.position }}">
+                      {%- for value in option.values -%}
+                        <option
+                          value="{{ value | escape }}"
+                          {% if option.selected_value == value %}selected="selected"{% endif %}>
+                            {{ value }}
+                        </option>
+                      {%- endfor -%}
+                    </select>
+                  </div>
+                {%- endfor -%}
+              {%- endunless -%}
+
+              {%- if product.variants.size > 1 -%}
+                {%- for swatch in product.options -%}
+                  {%- if swatch == 'Size' -%}
+                    {%- render 'swatch_product_card', swatch: swatch, product: product, placement: 'product_card'  -%}
+                  {%- endif -%}
+                {%- endfor -%}
+
+              {%- endif -%} -->
+
+              <!-- ====== HIDDEN VARIANT ID SELECT ======== -->
+              <!-- <select name="id" class="js-variant-id selector-wrapper visually-hidden no-js" data-product-select>
+                {%- for variant in product.variants -%}
+                  <option
+                    {% if variant == current_variant %}selected="selected"{% endif %}
+                    {% unless variant.available %}disabled="disabled"{% endunless %}
+                    value="{{ variant.id }}">
+                      {{ variant.title }}
+                  </option>
+                {%- endfor -%}
+              </select> -->
               {%- if product.has_only_default_variant == false -%}
                 {% for product_option in product.options_with_values %}
                   {%- if product_option.name == 'Size' -%}
@@ -42,6 +86,7 @@
                   {%- endif -%}
                 {% endfor %}
               {%- endif -%}
+
 
             </div>
           {%- endunless -%}
@@ -67,7 +112,6 @@
             {%- if product.price_varies == false -%}
               <s>{{ product.compare_at_price | money_without_trailing_zeros }}</s>
             {%- endif -%}
-
           {%- endif -%}
 
         </p>

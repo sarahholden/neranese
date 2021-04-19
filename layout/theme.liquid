@@ -78,30 +78,18 @@
 
   {{ content_for_header }}
 
-  <!-- YOTPO -->
-  <!-- ADD API KEY: https://support.yotpo.com/en/article/finding-your-yotpo-app-key-and-api-secret -->
-
-  <!-- <script type="text/javascript">
-    (function e(){var e=document.createElement("script");e.type="text/javascript",e.async=true,e.src="//staticw2.yotpo.com/###APP_KEY###/widget.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)})();
-  </script> -->
 </head>
 
 <body id="{{ page_title | handle }}" class="template-{{ template.name | handle }} site {% if settings.show_promo_bar %}has-promo-bar{% endif %}">
 
   <a class="in-page-link skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
 
-  <!-- ====== AGE SCREEN (CHECK FOR COOKIE & POP UP BEFORE OTHER CONTENT LOADS) ======== -->
-  {% comment %}
-    {% section 'component-age-screen' %}
-    <script src="{{ 'age-screen.js' | asset_url }}"></script>
-  {% endcomment %}
+  {% section 'component-promo-bar' %}
 
-  {% comment %}
-    {% section 'component-promo-bar' %}
-  {% endcomment %}
   {% comment %}
     {% section 'component-email-popup' %}
   {% endcomment %}
+  
   {% section 'header' %}
 
   <main role="main" id="MainContent" class="site-content  {% if template.suffix != blank %}page-{{ template.suffix }}{% endif %}">

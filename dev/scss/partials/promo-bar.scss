@@ -2,28 +2,19 @@
   PROMO BAR
 -----------------------------------------------------------------------------*/
 .promo-bar {
-  padding: 0.8rem 3rem;
+  padding: 0.5rem 3rem;
   text-align: center;
   width: 100%;
   background-color: black;
   color: white;
-  button {
-    position: absolute;
-    top: 1rem;
-    right: 2rem;
-    color: white;
-    svg {
-      width: 2rem;
-      path {
-        fill: currentColor;
-      }
-    }
-  }
   .desc {
     max-width: 50rem;
     margin-left: auto;
     margin-right: auto;
     font-family: inherit;
+    p {
+      margin-bottom: 0;
+    }
     a {
       color: inherit;
       text-decoration: underline;

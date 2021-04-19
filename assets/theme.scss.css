@@ -1377,6 +1377,12 @@ h6 {
   line-height: 1.27273;
 }
 
+.body--9 {
+  font-size: 0.9rem;
+  letter-spacing: 0;
+  line-height: 1.22222;
+}
+
 .body--24 {
   font-family: "Cardinal Photo", serif;
   text-align: center;
@@ -2994,7 +3000,7 @@ Buttons
 }
 
 .btn--black:active, .btn--black:focus {
-  color: #F2EFE8;
+  color: #363636;
 }
 
 .btn--star {
@@ -3346,26 +3352,11 @@ Buttons
   PROMO BAR
 -----------------------------------------------------------------------------*/
 .promo-bar {
-  padding: 0.8rem 3rem;
+  padding: 0.5rem 3rem;
   text-align: center;
   width: 100%;
   background-color: black;
   color: white;
-}
-
-.promo-bar button {
-  position: absolute;
-  top: 1rem;
-  right: 2rem;
-  color: white;
-}
-
-.promo-bar button svg {
-  width: 2rem;
-}
-
-.promo-bar button svg path {
-  fill: currentColor;
 }
 
 .promo-bar .desc {
@@ -3373,6 +3364,10 @@ Buttons
   margin-left: auto;
   margin-right: auto;
   font-family: inherit;
+}
+
+.promo-bar .desc p {
+  margin-bottom: 0;
 }
 
 .promo-bar .desc a {
@@ -5325,7 +5320,9 @@ Accordions
 }
 
 .page-404 .desc {
-  font-size: 2rem;
+  max-width: 30rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .shopify-challenge__container .shopify-challenge__message {
