@@ -1670,6 +1670,14 @@ Responsive Design
   }
 }
 
+html {
+  padding-bottom: 0 !important;
+}
+
+#preview-bar-iframe {
+  display: none !important;
+}
+
 /* --------------------------------------------------------------------------
 Layout Helpers
 -----------------------------------------------------------------------------*/
@@ -2657,7 +2665,7 @@ Search
 
 .nav-search button[type="submit"] {
   width: 3.5rem;
-  margin-right: 1.2rem;
+  margin-right: 0.9rem;
   position: relative;
   top: 0.6rem;
 }
@@ -4041,7 +4049,7 @@ Accordions
 /* Accordion Panel Styles ---------------- */
 .accordion-panel {
   border-bottom: 1px solid #363636;
-  padding: 2rem 0;
+  padding: 0;
 }
 
 .accordion-panel:first-of-type {
@@ -4073,6 +4081,12 @@ Accordions
   line-height: 1.54545;
 }
 
+@media (max-width: 767px) {
+  .accordion-text {
+    font-size: 1rem;
+  }
+}
+
 .accordion-text a {
   color: #363636;
 }
@@ -4081,16 +4095,13 @@ Accordions
   color: #2e2e2e;
 }
 
-.accordion-text p:first-of-type {
-  margin-top: 1.4rem;
-}
-
 .accordion-text p:last-of-type {
   margin-bottom: 1.2rem;
 }
 
 .accordion-text .accordion-inner {
-  padding-top: 1rem;
+  padding-bottom: 2rem;
+  padding-top: 0.6rem;
   max-width: 46.7rem;
 }
 
@@ -4100,7 +4111,7 @@ Accordions
   position: relative;
   margin-top: 0;
   margin-bottom: 0;
-  padding-right: 4.5rem;
+  padding: 2rem 4.5rem 2rem 0;
   /* Plus / Minus icon */
   /* Accordion arrow (product detail page) */
 }
@@ -4702,6 +4713,13 @@ Accordions
   display: block;
 }
 
+@media (max-width: 767px) {
+  .page-branded .end-icon .icon-star {
+    max-width: 4rem;
+    margin-top: 4rem;
+  }
+}
+
 /* --------------------------------------------------------------------------
   Press page
 -----------------------------------------------------------------------------*/
@@ -4720,6 +4738,12 @@ Accordions
 @media (max-width: 767px) {
   .page-press {
     padding-bottom: 10rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .page-press h1 {
+    font-size: 4.5rem;
   }
 }
 
@@ -4751,6 +4775,12 @@ Accordions
     margin-bottom: 1.6rem;
     font-size: 5rem;
     padding-bottom: 1.3rem;
+  }
+}
+
+@media (max-width: 1023px) and (min-width: 768px) {
+  .page-press h2 {
+    font-size: 3rem;
   }
 }
 
@@ -5292,7 +5322,7 @@ Accordions
 
 @media (max-width: 767px) {
   .page-fit-guide header {
-    padding-bottom: 3.5rem;
+    padding-bottom: 5.5rem;
   }
 }
 

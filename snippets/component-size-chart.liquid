@@ -5,11 +5,6 @@
         <h2 class="hd-6">{{ section.settings.title }}</h2>
       {% endif %}
 
-      {{ section.blocks[0].title }}
-      <script type="text/javascript">
-        console.log({{ section.blocks[0].settings | json }})
-      </script>
-
       {%- if section.blocks.size > 0 -%}
         <table class="">
           {% for block in section.blocks %}

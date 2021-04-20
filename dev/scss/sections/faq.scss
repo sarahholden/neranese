@@ -38,7 +38,7 @@ Accordions
 /* Accordion Panel Styles ---------------- */
 .accordion-panel {
   border-bottom: 1px solid $borderColor;
-  padding: 2rem 0;
+  padding: 0;
   &:first-of-type {
     border-top: 1px solid $borderColor;
   }
@@ -64,20 +64,22 @@ Accordions
   font-family: $basis;
   color: #242424;
   line-height: (17 / 11);
+  @include mobile-only {
+    font-size: 1rem;
+  }
   a {
     color: $primaryAnchorColor;
     &:hover {
       color: darken($primaryAnchorColor, 3%);
     }
   }
-  p:first-of-type {
-    margin-top: 1.4rem;
-  }
+
   p:last-of-type {
     margin-bottom: 1.2rem;
   }
   .accordion-inner {
-    padding-top: 1rem;
+    padding-bottom: 2rem;
+    padding-top: 0.6rem;
     max-width: 46.7rem;
   }
 }
@@ -88,8 +90,7 @@ Accordions
   position: relative;
   margin-top: 0;
   margin-bottom: 0;
-  padding-right: 4.5rem;
-
+  padding: 2rem 4.5rem 2rem 0;
   /* Plus / Minus icon */
   .icon {
     cursor: pointer;
