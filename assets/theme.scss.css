@@ -2164,7 +2164,8 @@ SCROLLED NAV
   top: -200px;
 }
 
-.has-open-inner-menu.is-fixed-hidden {
+.has-open-inner-menu.is-fixed-hidden,
+.open-search-bar .nav-wrapper.is-fixed-hidden {
   top: 0 !important;
 }
 
@@ -2552,13 +2553,157 @@ Hamburger Icon styles
 /* --------------------------------------------------------------------------
 Search
 -----------------------------------------------------------------------------*/
-.search-form {
+.nav-search {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(242, 239, 232, 0.85);
+  padding-bottom: 1.4rem;
+  z-index: 10;
+  transform: translateY(100%);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: all 0.5s ease 0.2s;
+}
+
+@media (max-width: 1023px) {
+  .nav-search {
+    position: fixed;
+    top: 0;
+    z-index: 800;
+    bottom: auto;
+    background: #F2EFE8;
+    transform: none;
+    height: 100%;
+  }
+}
+
+.nav-search .inner-wrap {
+  position: relative;
+  padding-top: 4.6rem;
+  opacity: 0;
+  transform: translateY(0.4rem);
+  transition: all 0.5s ease;
+}
+
+@media (max-width: 1023px) {
+  .nav-search .inner-wrap {
+    padding-top: 6.8rem;
+  }
+}
+
+.nav-search form {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0;
+}
+
+.nav-search .input-wrap {
+  position: relative;
+  flex-grow: 1;
+}
+
+.nav-search input {
+  width: 100%;
+  padding-left: 1.2rem;
+  padding-bottom: 0;
+  border-bottom: 0;
+  margin-bottom: 0;
+}
+
+.nav-search .placeholder-text,
+.nav-search input {
+  font-family: "Cardinal Photo", serif;
+  font-size: 3rem;
+  color: #363636;
+  letter-spacing: 0.05rem;
+}
+
+@media (max-width: 1023px) {
+  .nav-search .placeholder-text,
+  .nav-search input {
+    font-size: 2rem;
+  }
+}
+
+.nav-search .placeholder-text {
+  position: absolute;
+  left: 1.7rem;
+  top: 0.3rem;
+  width: 100%;
+  pointer-events: none;
+}
+
+.nav-search button svg {
+  width: 100%;
+}
+
+.nav-search .close-btn {
+  width: 1.2rem;
+  position: absolute;
+  top: 2rem;
+  right: 1rem;
+}
+
+@media (max-width: 1023px) {
+  .nav-search .close-btn {
+    top: 2.6rem;
+    right: 1.4rem;
+  }
+}
+
+.nav-search button[type="submit"] {
+  width: 3.5rem;
+  margin-right: 1.2rem;
+  position: relative;
+  top: 0.6rem;
+}
+
+.nav-search button[type="submit"]:hover svg {
+  transform: translateX(0.3rem);
+}
+
+.nav-search button[type="submit"] svg {
+  transition: all 0.6s ease;
   display: inline-block;
 }
 
-.search-form input {
-  display: inline-block;
-  width: 180px;
+.nav-search button[type="submit"] svg path {
+  stroke-width: 1px;
+}
+
+.open-search-bar .nav-search {
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+  transition: all 0.4s ease;
+}
+
+.open-search-bar .nav-search .inner-wrap {
+  opacity: 1;
+  transform: none;
+  transition: all 0.7s ease 0.1s, opacity 0.4s ease 0.1s;
+}
+
+.open-search-bar .close-search-overlay {
+  pointer-events: auto;
+  visibility: visible;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9;
+}
+
+/* --------------------------------------------------------------------------
+  SEARCH PAGE
+-----------------------------------------------------------------------------*/
+.page-search header.padded {
+  padding-top: 0;
 }
 
 /* --------------------------------------------------------------------------

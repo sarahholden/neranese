@@ -1,12 +1,21 @@
-<form action="/search" method="get" role="search">
-  <label for="Search" class="label-hidden">{{ 'general.search.placeholder' | t }}</label>
-  <input type="search"
-         name="q"
-         id="Search"
-         value="{{ search.terms | escape }}"
-         placeholder="{{ 'general.search.placeholder' | t }}">
-  <button type="submit" class="btn">
-    {% render 'icon-search' %}
-    <span class="icon-fallback-text">{{ 'general.search.submit' | t }}</span>
-  </button>
-</form>
+<div class="js-nav-search nav-search container">
+  <div class="inner-wrap">
+    <button type="button" class="text-only close-btn js-close-search">{%- render 'icon-close-kati' -%}</button>
+    <form action="/search" method="get" role="search">
+      <div class="input-wrap">
+        <label for="Search" class="label-hidden">{{ 'general.search.placeholder' | t }}</label>
+        <input type="search"
+               name="q"
+               id="Search"
+               >
+        <p class="placeholder-text">What would you like to <em>find?</em></p>
+      </div>
+      <button type="submit" class="text-only">
+        {%- render 'icon-arrow-right' -%}
+        <span class="icon-fallback-text">{{ 'general.search.submit' | t }}</span>
+      </button>
+    </form>
+  </div>
+</div>
+
+<div class="close-search-overlay js-close-search"></div>

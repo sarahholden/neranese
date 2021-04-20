@@ -59,7 +59,8 @@ SCROLLED NAV
   }
 }
 
-.has-open-inner-menu.is-fixed-hidden {
+.has-open-inner-menu.is-fixed-hidden,
+.open-search-bar .nav-wrapper.is-fixed-hidden {
   top: 0 !important;
 }
 

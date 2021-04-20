@@ -269,6 +269,30 @@ $(document).ready(function() {
   });
 
   /* ---------------------------------------------
+    NAV SEARCH
+  ------------------------------------------------ */
+  $('.js-nav-search #Search').on('input', function () {
+    if ($(this).val().length > 0) {
+      $('.js-nav-search').find('.placeholder-text').hide();
+    } else {
+      $('.js-nav-search').find('.placeholder-text').show();
+    }
+  });
+
+  $('.js-open-search').on('click', function (e) {
+    e.preventDefault();
+
+    $('body').toggleClass('open-search-bar');
+    setTimeout(function () {
+      $('#Search').focus();
+    }, 200); 
+  });
+
+  $('.js-close-search').on('click', function () {
+    $('body').removeClass('open-search-bar');
+  });
+
+  /* ---------------------------------------------
     SWIPER
   ------------------------------------------------ */
   // const swiper = new Swiper('.swiper-container-myclass', {

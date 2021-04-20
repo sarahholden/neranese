@@ -1,8 +1,8 @@
-<section class="container page-padded-top padded">
+<section class="container page-padded-top padded page-search">
   {% paginate search.results by 15 %}
 
-    <header>
-      <h1>
+    <header class="padded">
+      <h1 class="hd-4">
         {% if search.performed %}
           {% if search.results_count == 0 %}
             {{ 'general.search.no_results_html' | t: terms: search.terms }}
@@ -34,24 +34,29 @@
 
 
   {% if search.performed %}
-      <ul class="cols-3 product-grid cols-2-sm">
+      <ul class="cols-3 product-grid">
         {% for item in search.results %}
-          <li>
-            {% if item.object_type == 'product' %}
+
+          {% if item.object_type == 'product' %}
+            <li>
               {% render 'product-card', product: item %}
-            {% else %}
-              {% assign featured_image = item.image | default: item.featured_image %}
-              {% if featured_image != blank %}
-                <a href="{{ item.url | within: collection }}" title="{{ item.title | escape }}">
-                  {{ featured_image | img_url: '240x240' | img_tag: featured_image.alt }}
-                </a>
-              {% endif %}
+            </li>
+          {% else %}
+            <li >
+              <div class="result-card">
+                {% assign featured_image = item.image | default: item.featured_image %}
+                {% if featured_image != blank %}
+                  <a href="{{ item.url | within: collection }}" title="{{ item.title | escape }}">
+                    {{ featured_image | img_url: '240x240' | img_tag: featured_image.alt }}
+                  </a>
+                {% endif %}
 
-              <h5>{{ item.title | link_to: item.url }}</h5>
-              <p>{{ item.content | strip_html | truncatewords: 50 }}</p>
-            {% endif %}
+                <h5 class="">{{ item.title | link_to: item.url }}</h5>
+                <p>{{ item.content | strip_html | truncatewords: 50 }}</p>
+              </div>
+            </li>
+          {% endif %}
 
-          </li>
         {% endfor %}
       </ul>
 
