@@ -79,7 +79,7 @@ img {
 img.fade-in {
   opacity: 0;
   &.lazyloaded {
-    animation: fadeIn 0.6s $easeInOutSoft forwards;
+    animation: fadeIn 1.5s $easeInOutSoft forwards;
   }
 }
 

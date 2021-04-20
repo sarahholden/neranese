@@ -1052,7 +1052,7 @@ img.fade-in {
 }
 
 img.fade-in.lazyloaded {
-  animation: fadeIn 0.6s cubic-bezier(0.72, 0, 0.28, 1) forwards;
+  animation: fadeIn 1.5s cubic-bezier(0.72, 0, 0.28, 1) forwards;
 }
 
 @keyframes fadeIn {
@@ -3829,6 +3829,11 @@ Buttons
   margin-right: 0.5rem;
 }
 
+.product-card .product-card__size span.soldout {
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
 /* QUICK SHOP (COLLECTION ONLY) ================== */
 .has-quick-shop .product-card__text {
   background: rgba(242, 239, 232, 0.48);
@@ -5310,6 +5315,19 @@ Accordions
 
 .swatch.error code {
   font-family: monospace;
+}
+
+/* --------------------------------------------------------------------------
+  IMAGE ZOOM ON HOVER
+-----------------------------------------------------------------------------*/
+.zoom-on-hover .zoom {
+  opacity: 0;
+  -webkit-transform-origin: top left;
+  transform-origin: top left;
+  transform: none;
+  max-width: 1944px;
+  width: 200%;
+  transition: opacity 1s;
 }
 
 /* --------------------------------------------------------------------------

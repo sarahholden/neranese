@@ -422,3 +422,18 @@ $swatchHeight: 2.4rem;
 .swatch.error code {
   font-family: monospace;
 }
+
+/* --------------------------------------------------------------------------
+  IMAGE ZOOM ON HOVER
+-----------------------------------------------------------------------------*/
+.zoom-on-hover {
+  .zoom {
+    opacity: 0;
+    -webkit-transform-origin: top left;
+    transform-origin: top left;
+    transform: none;
+    max-width: 1944px;
+    width: 200%;
+    transition: opacity 1s;
+  }
+}

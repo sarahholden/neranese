@@ -33,9 +33,9 @@
             </li>
             <!-- ACCOUNT LINKS -->
             <li>
-              {% if shop.customer_accounts_enabled %}
+              {%- if shop.customer_accounts_enabled -%}
                 <a href="/account">{{ section.settings.account_text | default: 'account' }}</a>
-              {% endif %}
+              {%- endif -%}
             </li>
             <!--   CART   -->
             <li>
@@ -50,7 +50,7 @@
       </div>
       <!-- SEARCH -->
       {%- render 'nav-search' -%}
-      
+
       <!--   LOGO   -->
       {%- render 'nav-logo' -%}
 
