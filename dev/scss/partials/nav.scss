@@ -14,8 +14,14 @@ Body Open Mobile Nav Styles
 GENERAL Navigation Styles
 -----------------------------------------------------------------------------*/
 .nav-wrapper {
-  position: absolute;
+  // TEMP
+  // position: absolute;
+  position: fixed;
+  transition: all 1s ease;
+
   width: 100%;
+  z-index: 201;
+
   @include tablet-down {
     height: 6rem;
     &::before {
@@ -29,6 +35,11 @@ GENERAL Navigation Styles
       z-index: 201;
       background: $cream;
       pointer-events: none;
+    }
+  }
+  @include desktop-up {
+    &:hover {
+      background: $cream;
     }
   }
   .inner {
@@ -380,6 +391,10 @@ Hamburger Icon styles
     pointer-events: auto;
     max-height: 3000px;
   }
+}
+
+.has-open-inner-menu {
+  background: $cream;
 }
 
 a.nav-wrapper_dropdown-trigger {

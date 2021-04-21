@@ -5,6 +5,8 @@ $(document).ready(function() {
   console.log('Design by Kati Forner Design:');
   console.log('https://katiforner.com/');
 
+  $('.site-content').addClass('loaded');
+
   let isTabletDown = $(window).innerWidth() <= 1023;
 
   /* ---------------------------------------------
@@ -239,34 +241,34 @@ $(document).ready(function() {
   /* ---------------------------------------------
     NAV FIXED WHEN SCROLLING UP
   ------------------------------------------------ */
-  let lastScroll = 0;
-  /* Header Scroll & Hover */
-  let navWrapperHeight = $('.nav-wrapper').innerHeight();
-  let promoBarHeight = $('.promo-bar').length > 0 ? $('.promo-bar').innerHeight() : 0;
-
-  $(window).on('scroll', function () {
-    navWrapperHeight = $('.nav-wrapper').innerHeight();
-    promoBarHeight = $('.promo-bar').length > 0 ? $('.promo-bar').innerHeight() : 0;
-  });
-
-  $(window).on('scroll', () => {
-    const scrollTop = $(window).scrollTop();
-    const isScrollingDown = scrollTop > lastScroll;
-
-    if (scrollTop < promoBarHeight || isScrollingDown && scrollTop < navWrapperHeight + promoBarHeight) {
-      // If the user is scrolling down but isn't past the nav yet, or has scrolled less than the promo bar height
-      // Unfix it!
-      $('.nav-wrapper').removeClass('is-fixed-hidden is-fixed-visible');
-    } else if (isScrollingDown && scrollTop > navWrapperHeight + promoBarHeight) {
-      // If the user is scrolling down and has passed the nav, hide it!
-      $('.nav-wrapper').addClass('is-fixed-hidden').removeClass('is-fixed-visible');
-    } else {
-      // If the user is scrolling up and hasn't reached the promo bar yet, fix it!
-      $('.nav-wrapper').addClass('is-fixed-visible').removeClass('is-fixed-hidden');
-    }
-
-    lastScroll = scrollTop;
-  });
+  // let lastScroll = 0;
+  // /* Header Scroll & Hover */
+  // let navWrapperHeight = $('.nav-wrapper').innerHeight();
+  // let promoBarHeight = $('.promo-bar').length > 0 ? $('.promo-bar').innerHeight() : 0;
+  //
+  // $(window).on('scroll', function () {
+  //   navWrapperHeight = $('.nav-wrapper').innerHeight();
+  //   promoBarHeight = $('.promo-bar').length > 0 ? $('.promo-bar').innerHeight() : 0;
+  // });
+  //
+  // $(window).on('scroll', () => {
+  //   const scrollTop = $(window).scrollTop();
+  //   const isScrollingDown = scrollTop > lastScroll;
+  //
+  //   if (scrollTop < promoBarHeight || isScrollingDown && scrollTop < navWrapperHeight + promoBarHeight) {
+  //     // If the user is scrolling down but isn't past the nav yet, or has scrolled less than the promo bar height
+  //     // Unfix it!
+  //     $('.nav-wrapper').removeClass('is-fixed-hidden is-fixed-visible');
+  //   } else if (isScrollingDown && scrollTop > navWrapperHeight + promoBarHeight) {
+  //     // If the user is scrolling down and has passed the nav, hide it!
+  //     $('.nav-wrapper').addClass('is-fixed-hidden').removeClass('is-fixed-visible');
+  //   } else {
+  //     // If the user is scrolling up and hasn't reached the promo bar yet, fix it!
+  //     $('.nav-wrapper').addClass('is-fixed-visible').removeClass('is-fixed-hidden');
+  //   }
+  //
+  //   lastScroll = scrollTop;
+  // });
 
   /* ---------------------------------------------
     NAV SEARCH

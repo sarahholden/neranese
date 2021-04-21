@@ -80,7 +80,7 @@
 
 </head>
 
-<body id="{{ page_title | handle }}" class="template-{{ template.name | handle }} site {% if settings.show_promo_bar %}has-promo-bar{% endif %}">
+<body id="{{ page_title | handle }}" class="template-{{ template.name | handle }} site {% if settings.show_promo_bar %}has-promo-bar{% endif %} {% if template != 'index' %}has-page-transition{% endif %}">
 
   <a class="in-page-link skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
 

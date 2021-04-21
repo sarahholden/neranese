@@ -2125,8 +2125,10 @@ Body Open Mobile Nav Styles
 GENERAL Navigation Styles
 -----------------------------------------------------------------------------*/
 .nav-wrapper {
-  position: absolute;
+  position: fixed;
+  transition: all 1s ease;
   width: 100%;
+  z-index: 201;
 }
 
 @media (max-width: 1023px) {
@@ -2144,6 +2146,12 @@ GENERAL Navigation Styles
     z-index: 201;
     background: #F2EFE8;
     pointer-events: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  .nav-wrapper:hover {
+    background: #F2EFE8;
   }
 }
 
@@ -2493,6 +2501,10 @@ Hamburger Icon styles
   visibility: visible;
   pointer-events: auto;
   max-height: 3000px;
+}
+
+.has-open-inner-menu {
+  background: #F2EFE8;
 }
 
 @media (max-width: 1023px) {
