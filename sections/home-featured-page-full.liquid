@@ -1,14 +1,21 @@
-<section class="full-width-image-callout">
+<section class="full-width-image-callout js-animate">
   {% if section.settings.url != blank %}
     <a href="{{ section.settings.url }}">
   {% endif %}
-    <div class="scaling-image-wrap">
-      {% render 'block-image-cropped', image: section.settings.image, m_image: section.settings.image, alt_text: section.settings.image_alt %}
-      <h2 class="hd-1">
-        <span><em>{{ section.settings.left_text }}</em></span>
-        <span class="dividing-line"></span>
-        <span>{{ section.settings.right_text }}</span>
-      </h2>
+    <div class="scaling-image-wrap ">
+      <div class="js-animate">
+        <div data-anim="fade" data-anim-order="1">
+          {% render 'block-image-cropped', image: section.settings.image, m_image: section.settings.image, alt_text: section.settings.image_alt %}
+        </div>
+      </div>
+
+      <div class="heading-wrapper ">
+        <h2 class="hd-1" data-anim="slide" data-anim-order="2">
+          <span><em>{{ section.settings.left_text }}</em></span>
+          <span class="dividing-line"></span>
+          <span>{{ section.settings.right_text }}</span>
+        </h2>
+      </div>
     </div>
   {% if section.settings.url != blank %}
     </a>

@@ -5,21 +5,20 @@
 
     <div class="cols-2">
       <!-- ====== IMAGE ======== -->
-      <div class="intro__image">
+      <div class="intro__image js-animate">
         {% if section.settings.heading != blank %}
-          <h2 class=" hd-1 show-mobile">{{ section.settings.heading }}</h2>
+          <h2 class=" hd-1 show-mobile" data-anim="slide" data-anim-order="1">{{ section.settings.heading }}</h2>
         {% endif %}
-        <span class="scaling-image-wrap">
+        <div class="scaling-image-wrapper" data-anim="fade" data-anim-order="1">
           {%- if section.settings.image -%}
             {% render 'block-image-cropped', image: section.settings.image, m_image: section.settings.image, alt_text: section.settings.image_alt %}
           {%- endif -%}
-
-        </span>
+        </div>
       </div>
 
       <!-- ====== TEXT COLUMN ======== -->
-      <div class="intro__text">
-        <div class="intro__top-text">
+      <div class="intro__text js-animate">
+        <div class="intro__top-text" data-anim="slide-right" data-anim-order="1">
           {% if section.settings.top_text != blank %}
             {{ section.settings.top_text }}
           {% elsif section.settings.top_text_image != blank %}
@@ -28,10 +27,12 @@
         </div>
 
         {% if section.settings.heading != blank %}
-          <h2 class="hide-mobile hd-1">{{ section.settings.heading }}</h2>
+          <div class="heading-wrapper ">
+            <h2 class="hide-mobile hd-1" data-anim="slide" data-anim-order="2">{{ section.settings.heading }}</h2>
+          </div>
         {% endif %}
 
-        <div class="intro__bottom-text">
+        <div class="intro__bottom-text"  data-anim="slide-left" data-anim-order="1">
           {% if section.settings.bottom_text != blank %}
             {{ section.settings.bottom_text }}
           {% elsif section.settings.bottom_text_image != blank %}

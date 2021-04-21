@@ -188,7 +188,7 @@ $(document).ready(function() {
   ------------------------------------------------ */
   // Opacity set to 0 in CSS on load to avoid FOUC
   ScrollTrigger.batch('[data-stagger]', {
-    onEnter: batch => gsap.to(batch, 1.2, {autoAlpha: 1, y: 0, stagger: 0.15, ease:Power1.easeOut}),
+    onEnter: batch => gsap.to(batch, 1.5, {autoAlpha: 1, y: 0, stagger: 0.15, ease:Power1.easeOut}),
     start: "40px bottom",
   });
 

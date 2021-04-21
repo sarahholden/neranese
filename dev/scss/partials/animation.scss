@@ -22,18 +22,55 @@
 // /* --------------------------------------------------------------------------
 //   SLIDE
 // -----------------------------------------------------------------------------*/
-[data-anim="slide"] {
+[data-anim="fade-slow"],
+[data-anim="fade"] {
   opacity: 0;
-  transform: translateY(1rem);
-  transition: all 0.8s $ease;
+  transition: all 1.5s $ease;
 }
 
+[data-anim="slide"] {
+  transform: translateY(2rem);
+  @include mobile-only {
+    transform: translateY(.8rem);
+
+  }
+}
+
+[data-anim="slide-right"] {
+  transform: translateX(-2rem);
+  @include mobile-only {
+    transform: translateX(-.8rem);
+  }
+}
+
+[data-anim="slide-left"] {
+  transform: translateX(2rem);
+  @include mobile-only {
+    transform: translateX(.8rem);
+  }
+}
+
+[data-anim="slide"],
+[data-anim="slide-right"],
+[data-anim="slide-left"] {
+  opacity: 0;
+  transition: all 1s $ease;
+
+}
+
+.animate-in [data-anim="fade-slow"],
 .animate-in [data-anim="fade"],
 .animate-in [data-anim="slide"],
+.animate-in [data-anim="slide-right"],
+.animate-in [data-anim="slide-left"],
 .animate-in[data-anim="slide"] {
   opacity: 1;
   transform: none;
-  transition: all 0.8s $ease;
+  transition: opacity 0.6s ease, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.animate-in [data-anim="fade-slow"] {
+  transition: all 1.2s ease;
 }
 
 @for $i from 1 through 30 {

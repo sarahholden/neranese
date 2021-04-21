@@ -1,15 +1,25 @@
-<header class="container">
+<header class="container home-hero">
   {% if section.settings.url != blank %}
     <a href="{{ section.settings.url }}">
   {% endif %}
-    <span class="scaling-image-wrap">
-      <span class="fade-and-scale">{% render 'block-image-cropped', image: section.settings.image, m_image: section.settings.image_mobile, alt_text: section.settings.image_alt %}</span>
-    </span>
+    <div class="scaling-image-wrapper">
+      <div class="fade-in-wrap">
+        <div
+          class="home-hero__scale"
+          data-from='{"scale": "1"}'
+          data-to='{"scale": "1.12", "ease": "Power1.easeIn"}'
+          data-start="top top"
+          data-end="bottom top">
+          {% render 'block-image-cropped', image: section.settings.image, m_image: section.settings.image_mobile, alt_text: section.settings.image_alt %}
+        </div>
+      </div>
+    </div>
   {% if section.settings.url != blank %}
     </a>
   {% endif %}
 
 </header>
+
 
 {% schema %}
   {

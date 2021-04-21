@@ -1,14 +1,23 @@
 <section class="image-callout image-callout--page container padded">
-  {% if section.settings.url != blank %}
-    <a href="{{ section.settings.url }}">
-  {% endif %}
-    <div class="image-wrap">
-      {% render 'block-image', image: section.settings.image, m_image: section.settings.image, alt_text: section.settings.image_alt %}
-      <h2 class="hd-1">{{ section.settings.title }}</h2>
+
+    <div class="image-wrap js-animate">
+      {% if section.settings.url != blank %}
+        <a href="{{ section.settings.url }}">
+      {% endif %}
+      <div>
+        <div data-anim="fade" data-anim-order="1">
+          {% render 'block-image', image: section.settings.image, m_image: section.settings.image, alt_text: section.settings.image_alt %}
+        </div>
+      </div>
+
+      <div class="heading-wrapper " >
+        <h2 class="hd-1" data-anim="slide" data-anim-order="1">{{ section.settings.title }}</h2>
+      </div>
+      {% if section.settings.url != blank %}
+        </a>
+      {% endif %}
     </div>
-  {% if section.settings.url != blank %}
-    </a>
-  {% endif %}
+
 
 </section>
 

@@ -1,7 +1,7 @@
 
-<header class="page-padded-top container">
+<header class="page-padded-top container js-animate">
   {%- if section.settings.desc != blank -%}
-    <h1 class="hd-6">{{ section.settings.desc }}</h1>
+    <h1 class="hd-6" data-anim="fade" data-anim-order="1">{{ section.settings.desc }}</h1>
   {%- endif -%}
 </header>
 
@@ -9,19 +9,28 @@
   {% for block in section.blocks %}
     {% case block.type %}
     {% when 'ethos_row' %}
-      <div class="alt-grid ethos-section">
+      <div class="alt-grid ethos-section js-animate">
         <div>
-          <div class="scaling-image-wrapper">
-            {% render 'block-image-cropped-lg', image: block.settings.image, alt_text: block.settings.image_alt %}
+          <div class="scaling-image-wrapper" data-anim="fade" data-anim-order="1">
+            <div data-from='{"y": "0"}' data-to='{"y": "150", "ease": "Power1.easeIn"}'>
+              <div
+                class="home-hero__scale"
+                data-from='{"scale": "1"}'
+                data-to='{"scale": "1.16", "ease": "Power1.easeIn"}'
+                data-start="top 40%"
+                data-end="bottom top">
+                {% render 'block-image-cropped-lg', image: block.settings.image, alt_text: block.settings.image_alt %}
+              </div>
+            </div>
           </div>
         </div>
         <div class="v-aligner">
           <div class="ethos-section__text">
             {% if block.settings.title != blank %}
-              <h2>{{ block.settings.title | newline_to_br }}</h2>
+              <h2 data-anim="slide" data-anim-order="1">{{ block.settings.title | newline_to_br }}</h2>
             {% endif %}
             {% if block.settings.desc != blank %}
-              <div class="desc">
+              <div class="desc" data-anim="slide" data-anim-order="2">
                 {{ block.settings.desc }}
               </div>
             {% endif %}

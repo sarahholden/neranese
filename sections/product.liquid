@@ -303,13 +303,13 @@
   {%- if product.metafields.accentuate.two_image_row_left or product.metafields.accentuate.full_width_image -%}
     <section class="lifestyle container padded">
       {%- if product.metafields.accentuate.two_image_row_left -%}
-        <div class="cols-2 row lifestyle__half">
+        <div class="cols-2 row lifestyle__half js-animate">
           {%- for left_image in product.metafields.accentuate.two_image_row_left -%}
-            <div>
+            <div data-anim="fade" data-anim-order="1">
               {%- assign img_url = left_image[0].cloudinary_src | append: 'w_1' | replace: 'w_1', 'w_{width}' -%}
               {% render 'block-image-cropped-lg', img_url: img_url, alt_text: left_image[0].alt_text %}
             </div>
-            <div>
+            <div  data-anim="fade" data-anim-order="2">
               {%- if product.metafields.accentuate.two_image_row__right[forloop.index0] -%}
                 {% assign right_image = product.metafields.accentuate.two_image_row__right[forloop.index0] %}
                 {%- assign img_url = right_image[0].cloudinary_src | append: 'w_1' | replace: 'w_1', 'w_{width}' -%}
@@ -321,9 +321,12 @@
       {%- endif -%}
       {%- if product.metafields.accentuate.full_width_image -%}
         {%- for full_width_image in product.metafields.accentuate.full_width_image -%}
-          <div class="row lifestyle__full">
-            {%- assign img_url = full_width_image[0].cloudinary_src | append: 'w_1' | replace: 'w_1', 'w_{width}' -%}
-            {% render 'block-image-cropped-lg', img_url: img_url, alt_text: left_image[0].alt_text %}
+          <div class="row lifestyle__full js-animate"  >
+            <div data-anim="fade" data-anim-order="1">
+              {%- assign img_url = full_width_image[0].cloudinary_src | append: 'w_1' | replace: 'w_1', 'w_{width}' -%}
+              {% render 'block-image-cropped-lg', img_url: img_url, alt_text: left_image[0].alt_text %}
+            </div>
+
           </div>
         {%- endfor -%}
       {%- endif -%}

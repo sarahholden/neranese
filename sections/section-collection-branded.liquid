@@ -1,11 +1,11 @@
-<header class="container">
+<header class="container js-animate">
   {% if collection.metafields.accentuate.collection_hero_image_link != blank %}
     <a href="/products/{{ collection.metafields.accentuate.collection_hero_image_link }}">
   {% endif %}
 
     {% if collection.metafields.accentuate.left_heading != blank %}
       <div class="text-content">
-        <h1>
+        <h1 data-anim="slide" data-anim-order="1">
           {{ collection.metafields.accentuate.left_heading | default: collection.title }}
           {%- if collection.metafields.accentuate.right_heading -%}
             <div class="dividing-line"></div>
@@ -16,7 +16,7 @@
     {% endif %}
 
     {% if collection.metafields.accentuate.collection_hero_image != blank %}
-      <span class="image-wrap">
+      <div class="image-wrap" data-anim="fade-slow">
         <div class="cropped-image-wrapper">
           {% for cl_image in collection.metafields.accentuate.collection_hero_image %}
             {%- assign img_url = cl_image.cloudinary_src | append: 'w_1' | replace: 'w_1', 'w_{width}' -%}
@@ -24,7 +24,7 @@
             {% render 'block-image-cropped', img_url: img_url, mobile_img_url: mobile_img_url, alt_text: collection.metafields.accentuate.collection_hero_alt_text %}
           {% endfor %}
         </div>
-      </span>
+      </div>
     {% endif %}
 
 
@@ -35,14 +35,21 @@
 </header>
 
 {% if collection.metafields.accentuate.collection_intro_text != blank %}
-  <section class="intro padded container">
+  <section class="intro padded container js-animate">
     {% for cl_image in collection.metafields.accentuate.collection_intro_text %}
-      <img class="lazyload fade-in"
-          data-src="{{ cl_image.cloudinary_src }}"
-          data-widths="[360, 540, 720, 900, 1080, 1600, 2200, 2800]"
-          data-aspectratio="{{ cl_image.aspect_ratio }}"
-          data-sizes="auto"
-          alt="{{ alt_text }}">
+      {% assign image_height = cl_image.height %}
+      {% assign image_width = cl_image.width %}
+      {% assign padding_bottom = image_height | times: 1.00 | divided_by: image_width | times: 100 %}
+      <div class="image-wrap" data-anim="fade" data-anim-order="1">
+        <div class="cropped-image-wrapper" style="padding-bottom: {{ padding_bottom }}%;">
+          <img class="lazyload fade-in"
+              data-src="{{ cl_image.cloudinary_src }}"
+              data-widths="[360, 540, 720, 900, 1080, 1600, 2200, 2800]"
+              data-aspectratio="{{ cl_image.aspect_ratio }}"
+              data-sizes="auto"
+              alt="{{ cl_image.alt_text }}">
+        </div>
+      </div>
     {% endfor %}
   </section>
 {% endif %}
@@ -53,20 +60,24 @@
 
     {%- if collection.metafields.accentuate.image_1[forloop.index0] -%}
 
-      <div class="image-left">
+      <div class="image-left js-animate">
         {% if collection.metafields.accentuate.image_1_product_link[forloop.index0] != blank %}
           <a href="/products/{{ collection.metafields.accentuate.image_1_product_link[forloop.index0] }}">
         {% endif %}
           {% if collection.metafields.accentuate.image_1[forloop.index0] != blank %}
             {% for cl_image in collection.metafields.accentuate.image_1[forloop.index0] %}
-              {%- assign img_url = cl_image.cloudinary_src | append: 'w_1' | replace: 'w_1', 'w_{width}' -%}
-              <div class="image-wrap">
-                <img class="lazyload fade-in"
-                    data-src="{{ img_url }}"
-                    data-widths="[360, 540, 720, 900, 1080, 1600, 2200, 2800]"
-                    data-aspectratio="{{ cl_image.aspect_ratio }}"
-                    data-sizes="auto"
-                    alt="{{ collection.metafields.accentuate.image_1_alt_text[forloop.index0] }}">
+              {% assign image_height = cl_image.height %}
+              {% assign image_width = cl_image.width %}
+              {% assign padding_bottom = image_height | times: 1.00 | divided_by: image_width | times: 100 %}
+              <div class="image-wrap" data-anim="fade-slow" data-anim-order="1">
+                <div class="cropped-image-wrapper" style="padding-bottom: {{ padding_bottom }}%;">
+                  <img class="lazyload fade-in"
+                      data-src="{{ cl_image.cloudinary_src }}"
+                      data-widths="[360, 540, 720, 900, 1080, 1600, 2200, 2800]"
+                      data-aspectratio="{{ cl_image.aspect_ratio }}"
+                      data-sizes="auto"
+                      alt="{{ cl_image.alt_text }}">
+                </div>
               </div>
             {% endfor %}
           {% endif %}
@@ -78,20 +89,24 @@
     {%- endif -%}
     {%- if collection.metafields.accentuate.image_2[forloop.index0] -%}
 
-      <div class="image-right">
+      <div class="image-right js-animate">
         {% if collection.metafields.accentuate.image_2_product_link[forloop.index0] != blank %}
           <a href="/products/{{ collection.metafields.accentuate.image_2_product_link[forloop.index0] }}">
         {% endif %}
           {% if collection.metafields.accentuate.image_2[forloop.index0] != blank %}
             {% for cl_image in collection.metafields.accentuate.image_2[forloop.index0] %}
-              {%- assign img_url = cl_image.cloudinary_src | append: 'w_1' | replace: 'w_1', 'w_{width}' -%}
-              <div class="image-wrap">
-                <img class="lazyload fade-in"
-                    data-src="{{ img_url }}"
-                    data-widths="[360, 540, 720, 900, 1080, 1600, 2200, 2800]"
-                    data-aspectratio="{{ cl_image.aspect_ratio }}"
-                    data-sizes="auto"
-                    alt="{{ collection.metafields.accentuate.image_2_alt_text[forloop.index0] }}">
+              {% assign image_height = cl_image.height %}
+              {% assign image_width = cl_image.width %}
+              {% assign padding_bottom = image_height | times: 1.00 | divided_by: image_width | times: 100 %}
+              <div class="image-wrap" data-anim="fade-slow" data-anim-order="2">
+                <div class="cropped-image-wrapper" style="padding-bottom: {{ padding_bottom }}%;">
+                  <img class="lazyload fade-in"
+                      data-src="{{ cl_image.cloudinary_src }}"
+                      data-widths="[360, 540, 720, 900, 1080, 1600, 2200, 2800]"
+                      data-aspectratio="{{ cl_image.aspect_ratio }}"
+                      data-sizes="auto"
+                      alt="{{ cl_image.alt_text }}">
+                </div>
               </div>
             {% endfor %}
           {% endif %}

@@ -3,15 +3,22 @@
   {% assign alt_text = image_alt | escape %}
   {%- assign img_url = lazy_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
   {% assign mobile_img_url = m_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
-  <picture>
-    <!--[if IE 9]><audio><![endif]-->
-    <source
-    data-src="{{ mobile_img_url }}"
-    media="--medium" />
-    <!--[if IE 9]></audio><![endif]-->
-    <img class="lazyload fade-in"
-        data-src="{{ img_url }}"
-        data-sizes="auto"
-        alt="{{ alt_text }}">
-  </picture>
+  
+  {% assign image_height = image.height %}
+  {% assign image_width = image.width %}
+  {% assign padding_bottom = image_height | times: 1.00 | divided_by: image_width | times: 100 %}
+
+  <div class="cropped-image-wrapper" style="padding-bottom: {{ padding_bottom }}%">
+    <picture>
+      <!--[if IE 9]><audio><![endif]-->
+      <source
+      data-src="{{ mobile_img_url }}"
+      media="--medium" />
+      <!--[if IE 9]></audio><![endif]-->
+      <img class="lazyload"
+          data-src="{{ img_url }}"
+          data-sizes="auto"
+          alt="{{ alt_text }}">
+    </picture>
+  </div>
 {% endif %}

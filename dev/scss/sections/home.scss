@@ -17,6 +17,12 @@
   }
 }
 
+.home-hero {
+  .home-hero__scale {
+    transform-origin: 50% 80% 0;
+  }
+}
+
 /* --------------------------------------------------------------------------
   INTRO
 -----------------------------------------------------------------------------*/
@@ -101,6 +107,7 @@
   text-align: center;
   position: relative;
   background: white;
+
   .image-wrap {
     width: 45.2rem;
     max-width: 90%;
@@ -110,20 +117,23 @@
     img {
       width: 100%;
     }
-
   }
-  h2 {
+
+  .heading-wrapper {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: $cream;
     width: 90%;
+  }
 
+  h2 {
+    color: $cream;
     @include mobile-only {
       font-size: 4.5rem;
     }
   }
+
   &.image-callout--page {
     padding-top: 4.2rem;
     padding-bottom: 4.2rem;
@@ -139,20 +149,24 @@
 .template-index .full-width-image-callout {
   color: $cream;
   position: relative;
-  h2 {
+  .heading-wrapper {
+    padding-top: 5rem;
     position: absolute;
     bottom: 2.5rem;
     left: 2.6rem;
     right: 2.6rem;
+    @include mobile-only {
+      bottom: 0.7rem;
+
+    }
+  }
+  h2 {
     display: flex;
     align-items: center;
     @include tablet-down {
       font-size: 4.5rem;
     }
-    @include mobile-only {
-      bottom: 0.7rem;
 
-    }
   }
   .dividing-line {
     margin-left: 2rem;

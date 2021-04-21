@@ -425,3 +425,15 @@
     <li>{% include 'icon-search' %}</li>
   </ul>
 </div>
+
+
+<div data-from='{"y": "-10"}' data-to='{"y": "250"}' data-mobile-from='{"y": "-10"}' data-mobile-to='{"y": "90"}'>
+  <div
+    data-from='{"scale": "1.18"}'
+    data-to='{"scale": "1"}'
+    data-start="top bottom"
+    data-end="center center">
+    {% render 'block-image-cropped', image: section.settings.image, m_image: section.settings.image_mobile, alt_text: section.settings.image_alt %}
+  </div>
+
+</div>

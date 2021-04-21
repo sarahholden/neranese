@@ -1,31 +1,40 @@
 <div class="instagram-section padded">
   <div class="cols-3">
     {% if section.settings.ig_link_text != blank %}
-      <a href="{{ section.settings.ig_link_url }}" class="scaling-image-wrapper">
+      <a href="{{ section.settings.ig_link_url }}" class="scaling-image-wrapper js-animate">
     {% endif %}
-      {% render 'block-image-cropped-lg', image: section.settings.image, alt_text: section.settings.image_alt, height: '101%' %}
+      <div data-anim="fade">
+        {% render 'block-image-cropped-lg', image: section.settings.image, alt_text: section.settings.image_alt, height: '101%' %}
+      </div>
     {% if section.settings.ig_link_text != blank %}
     </a>
     {% endif %}
 
-    <div class="instagram-section__text">
-      <h2 class="hd-2">{{ section.settings.title }}</h2>
+    <div class="instagram-section__text js-animate">
+      <h2 class="hd-2" data-anim="slide">{{ section.settings.title }}</h2>
 
-      {% render 'icon-star' %}
+      <div data-anim="slide" data-anim-order="2">
+        {% render 'icon-star' %}
+      </div>
 
       {% if section.settings.ig_link_text != blank %}
-        <a href="{{ section.settings.ig_link_url }}"
-          class="text-only caps--12 instagram-section__link"
-          {% if section.settings.ig_link_alt != blank %}alt="{{ section.settings.ig_link_alt }}"{% endif %}>
-          {{ section.settings.ig_link_text }}
-        </a>
+        <div data-anim="slide" data-anim-order="3">
+          <a href="{{ section.settings.ig_link_url }}"
+            class="text-only caps--12 instagram-section__link"
+            {% if section.settings.ig_link_alt != blank %}alt="{{ section.settings.ig_link_alt }}"{% endif %}>
+            {{ section.settings.ig_link_text }}
+          </a>
+        </div>
       {% endif %}
     </div>
 
     {% if section.settings.ig_link_text != blank %}
-      <a href="{{ section.settings.ig_link_url }}" class="scaling-image-wrapper hide-mobile">
+      <a href="{{ section.settings.ig_link_url }}" class="scaling-image-wrapper hide-mobile js-animate">
     {% endif %}
-      {% render 'block-image-cropped-lg', image: section.settings.image_right, alt_text: section.settings.image_right_alt, height: '101%' %}
+      <div data-anim="fade">
+        {% render 'block-image-cropped-lg', image: section.settings.image_right, alt_text: section.settings.image_right_alt, height: '101%' %}
+      </div>
+
     {% if section.settings.ig_link_text != blank %}
     </a>
     {% endif %}

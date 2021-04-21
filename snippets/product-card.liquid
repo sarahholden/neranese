@@ -1,71 +1,72 @@
 
 {%- if product.handle != blank -%}
-<div class="product-card {% if has_quick_shop == true or product.available == false %}has-quick-shop{% endif %}">
-  <a href="{{ product.url | within: collection }}">
-    <div class="product-card__image">
-      {%- if product.featured_image.alt -%}
-        {%- assign alt_text = product.featured_image.alt | escape -%}
-      {%- else -%}
-        {%- assign alt_text = product.title -%}
-      {%- endif -%}
-      {%- render 'block-image-cropped-lg', image: product.featured_image, alt_text: alt_text -%}
-      {%- if product.images[1] != blank -%}
-        <div class="hover-image">
-          {%- render 'block-image-cropped-lg', image: product.images[1], alt_text: product.title -%}
-        </div>
-      {%- endif -%}
-    </div>
-  </a>
-  <div class="product-card__text">
-    <p class="product-card__title">{{ product.title }}</p>
-      {%- if has_quick_shop == true or product.available == false -%}
-        <div class="product-card__middle">
-          {%- unless product.available -%}
-            {{ 'products.product.sold_out' | t }}
-          {%- else -%}
-
-            <div class="product-card__sizes">
-              {%- if product.variants.size > 1 -%}
-                {%- for swatch in product.options -%}
-                  {%- if swatch == 'Size' -%}
-                    <div class="product-card__sizes-heading">
-                      Available Sizes
-                    </div>
-                    {%- render 'swatch_product_card', swatch: swatch, product: product, placement: 'product_card'  -%}
-                  {%- endif -%}
-                {%- endfor -%}
-              {%- endif -%}
-            </div>
-          {%- endunless -%}
-
-        </div>
-      {%- endif -%}
-      <div class="product-card__bottom">
-        <p class="product-card__price">
-
-          {%- if product.compare_at_price > product.price and product.price_varies == false -%}
-            {{ product.price | money_without_trailing_zeros }}
-          {%- else -%}
-            {%- if product.price_varies -%}
-              {{ product.price_min | money_without_trailing_zeros }} -
-              {{ product.price_max | money_without_trailing_zeros }}
-            {%- else -%}
-              {{ product.price | money_without_trailing_zeros }}
-            {%- endif -%}
-          {%- endif -%}
-
-          {%- if product.compare_at_price > product.price -%}
-            <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
-            {%- if product.price_varies == false -%}
-              <s>{{ product.compare_at_price | money_without_trailing_zeros }}</s>
-            {%- endif -%}
-          {%- endif -%}
-
-        </p>
-        <p>Shop</p>
+<div data-stagger>
+  <div class="product-card {% if has_quick_shop == true or product.available == false %}has-quick-shop{% endif %}">
+    <a href="{{ product.url | within: collection }}">
+      <div class="product-card__image">
+        {%- if product.featured_image.alt -%}
+          {%- assign alt_text = product.featured_image.alt | escape -%}
+        {%- else -%}
+          {%- assign alt_text = product.title -%}
+        {%- endif -%}
+        {%- render 'block-image-cropped-lg', image: product.featured_image, alt_text: alt_text -%}
+        {%- if product.images[1] != blank -%}
+          <div class="hover-image">
+            {%- render 'block-image-cropped-lg', image: product.images[1], alt_text: product.title -%}
+          </div>
+        {%- endif -%}
       </div>
-    </div>
+    </a>
+    <div class="product-card__text">
+      <p class="product-card__title">{{ product.title }}</p>
+        {%- if has_quick_shop == true or product.available == false -%}
+          <div class="product-card__middle">
+            {%- unless product.available -%}
+              {{ 'products.product.sold_out' | t }}
+            {%- else -%}
 
+              <div class="product-card__sizes">
+                {%- if product.variants.size > 1 -%}
+                  {%- for swatch in product.options -%}
+                    {%- if swatch == 'Size' -%}
+                      <div class="product-card__sizes-heading">
+                        Available Sizes
+                      </div>
+                      {%- render 'swatch_product_card', swatch: swatch, product: product, placement: 'product_card'  -%}
+                    {%- endif -%}
+                  {%- endfor -%}
+                {%- endif -%}
+              </div>
+            {%- endunless -%}
+
+          </div>
+        {%- endif -%}
+        <div class="product-card__bottom">
+          <p class="product-card__price">
+
+            {%- if product.compare_at_price > product.price and product.price_varies == false -%}
+              {{ product.price | money_without_trailing_zeros }}
+            {%- else -%}
+              {%- if product.price_varies -%}
+                {{ product.price_min | money_without_trailing_zeros }} -
+                {{ product.price_max | money_without_trailing_zeros }}
+              {%- else -%}
+                {{ product.price | money_without_trailing_zeros }}
+              {%- endif -%}
+            {%- endif -%}
+
+            {%- if product.compare_at_price > product.price -%}
+              <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
+              {%- if product.price_varies == false -%}
+                <s>{{ product.compare_at_price | money_without_trailing_zeros }}</s>
+              {%- endif -%}
+            {%- endif -%}
+
+          </p>
+          <p>Shop</p>
+        </div>
+      </div>
+
+  </div>
 </div>
-
 {%- endif -%}

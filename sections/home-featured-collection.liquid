@@ -2,17 +2,23 @@
 {%- if section.settings.collection != blank or section.settings.title != blank -%}
   {%- assign collection = collections[section.settings.collection] -%}
 
-  <section class="image-callout image-callout--collection container padded">
-    {% if collection != blank %}
-      <a href="{{ collection.url }}">
-    {% endif %}
-      <div class="image-wrap">
-        {% render 'block-image', image: section.settings.image, m_image: section.settings.image, alt_text: section.settings.image_alt %}
-        <h2 class="hd-1">{{ section.settings.title }}</h2>
-      </div>
-    {% if collection != blank %}
-      </a>
-    {% endif %}
+  <section class="image-callout image-callout--collection container padded js-animate">
+
+    <div class="image-wrap">
+      {% if collection != blank %}
+        <a href="{{ collection.url }}">
+      {% endif %}
+        <div data-anim="fade" data-anim-order="1">
+          {% render 'block-image', image: section.settings.image, m_image: section.settings.image, alt_text: section.settings.image_alt %}
+        </div>
+        <div class="heading-wrapper">
+          <h2 class="hd-1" data-anim="slide" data-anim-order="2">{{ section.settings.title }}</h2>
+        </div>
+      {% if collection != blank %}
+        </a>
+      {% endif %}
+    </div>
+
   </section>
 
 {%- endif -%}

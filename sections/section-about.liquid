@@ -1,16 +1,18 @@
 <div class=" page-padded-top padded container">
-  <div class="about-wrapper">
+  <div class="about-wrapper js-animate">
     <div class="cols-2">
       <div class="">
-        <h1 class="show-mobile">{{ section.settings.title }}</h1>
-        <div class="image-wrap">
+        <h1 class="show-mobile" data-anim="slide" data-anim-order="1">{{ section.settings.title }}</h1>
+        <div class="image-wrap" data-anim="fade" data-anim-order="2">
           {% render 'block-image', image: section.settings.image, m_image: section.settings.image, alt_text: section.settings.image_alt %}
         </div>
       </div>
       <div>
-        <h1 class="hide-mobile">{{ section.settings.title }}</h1>
-        <div class="desc body--13">
-          {{ section.settings.desc }}
+        <div data-anim="fade" data-anim-order="1">
+          <h1 class="hide-mobile">{{ section.settings.title }}</h1>
+          <div class="desc body--13">
+            {{ section.settings.desc }}
+          </div>
         </div>
       </div>
     </div>
