@@ -9,7 +9,7 @@
               {% for childlink in link.links %}
                 {% if childlink.links != blank %}
                   <li>
-                    <a href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
+                    <a href="{{ childlink.url }}"><span>{{ childlink.title | escape }}</span></a>
                     <ul>
                       {% for grandchildlink in childlink.links %}
                         <li>
@@ -20,7 +20,7 @@
                   </li>
                 {% else %}
                   <li>
-                    <a href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
+                    <a href="{{ childlink.url }}"><span>{{ childlink.title | escape }}</span></a>
                   </li>
                 {% endif %}
               {% endfor %}
@@ -30,7 +30,9 @@
                 <a href="{{ section.settings.feature_link_url }}"
                   class="btn"
                   {% if section.settings.button_alt != blank %}alt="{{ section.settings.button_alt }}"{% endif %}>
-                  {% render 'block-image-cropped-lg', image: section.settings.feature_image, alt_text: section.settings.feature_image_alt %}
+                  <div class="scaling-image-wrapper">
+                    {% render 'block-image-cropped-lg', image: section.settings.feature_image, alt_text: section.settings.feature_image_alt %}
+                  </div>
                   <p class="caps--12">
                     {{ section.settings.feature_link_text }}
                   </p>

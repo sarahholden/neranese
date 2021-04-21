@@ -16,13 +16,21 @@
     {% endif %}
 
     {% if collection.metafields.accentuate.collection_hero_image != blank %}
-      <div class="image-wrap" data-anim="fade-slow">
-        <div class="cropped-image-wrapper">
-          {% for cl_image in collection.metafields.accentuate.collection_hero_image %}
-            {%- assign img_url = cl_image.cloudinary_src | append: 'w_1' | replace: 'w_1', 'w_{width}' -%}
-            {%- assign mobile_img_url = collection.metafields.accentuate.collection_mobile_hero_image[0].cloudinary_src | append: 'w_1' | replace: 'w_1', 'w_{width}' -%}
-            {% render 'block-image-cropped', img_url: img_url, mobile_img_url: mobile_img_url, alt_text: collection.metafields.accentuate.collection_hero_alt_text %}
-          {% endfor %}
+      <div class="image-wrap scaling-image-wrapper" data-anim="fade-slow">
+        <div
+          class="home-hero__scale"
+          data-from='{"scale": "1"}'
+          data-to='{"scale": "1.15", "ease": "Power1.easeIn"}'
+          data-start="top top"
+          data-end="bottom top">
+
+          <div class="cropped-image-wrapper">
+            {% for cl_image in collection.metafields.accentuate.collection_hero_image %}
+              {%- assign img_url = cl_image.cloudinary_src | append: 'w_1' | replace: 'w_1', 'w_{width}' -%}
+              {%- assign mobile_img_url = collection.metafields.accentuate.collection_mobile_hero_image[0].cloudinary_src | append: 'w_1' | replace: 'w_1', 'w_{width}' -%}
+              {% render 'block-image-cropped', img_url: img_url, mobile_img_url: mobile_img_url, alt_text: collection.metafields.accentuate.collection_hero_alt_text %}
+            {% endfor %}
+          </div>
         </div>
       </div>
     {% endif %}

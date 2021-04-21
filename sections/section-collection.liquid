@@ -7,9 +7,7 @@
     <section class="js-product-list container">
       <div class="cols-3 product-grid">
         {% for product in collection.products %}
-          
             {%- render 'product-card', product: product, has_quick_shop: true -%}
-          
         {% endfor %}
       </div>
 

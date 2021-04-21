@@ -10,11 +10,11 @@
   <meta itemprop="description" content="{{ product.description | strip_html | escape }}">
 
 
-  <section class="page-padded-top-sm container">
+  <section class="page-padded-top-sm container js-animate">
 
-    <div class="cols-2 swiper-cols no-gutters">
+    <div class="cols-2 swiper-cols no-gutters" >
       <!-- ====== IMAGE ======== -->
-      <div class="image-col">
+      <div class="image-col" data-anim="fade" data-anim-order="1">
         <!-- ====== GALLERY ======== -->
         {% if product.images.size > 1 %}
 
@@ -101,7 +101,7 @@
       </div>
 
 
-      <div class="text-col">
+      <div class="text-col"  data-anim="fade" data-anim-order="1">
 
         <div class="inner">
           <!-- ====== INTRO TEXT ======== -->
