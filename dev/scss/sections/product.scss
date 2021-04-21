@@ -77,9 +77,11 @@
   }
 }
 
-.template-product .add-to-cart-form {
-  margin-bottom: 3.4rem;
-  .btn[type="submit"] {
+.template-product {
+  .add-to-cart-form {
+    margin-bottom: 2rem;
+  }
+  .btn--product-form {
     margin-top: 1.6rem;
     width: 100%;
     @include mobile-only {
@@ -92,6 +94,7 @@
   PANEL SWITCHER
 -----------------------------------------------------------------------------*/
 .panel-switcher {
+  padding-top: 1.4rem;
   .panel-switcher__tabs {
     margin-bottom: 1.75rem;
   }
@@ -404,6 +407,13 @@ $swatchHeight: 2.4rem;
   text-decoration: line-through;
 }
 
+.pre-launch {
+  .swatch .swatch-element.soldout label {
+    opacity: 1;
+    text-decoration: none;
+  }
+}
+
 .swatch.error {
   background-color: #E8D2D2!important;
   color: #333!important;
@@ -435,5 +445,68 @@ $swatchHeight: 2.4rem;
     max-width: 1944px;
     width: 200%;
     transition: opacity 1s;
+  }
+}
+
+/* --------------------------------------------------------------------------
+  OUT OF STOCK / NOTIFY ME FORM
+-----------------------------------------------------------------------------*/
+.notify-me-form {
+  padding-bottom: 2rem;
+  min-height: 2rem;
+
+  .notify-me-form__heading,
+  .success-message {
+    font-family: $basis;
+    font-size: 0.9rem;
+    letter-spacing: 0;
+    line-height: 1;
+    margin-bottom: 0;
+  }
+  .btn--product-form {
+    margin-top: -.2rem;
+  }
+  .notify-me-form__heading {
+    cursor: pointer;
+    outline: none;
+  }
+
+  .notify-me-form-wrapper {
+    padding-top: 2.2rem;
+  }
+  form {
+    padding-bottom: 0.7rem;
+    border-bottom: 1px solid $borderColor;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0;
+  }
+  input {
+    font-size: 0.9rem;
+    letter-spacing: 0;
+    line-height: 1;
+    padding-bottom: 0;
+    border-bottom: 0;
+    margin-bottom: 0;
+  }
+
+  .input-wrapper {
+    flex-grow: 1;
+  }
+  button[type="submit"] {
+    width: 1.5rem;
+    margin-left: 1.5rem;
+    &:hover {
+      svg {
+        transform: translateX(.2rem);
+      }
+    }
+    svg {
+      transition: all 0.3s ease;
+      display: block;
+      width: 100%;
+      position: relative;
+      top: 0.1rem;
+    }
   }
 }

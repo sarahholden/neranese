@@ -26,6 +26,11 @@
     $('.js-price').html(slate.Currency.formatMoney(variantPriceTimesQuantity, theme.moneyFormat));
   });
 
+  $('.js-open-notify-me').on('click', function (e) {
+    e.preventDefault();
+
+    $('.js-notify-me-form-wrapper').fadeIn();
+  });
 
 
 

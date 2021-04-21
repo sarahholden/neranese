@@ -93,7 +93,6 @@ footer {
 				position: relative;
 				line-height: 1;
 				padding-bottom: 0.3rem;
-				opacity: 0;
 
 				&::before {
 					content: '';
@@ -113,24 +112,7 @@ footer {
 			}
 		}
 	}
-	&.animate-in .site-footer__nav a {
-		animation: footerLinkFade 1s ease forwards;
-	}
-}
 
-@for $i from 1 through 30 {
-	footer .site-footer__nav li:nth-of-type(#{$i}) a {
-		animation-delay: ($i - 1) * 0.05s;
-	}
-}
-
-@keyframes footerLinkFade {
-	0% {
-		opacity: 0;
-	}
-	100% {
-		opacity: 1;
-	}
 }
 
 /* --------------------------------------------------------------------------

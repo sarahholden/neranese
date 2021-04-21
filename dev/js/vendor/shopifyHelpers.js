@@ -820,9 +820,11 @@ theme.Product = (function() {
       if (variant.available) {
         $(selectors.addToCart, this.$container).prop('disabled', false);
         $(selectors.addToCartText, this.$container).html(theme.strings.addToCart);
+        $('.js-notify-me-form').hide();
       } else {
         $(selectors.addToCart, this.$container).prop('disabled', true);
         $(selectors.addToCartText, this.$container).html(theme.strings.soldOut);
+        $('.js-notify-me-form').fadeIn();
       }
     },
 

@@ -134,7 +134,7 @@
             <link itemprop="availability" href="http://schema.org/{% if current_variant.available %}InStock{% else %}OutOfStock{% endif %}">
 
             <!-- ====== FORM ======== -->
-            <form action="/cart/add" method="post" class="js-add-to-cart-form add-to-cart-form" enctype="multipart/form-data">
+            <form action="/cart/add" method="post" class="js-add-to-cart-form add-to-cart-form {% if product.metafields.accentuate.is_prelaunch == 'true' %}pre-launch{% endif %}" enctype="multipart/form-data">
 
 
               <!-- ====== COLOR SWATCHES ======== -->
@@ -244,24 +244,62 @@
               <label for="quantity" class="visually-hidden">{{ 'products.product.quantity' | t }}</label>
               <input type="hidden" id="quantity" class="js-quantity" name="quantity" value="1" min="1">
 
-              <button
-                type="submit"
-                name="add"
-                class="btn btn--black btn--star"
-                data-add-to-cart
-                {% unless current_variant.available %}disabled="disabled"{% endunless %}>
-                  <span data-add-to-cart-text>
-                    {% if current_variant.available %}
-                      {{ 'products.product.add_to_cart' | t }}
-                    {% else %}
-                      {{ 'products.product.sold_out' | t }}
-                    {% endif %}
-                  </span>
-                  <span class="icon-wrap">
-                    {% render 'icon-star' %}
-                  </span>
-              </button>
+              {% if product.metafields.accentuate.is_prelaunch != 'true' %}
+                <button
+                  type="submit"
+                  name="add"
+                  class="btn btn--black btn--product-form btn--star "
+                  data-add-to-cart
+                  {% unless current_variant.available %}disabled="disabled"{% endunless %}>
+                    <span data-add-to-cart-text>
+                      {% if current_variant.available %}
+                        {{ 'products.product.add_to_cart' | t }}
+                      {% else %}
+                        {{ 'products.product.sold_out' | t }}
+                      {% endif %}
+                    </span>
+                    <span class="icon-wrap">
+                      {% render 'icon-star' %}
+                    </span>
+                </button>
+              {% endif %}
+
             </form>
+
+            <div class="js-notify-me-form notify-me-form {% unless product.metafields.accentuate.is_prelaunch == 'true' or current_variant.available == false %}hide{% endunless %}">
+              {%- if product.metafields.accentuate.is_prelaunch == 'true' -%}
+                <button
+                  type="button"
+                  class="btn btn--black btn--product-form btn--star js-open-notify-me">
+                    <span>
+                      {%- if product.metafields.accentuate.button_text -%}
+                        {{ product.metafields.accentuate.button_text | default: "Notify Me" }}
+                      {% endif %}
+                    </span>
+                    <span class="icon-wrap">
+                      {% render 'icon-star' %}
+                    </span>
+                </button>
+              {%- else -%}
+
+                <h3 class="js-open-notify-me notify-me-form__heading" tabindex="0" aria-label="show notify me email signup form">{{ section.settings.back_in_stock_heading }}</h3>
+
+              {%- endif -%}
+
+              <div class="js-notify-me-form-wrapper notify-me-form-wrapper hide">
+                <form >
+                  <div class="input-wrapper">
+                    <label for="notify-email" class="visually-hidden">Email Address</label>
+                    <input type="email" id="notify-email" placeholder="Email Address*" required>
+                  </div>
+                  <button type="submit" class="text-only" aria-label="Join the Waitlist">
+                    {% render 'icon-arrow-right' %}
+                  </button>
+                  <p class="success-message hide">{{ section.settings.notify_me_successs | default: "Check your email for updates" }}</p>
+                </form>
+              </div>
+
+            </div>
 
           </div>
 
@@ -386,6 +424,18 @@
         "type": "text",
         "label": "Fit Guide Text",
         "default": "Fit Guide"
+      },
+      {
+        "id": "back_in_stock_heading",
+        "type": "text",
+        "label": "Sold Out Form Link Text",
+        "default": "Notify me when back in stock"
+      },
+      {
+        "id": "notify_me_successs",
+        "type": "text",
+        "label": "Notify Me Success Message",
+        "default": "We'll email you when this product is available."
       }
 
     ]
