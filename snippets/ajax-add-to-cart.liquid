@@ -96,53 +96,6 @@
     });
   });
 
-  $('#coming-soon-form').on( 'submit', function( e ) {
-    e.preventDefault();
-      var $form = $(this),
-          $email = $form.find('input[type="email"]'),
-          klaviyoListId = $email.attr('data-additional-list'),
-          klaviyoFormId = 'Vk667y';
-      var origin = '';
-
-    var data = {
-      'g': klaviyoListId,
-      '$fields': '$source,$email,$consent_method,$consent_form_id,$origin',
-      '$list_fields': '',
-      '$timezone_offset': Math.abs(new Date().getTimezoneOffset() / 60),
-      '$source': 'Coming soon subscription',
-      '$email': $email.val(),
-      '$consent_method': 'Klaviyo Form',
-      '$consent_form_id': klaviyoFormId,
-      '$origin': origin
-    };
-
-    $.ajax({
-      method: 'POST',
-      url: 'https://a.klaviyo.com/ajax/subscriptions/subscribe',
-      data: data
-    }).done(function (response) {
-      if (response.success) {
-        $form.find('.form-inputs').hide();
-        $form.find('.signup-success').fadeIn();
-        var data = {};
-        data.action = 'in_product';
-        data.reason = 'pre_launch';
-        data.email = $email.val();
-        data.product_name = $email.attr('data-product-name');
-        data.product_id = $email.attr('data-product-id');
-        _learnq.push(['interest', data ]);
-      } else {
-        console.error('Error Klaviyo: ', response.errors);
-        $form.find('.form-inputs').hide();
-        $form.find('.signup-errror').fadeIn();
-      }
-    }).fail(function (err) {
-      $form.find('.form-inputs').hide();
-      $form.find('.signup-errror').html(err).fadeIn();
-    });
-  });
-
-
 
 
 </script>
