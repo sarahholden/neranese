@@ -159,13 +159,13 @@
     ]
   },
   {
-    "name": "Search",
+    "name": "Product Card",
     "settings": [
       {
-        "type": "richtext",
-        "id": "search_placeholder",
-        "label": "Search Placeholder",
-        "default": "What would you like to find?"
+        "type": "text",
+        "id": "join_waitlist",
+        "label": "Join Waitlist Text",
+        "default": "Join Waitlist"
       }
     ]
   }

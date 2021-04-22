@@ -456,12 +456,17 @@ $swatchHeight: 2.4rem;
   min-height: 2rem;
 
   .notify-me-form__heading,
+  .signup-error,
+  .signup-success,
   .success-message {
     font-family: $basis;
     font-size: 0.9rem;
     letter-spacing: 0;
     line-height: 1;
     margin-bottom: 0;
+  }
+  .signup-error {
+    padding-top: 1rem;
   }
   .btn--product-form {
     margin-top: -.2rem;
@@ -475,11 +480,14 @@ $swatchHeight: 2.4rem;
     padding-top: 2.2rem;
   }
   form {
+    margin-bottom: 0;
+  }
+  .form-inputs {
     padding-bottom: 0.7rem;
     border-bottom: 1px solid $borderColor;
     display: flex;
     justify-content: space-between;
-    margin-bottom: 0;
+
   }
   input {
     font-size: 0.9rem;

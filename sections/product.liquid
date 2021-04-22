@@ -266,8 +266,13 @@
 
             </form>
 
-            <div class="js-notify-me-form notify-me-form {% unless product.metafields.accentuate.is_prelaunch == 'true' or current_variant.available == false %}hide{% endunless %}">
-              {%- if product.metafields.accentuate.is_prelaunch == 'true' -%}
+            {% assign is_prelaunch = product.metafields.accentuate.is_prelaunch %}
+            {% assign klaviyo_list_id = product.metafields.accentuate.klaviyo_list_id %}
+            {% assign current_available = current_variant.available %}
+
+            <div class="js-notify-me-form notify-me-form {% unless is_prelaunch == 'true' %}js-sold-out-form{% endunless %} {% unless is_prelaunch == 'true' or current_available == false %}hide{% endunless %}">
+              {%- if is_prelaunch == 'true' -%}
+                <!-- WAITLIST BUTTON -->
                 <button
                   type="button"
                   class="btn btn--black btn--product-form btn--star js-open-notify-me">
@@ -281,21 +286,25 @@
                     </span>
                 </button>
               {%- else -%}
-
+                <!-- NOTIFY ME WHEN BACK IN STOCK LINK -->
                 <h3 class="js-open-notify-me notify-me-form__heading" tabindex="0" aria-label="show notify me email signup form">{{ section.settings.back_in_stock_heading }}</h3>
 
               {%- endif -%}
 
               <div class="js-notify-me-form-wrapper notify-me-form-wrapper hide">
-                <form >
-                  <div class="input-wrapper">
-                    <label for="notify-email" class="visually-hidden">Email Address</label>
-                    <input type="email" id="notify-email" placeholder="Email Address*" required>
+                <form data-form="{% if is_prelaunch %}pre-launch{% else %}oos{% endif %}" {% if klaviyo_list_id %}data-klaviyo-id="{{ klaviyo_list_id }}"{% endif %}>
+                  <div class="form-inputs">
+                    <div class="input-wrapper">
+                      <label for="notify-email" class="visually-hidden">Email Address</label>
+                      <input type="email" name="email" id="notify-email" placeholder="Email Address*" data-variant-id="{{ current_variant.id }}" data-product-id="{{ product.id }}" data-product-name="{{ product.title }}" required>
+                    </div>
+                    <button type="submit" class="text-only" aria-label="Join the Waitlist">
+                      {% render 'icon-arrow-right' %}
+                    </button>
+                    <p class="success-message hide">{{ section.settings.notify_me_successs | default: "Check your email for updates" }}</p>
                   </div>
-                  <button type="submit" class="text-only" aria-label="Join the Waitlist">
-                    {% render 'icon-arrow-right' %}
-                  </button>
-                  <p class="success-message hide">{{ section.settings.notify_me_successs | default: "Check your email for updates" }}</p>
+                  <div class="signup-success hide">We will email you when this product is available.</div>
+                  <div class="signup-error hide">An error has prevented this form from being submitted.</div>
                 </form>
               </div>
 

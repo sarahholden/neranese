@@ -28,9 +28,120 @@
 
   $('.js-open-notify-me').on('click', function (e) {
     e.preventDefault();
-
     $('.js-notify-me-form-wrapper').fadeIn();
   });
+
+  /* ---------------------------------------------
+  OOS / COMING SOON NOTIFICATIONS
+  ------------------------------------------------ */
+
+  $('.js-notify-me-form-wrapper').on( 'submit', 'form', function (e) {
+    e.preventDefault();
+    var $form = $(this);
+    var formType = $form.attr('data-form');
+    var klaviyoListId = $form.attr('data-klaviyo-id') ? $form.attr('data-klaviyo-id') : 'XvSmLj';
+    var email = $form.find('[name="email"]').val();
+    var origin = '';
+    var signupUrl = formType == 'pre-launch' ? 'https://a.klaviyo.com/ajax/subscriptions/subscribe' : 'https://a.klaviyo.com/onsite/components/back-in-stock/subscribe';
+    var data;
+
+    if (formType == 'pre-launch') {
+      var data = {
+        'g': klaviyoListId,
+        "$fields": "$source,$consent,product,variant,Product Name",
+        '$consent': 'web',
+        '$consent_method': 'Waitist Form',
+        'email': email,
+        '$timezone_offset': Math.abs(new Date().getTimezoneOffset() / 60),
+        'variant': $form.find('[name="email"]').attr('data-variant-id'),
+        'product': $form.find('[name="email"]').attr('data-product-id'),
+        'Product Name': $form.find('[name="email"]').attr('data-product-name'),
+        '$source': 'PDP Waitlist',
+      };
+    } else {
+      // 'a' is public api key from Klaviyo account settings
+      var data = {
+        'g': klaviyoListId,
+        'a': 'XnN2Bp',
+        'platform': 'shopify',
+        '$consent': 'web',
+        '$consent_method': 'Waitist Form',
+        'email': email,
+        '$timezone_offset': Math.abs(new Date().getTimezoneOffset() / 60),
+        'variant': $form.find('[name="email"]').attr('data-variant-id'),
+        'product': $form.find('[name="email"]').attr('data-product-id'),
+        'Product Name': $form.find('[name="email"]').attr('data-product-name'),
+        '$source': 'PDP Waitlist',
+      };
+    }
+
+
+    $.ajax({
+      method: 'POST',
+      url: signupUrl,
+      data: data
+    }).done(function (response) {
+      if (response.success) {
+        $form.find('.form-inputs').hide();
+        $form.find('.signup-success').fadeIn();
+      } else {
+        console.error('Error Klaviyo: ', response.errors);
+        $form.find('.form-inputs').hide();
+        $form.find('.signup-errror').fadeIn();
+      }
+    }).fail(function (err) {
+      console.error('Error Klaviyo: ', err);
+      // $form.find('.form-inputs').hide();
+      $form.find('.signup-errror').html(err).fadeIn();
+    });
+  });
+
+  $('#coming-soon-form').on( 'submit', function( e ) {
+    e.preventDefault();
+      var $form = $(this),
+          $email = $form.find('input[type="email"]'),
+          klaviyoListId = $email.attr('data-additional-list'),
+          klaviyoFormId = 'Vk667y';
+      var origin = '';
+
+    var data = {
+      'g': klaviyoListId,
+      '$fields': '$source,$email,$consent_method,$consent_form_id,$origin',
+      '$list_fields': '',
+      '$timezone_offset': Math.abs(new Date().getTimezoneOffset() / 60),
+      '$source': 'Coming soon subscription',
+      '$email': $email.val(),
+      '$consent_method': 'Klaviyo Form',
+      '$consent_form_id': klaviyoFormId,
+      '$origin': origin
+    };
+
+    $.ajax({
+      method: 'POST',
+      url: 'https://a.klaviyo.com/ajax/subscriptions/subscribe',
+      data: data
+    }).done(function (response) {
+      if (response.success) {
+        $form.find('.form-inputs').hide();
+        $form.find('.signup-success').fadeIn();
+        var data = {};
+        data.action = 'in_product';
+        data.reason = 'pre_launch';
+        data.email = $email.val();
+        data.product_name = $email.attr('data-product-name');
+        data.product_id = $email.attr('data-product-id');
+        _learnq.push(['interest', data ]);
+      } else {
+        console.error('Error Klaviyo: ', response.errors);
+        $form.find('.form-inputs').hide();
+        $form.find('.signup-errror').fadeIn();
+      }
+    }).fail(function (err) {
+      $form.find('.form-inputs').hide();
+      $form.find('.signup-errror').html(err).fadeIn();
+    });
+  });
+
 
 
 

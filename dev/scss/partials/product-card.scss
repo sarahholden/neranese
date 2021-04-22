@@ -124,6 +124,12 @@
     }
 
   }
+  &.pre-launch {
+    .product-card__size .soldout {
+      opacity: 1;
+      text-decoration: none;
+    }
+  }
 }
 
 /* PRODUCT CARD - HOVER ================== */

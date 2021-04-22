@@ -2991,8 +2991,9 @@ Site Credit
 .newsletter-signup .error-message {
   font-size: 0.8rem;
   position: absolute;
-  bottom: -1.8rem;
-  left: 2.6rem;
+  bottom: 0.3rem;
+  left: 3.6rem;
+  color: red;
 }
 
 /* --------------------------------------------------------------------------
@@ -3996,6 +3997,11 @@ Buttons
 .product-card .product-card__size span.soldout {
   text-decoration: line-through;
   opacity: 0.7;
+}
+
+.product-card.pre-launch .product-card__size .soldout {
+  opacity: 1;
+  text-decoration: none;
 }
 
 /* PRODUCT CARD - HOVER ================== */
@@ -5551,12 +5557,18 @@ Accordions
 }
 
 .notify-me-form .notify-me-form__heading,
+.notify-me-form .signup-error,
+.notify-me-form .signup-success,
 .notify-me-form .success-message {
   font-family: "Basis Grotesque Pro", sans-serif;
   font-size: 0.9rem;
   letter-spacing: 0;
   line-height: 1;
   margin-bottom: 0;
+}
+
+.notify-me-form .signup-error {
+  padding-top: 1rem;
 }
 
 .notify-me-form .btn--product-form {
@@ -5573,11 +5585,14 @@ Accordions
 }
 
 .notify-me-form form {
+  margin-bottom: 0;
+}
+
+.notify-me-form .form-inputs {
   padding-bottom: 0.7rem;
   border-bottom: 1px solid #363636;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 0;
 }
 
 .notify-me-form input {
