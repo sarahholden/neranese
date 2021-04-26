@@ -164,6 +164,10 @@ Site Credit
 
 	button[type="submit"] {
 		padding: 0;
+		@include mobile-only {
+			position: relative;
+			top: 0.2rem;
+		}
 	}
 	.input-wrapper {
 		flex-grow: 1;

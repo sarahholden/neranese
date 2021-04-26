@@ -1671,14 +1671,6 @@ Responsive Design
   }
 }
 
-html {
-  padding-bottom: 0 !important;
-}
-
-#preview-bar-iframe {
-  display: none !important;
-}
-
 /* --------------------------------------------------------------------------
 Layout Helpers
 -----------------------------------------------------------------------------*/
@@ -2119,6 +2111,14 @@ Body Open Mobile Nav Styles
 -----------------------------------------------------------------------------*/
 .open-mobile-nav {
   /* Prevent the body from scrolling under the mobile navigation */
+}
+
+@media (max-width: 767px) {
+  .open-mobile-nav {
+    position: fixed;
+    overflow: hidden;
+    width: 100%;
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -2690,8 +2690,13 @@ Search
 .nav-search form {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
   margin-bottom: 0;
+}
+
+@media (min-width: 1024px) {
+  .nav-search form {
+    align-items: baseline;
+  }
 }
 
 .nav-search .input-wrap {
@@ -2752,7 +2757,7 @@ Search
   width: 3.5rem;
   margin-right: 0.9rem;
   position: relative;
-  top: 0.6rem;
+  top: 0.4rem;
 }
 
 .nav-search button[type="submit"]:hover svg {
@@ -3001,6 +3006,13 @@ Site Credit
   padding: 0;
 }
 
+@media (max-width: 767px) {
+  .newsletter-signup button[type="submit"] {
+    position: relative;
+    top: 0.2rem;
+  }
+}
+
 .newsletter-signup .input-wrapper {
   flex-grow: 1;
   margin-right: 2rem;
@@ -3075,6 +3087,18 @@ input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-results-button,
 input[type="search"]::-webkit-search-results-decoration {
   display: none;
+}
+
+.newsletter-signup input:-webkit-autofill,
+.newsletter-signup input:-webkit-autofill:active,
+.newsletter-signup input:-webkit-autofill:focus,
+.newsletter-signup input:-webkit-autofill:hover,
+input:-webkit-autofill,
+input:-webkit-autofill:active,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:hover {
+  -webkit-box-shadow: 0 0 0 1000px #F2EFE8 inset !important;
+  -webkit-text-fill-color: #363636;
 }
 
 /* SELECT ================== */
@@ -4036,7 +4060,7 @@ Buttons
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 1023px) {
   .product-card .product-card__middle {
     display: none;
   }

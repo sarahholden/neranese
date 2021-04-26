@@ -59,6 +59,18 @@ input[type="search"]::-webkit-search-results-decoration {
 	display: none;
 }
 
+.newsletter-signup input:-webkit-autofill,
+.newsletter-signup input:-webkit-autofill:active,
+.newsletter-signup input:-webkit-autofill:focus,
+.newsletter-signup input:-webkit-autofill:hover,
+input:-webkit-autofill,
+input:-webkit-autofill:active,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:hover {
+	-webkit-box-shadow: 0 0 0 1000px #F2EFE8 inset !important;
+	-webkit-text-fill-color: $primaryTextColor;
+}
+
 /* SELECT ================== */
 .selectric-wrapper {
 	margin-bottom: 2rem;

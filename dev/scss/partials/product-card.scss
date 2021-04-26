@@ -135,7 +135,7 @@
       transform: translate(-50%, -25%);
       transition: $smoothTransition;
     }
-    @include mobile-only {
+    @include tablet-down {
       display: none;
     }
   }

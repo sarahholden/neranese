@@ -37,8 +37,11 @@ Search
   form {
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
     margin-bottom: 0;
+    @include desktop-up {
+      align-items: baseline;
+
+    }
   }
   .input-wrap {
     position: relative;
@@ -88,7 +91,7 @@ Search
     width: 3.5rem;
     margin-right: 0.9rem;
     position: relative;
-    top: 0.6rem;
+    top: 0.4rem;
 
     &:hover {
       svg {

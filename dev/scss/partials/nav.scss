@@ -5,9 +5,11 @@ Body Open Mobile Nav Styles
 -----------------------------------------------------------------------------*/
 .open-mobile-nav {
   /* Prevent the body from scrolling under the mobile navigation */
-  // position: fixed;
-  // overflow: hidden;
-  // width: 100%;
+  @include mobile-only {
+    position: fixed;
+    overflow: hidden;
+    width: 100%;
+  }
 }
 
 /* --------------------------------------------------------------------------

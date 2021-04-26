@@ -374,6 +374,9 @@ $(document).ready(function() {
         allowTouchMove: true,
         loop: false,
         spaceBetween: 15,
+        mousewheel: {
+          forceToAxis: true
+        },
       });
 
     };
