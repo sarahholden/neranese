@@ -106,7 +106,7 @@ Header Navigation Styles
 .nav-wrapper__right a,
 .nav-wrapper__right button {
 
-  @include tablet-up {
+  @include desktop-up {
     overflow: hidden;
     display: inline-block;
     position: relative;
@@ -231,15 +231,22 @@ Header Navigation Styles
 Hamburger Icon styles
 -----------------------------------------------------------------------------*/
 .hamburger {
-  width: 27px;
-  height: 8px;
+  width: calc(27px + 3.2rem);
+  height: 38px;
+  padding: 15px 1.6rem !important;
   position: absolute;
-  left: 1.6rem;
-  top: 2.7rem;
+  left: 0;
+  top: 1.2rem;
   display: none;
   z-index: 202;
   cursor: pointer;
-  span {
+  .hamburger__inner {
+    display: block;
+    position: relative;
+    height: 8px;
+    width: 27px;
+  }
+  .hamburger__line {
     display: block;
     border-bottom: 1px solid $primaryTextColor;
     width: 100%;
@@ -247,12 +254,13 @@ Hamburger Icon styles
     height: 1px;
     transition: all 0.2s ease-in-out;
   }
-  span:first-of-type {
+  .hamburger__line:first-of-type {
     top: 0;
   }
-  span:last-of-type {
+  .hamburger__line:last-of-type {
     bottom: 0;
   }
+
 }
 
 /* ==============   HAMBURGER MOBILE STYLES  ============== */
@@ -268,11 +276,11 @@ Hamburger Icon styles
     /* Rotate lines to form an X */
     .hamburger {
       position: fixed;
-      span:first-of-type {
+      .hamburger__line:first-of-type {
         top: 50%;
         transform: rotate(32deg);
       }
-      span:last-of-type {
+      .hamburger__line:last-of-type {
         bottom: 50%;
         transform: translateY(50%);
       }
@@ -299,6 +307,7 @@ Hamburger Icon styles
     letter-spacing: 0.185rem;
     z-index: 202;
     transition: all 0.4s ease;
+    padding: 1.5rem 0 1.5rem 2rem;
   }
 }
 
@@ -353,6 +362,9 @@ Hamburger Icon styles
         background: rgba($primaryTextColor, .6);
       }
     }
+    .show-tablet-down {
+      display: none;
+    }
     a {
       font-size: 1.2rem;
       letter-spacing: 0.185rem;
@@ -367,33 +379,34 @@ Hamburger Icon styles
         transform: translateX(-.2rem);
       }
     }
-    .nav-wrapper__callout {
-      width: 14.3rem;
-      a {
-        display: block;
-        width: 100%;
-        padding: 0;
-        &:hover {
-          .cropped-image-wrapper {
-            opacity: 0.9;
-            transform: scale(1.04);
-          }
-        }
-      }
-      .cropped-image-wrapper {
-        padding-bottom: 122%;
-        margin-bottom: 0.9rem;
-        transition: all 1.2s ease;
-      }
 
-      p {
-        display: block;
-        text-align: justify;
-        &:after {
-          content: "";
-          display: inline-block;
-          width: 100%;
+  }
+  .nav-wrapper__callout {
+    width: 14.3rem;
+    a {
+      display: block;
+      width: 100%;
+      padding: 0;
+      &:hover {
+        .cropped-image-wrapper {
+          opacity: 0.9;
+          transform: scale(1.04);
         }
+      }
+    }
+    .cropped-image-wrapper {
+      padding-bottom: 122%;
+      margin-bottom: 0.9rem;
+      transition: all 1.2s ease;
+    }
+
+    p {
+      display: block;
+      text-align: justify;
+      &:after {
+        content: "";
+        display: inline-block;
+        width: 100%;
       }
     }
   }

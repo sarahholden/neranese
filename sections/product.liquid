@@ -145,7 +145,7 @@
                   {%- for tag in product.tags -%}
                     {%- assign tag_prefix = tag | slice: 0, 5 -%}
                     {%- if tag_prefix == "_alt_" -%}
-                      {%- assign tag_alt = tag -%}
+                      {%- assign tag_alt = tag | strip -%}
                       {%- break -%}
                     {%- endif -%}
                   {%- endfor -%}

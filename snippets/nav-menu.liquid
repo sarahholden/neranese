@@ -9,7 +9,7 @@
               {% for childlink in link.links %}
                 {% if childlink.links != blank %}
                   <li>
-                    <a href="{{ childlink.url }}"><span>{{ childlink.title | escape }}</span></a>
+                    <a href="{{ childlink.url }}" class="{% if childlink.title == 'Shop All' %}show-tablet-down{% endif %}"><span>{{ childlink.title | escape }}</span></a>
                     <ul>
                       {% for grandchildlink in childlink.links %}
                         <li>
@@ -19,8 +19,8 @@
                     </ul>
                   </li>
                 {% else %}
-                  <li>
-                    <a href="{{ childlink.url }}"><span>{{ childlink.title | escape }}</span></a>
+                  <li class="{% if childlink.title == 'Shop All' %}show-tablet-down{% endif %}">
+                    <a href="{{ childlink.url }}" ><span>{{ childlink.title | escape }}</span></a>
                   </li>
                 {% endif %}
               {% endfor %}

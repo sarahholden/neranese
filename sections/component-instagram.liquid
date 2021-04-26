@@ -11,16 +11,24 @@
     {% endif %}
 
     <div class="instagram-section__text js-animate">
-      <h2 class="hd-2" data-anim="slide">{{ section.settings.title }}</h2>
+      <h2 class="hd-2" data-anim="slide">
+        <a href="{{ section.settings.ig_link_url }}"
+          {% if section.settings.ig_link_alt != blank %}alt="{{ section.settings.ig_link_alt }}"{% endif %}>
+          {{ section.settings.title }}
+        </a>
+      </h2>
 
       <div data-anim="slide" data-anim-order="2">
-        {% render 'icon-star' %}
+        <a href="{{ section.settings.ig_link_url }}"
+          {% if section.settings.ig_link_alt != blank %}alt="{{ section.settings.ig_link_alt }}"{% endif %}>
+          {% render 'icon-star' %}
+        </a>
       </div>
 
       {% if section.settings.ig_link_text != blank %}
         <div data-anim="slide" data-anim-order="3">
           <a href="{{ section.settings.ig_link_url }}"
-            class="text-only caps--12 instagram-section__link"
+            class="caps--12 instagram-section__link"
             {% if section.settings.ig_link_alt != blank %}alt="{{ section.settings.ig_link_alt }}"{% endif %}>
             {{ section.settings.ig_link_text }}
           </a>

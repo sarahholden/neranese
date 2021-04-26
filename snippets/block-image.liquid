@@ -3,12 +3,12 @@
   {% assign alt_text = image_alt | escape %}
   {%- assign img_url = lazy_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
   {% assign mobile_img_url = m_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
-  
+
   {% assign image_height = image.height %}
   {% assign image_width = image.width %}
   {% assign padding_bottom = image_height | times: 1.00 | divided_by: image_width | times: 100 %}
 
-  <div class="cropped-image-wrapper" style="padding-bottom: {{ padding_bottom }}%">
+  <div class="cropped-image-wrapper" style="padding-bottom: {{ padding_bottom }}%;">
     <picture>
       <!--[if IE 9]><audio><![endif]-->
       <source

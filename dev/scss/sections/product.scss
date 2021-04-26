@@ -156,7 +156,7 @@
 .swiper-prev {
   position: absolute;
   top: 50%;
-  width: 1.1rem;
+  width: 5.1rem;
   transform: translateY(-150%);
   z-index: 3;
   @include mobile-only {
@@ -167,10 +167,12 @@
   }
 }
 .swiper-prev {
-  left: 1.5rem;
+  left: 0;
+  padding: 2rem 2.5rem 2rem 1.5rem;
 }
 .swiper-next {
-  right: 1.5rem;
+  right: 0;
+  padding: 2rem 1.5rem 2rem 2.5rem;
 }
 
 /* --------------------------------------------------------------------------

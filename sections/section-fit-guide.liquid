@@ -1,7 +1,10 @@
-<header class="container page-padded-top">
-  <div class="inner">
+<header class="container page-padded-top js-animate">
+  <div class="inner" data-anim="fade" data-anim-order="1">
     <h1 class="body--24">{{ section.settings.desc }}</h1>
-    {% render 'block-image', image: section.settings.image, m_image: section.settings.image, alt_text: section.settings.image_alt %}
+    <div class="scaling-image-wrapper">
+      {% render 'block-image', image: section.settings.image, m_image: section.settings.image, alt_text: section.settings.image_alt %}
+    </div>
+
   </div>
 </header>
 
