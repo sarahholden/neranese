@@ -1,12 +1,16 @@
 
 {%- if section.blocks.size > 0 -%}
-  <div class="featured-products container padded">
-    <div class="cols-3 product-grid">
-      {%- for block in section.blocks -%}
-        {%- if block.settings.product != blank -%}
-          {% render 'product-card', product: all_products[block.settings.product] %}
-        {%- endif -%}
-      {%- endfor -%}
+  <div class="featured-products has-mobile-swiper container padded">
+    <div class="swiper-container swiper-container-mobile">
+      <div class="swiper-wrapper tablet-up-grid product-grid">
+        {%- for block in section.blocks -%}
+          {%- if block.settings.product != blank -%}
+            <div class="swiper-slide">
+              {% render 'product-card', product: all_products[block.settings.product] %}
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
     </div>
   </div>
 {%- endif -%}

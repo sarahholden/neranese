@@ -1,6 +1,6 @@
 
 {%- if product.handle != blank -%}
-<div data-stagger>
+<div data-stagger class="product-card-outer">
   <div class="product-card {% if has_quick_shop == true or product.available == false %}has-quick-shop{% endif %} {% if product.metafields.accentuate.is_prelaunch == 'true' %}pre-launch{% endif %}">
     <a href="{{ product.url | within: collection }}">
       <div class="product-card__image">
@@ -63,7 +63,7 @@
             {%- endif -%}
 
           </p>
-          <p>
+          <p class="hide-mobile">
             {%- if product.metafields.accentuate.is_prelaunch == 'true' -%}
               {{ settings.join_waitlist }}
             {%- else -%}

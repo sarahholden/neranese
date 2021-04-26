@@ -1,26 +1,34 @@
-<div class="container">
-  <div class="cols-3 product-grid">
-    <!-- RELATED PRODUCTS -->
-    {% if product.metafields.accentuate.product != blank %}
-      {% assign product_refs = product.metafields.accentuate.product | split: "|" %}
-      {% for product_handle in product_refs %}
-        {% assign product_ref = all_products[product_handle] %}
-        {%- render 'product-card', product: product_ref -%}
+<div class="has-mobile-swiper container">
+  <div class="swiper-container swiper-container-mobile">
+    <div class="swiper-wrapper tablet-up-grid product-grid">
+      <!-- RELATED PRODUCTS -->
+      {% if product.metafields.accentuate.product != blank %}
+        {% assign product_refs = product.metafields.accentuate.product | split: "|" %}
+        {% for product_handle in product_refs %}
+          {% assign product_ref = all_products[product_handle] %}
+          <div class="swiper-slide">
+            {%- render 'product-card', product: product_ref -%}
+          </div>
 
-      {% endfor %}
+        {% endfor %}
 
-    <!-- BACKUP: CURRENT COLLECTION -->
-    {% elsif collection != blank %}
-      {% for product in collection.products limit: 3 %}
-        {%- render 'product-card', product: product -%}
-      {% endfor %}
+      <!-- BACKUP: CURRENT COLLECTION -->
+      {% elsif collection != blank %}
+        {% for product in collection.products limit: 3 %}
+          <div class="swiper-slide">
+            {%- render 'product-card', product: product -%}
+          </div>
+        {% endfor %}
 
-    <!-- BACKUP: ALL PRODUCTS -->
-    {% else %}
-      {% assign collection = collections['all'] %}
-      {% for product in collection.products limit: 3 %}
-        {%- render 'product-card', product: product -%}
-      {% endfor %}
-    {% endif %}
+      <!-- BACKUP: ALL PRODUCTS -->
+      {% else %}
+        {% assign collection = collections['all'] %}
+        {% for product in collection.products limit: 3 %}
+          <div class="swiper-slide">
+            {%- render 'product-card', product: product -%}
+          </div>
+        {% endfor %}
+      {% endif %}
+    </div>
   </div>
 </div>
