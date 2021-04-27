@@ -4593,6 +4593,8 @@ Accordions
   .template-index .intro .intro__image h2 {
     text-align: center;
     margin-bottom: 2rem;
+    font-size: 4.5rem;
+    letter-spacing: 0.075rem;
   }
 }
 
