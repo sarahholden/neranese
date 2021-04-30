@@ -5027,6 +5027,31 @@ Accordions
 }
 
 /* --------------------------------------------------------------------------
+  SHOP PAGINATION
+-----------------------------------------------------------------------------*/
+.pagination {
+  text-align: center;
+  margin-top: 5rem;
+}
+
+.pagination a {
+  display: inline-block;
+  margin-left: 2rem;
+}
+
+.pagination span {
+  display: inline-block;
+  margin-left: 0.8rem;
+}
+
+.pagination svg {
+  width: 0.6rem;
+  position: relative;
+  top: 0.15rem;
+  margin-left: 0.8rem;
+}
+
+/* --------------------------------------------------------------------------
   Press page
 -----------------------------------------------------------------------------*/
 .page-press header {

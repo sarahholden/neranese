@@ -164,7 +164,8 @@
                                   <a href="{{ alt_product.url }}" title="{{ alt_product.title }}">
                                 {%- endunless -%}
                                   {% for color_option in alt_product.options_by_name['Color'].values %}
-                                    <img src="{{ color_option | handle | append: '.' | append: 'jpg' | file_img_url: '40x40' }}" alt="{{ color_option }}">
+                                    {% assign timestamp =  'now' | date: "%s" %}
+                                    <img src="{{ color_option | handle | append: '.' | append: 'jpg' | file_img_url: '40x40' }}?t={{ timestamp }}" alt="{{ color_option }}">
                                   {% endfor %}
                                 {%- unless alt_product.id == product.id -%}
                                   </a>

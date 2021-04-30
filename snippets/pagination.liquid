@@ -1,3 +1,15 @@
-<div class="pagination container">
-  {{ paginate | default_pagination }}
+<div class="pagination container caps--10">
+  {% if paginate.previous.is_link %}
+    <a href="{{ paginate.previous.url }}">
+      {% render 'icon-caret-left' %}
+      <span>Previous</span>
+    </a>
+  {% endif %}
+  {% if paginate.next.is_link %}
+
+    <a href="{{ paginate.next.url }}">
+      <span>Next</span>
+      {% render 'icon-caret-right' %}
+    </a>
+  {% endif %}
 </div>

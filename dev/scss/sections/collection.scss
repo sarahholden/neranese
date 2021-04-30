@@ -235,3 +235,25 @@
     }
   }
 }
+
+/* --------------------------------------------------------------------------
+  SHOP PAGINATION
+-----------------------------------------------------------------------------*/
+.pagination {
+  text-align: center;
+  margin-top: 5rem;
+  a {
+    display: inline-block;
+    margin-left: 2rem;
+  }
+  span {
+    display: inline-block;
+    margin-left: 0.8rem;
+  }
+  svg {
+    width: 0.6rem;
+    position: relative;
+    top: 0.15rem;
+    margin-left: 0.8rem;
+  }
+}
