@@ -2,7 +2,7 @@
   <div class="top-row">
     <span></span>
     {%- if location == 'cart_drawer' -%}
-      <button class="text-button js-close-cart close-cart-text text-only" type="button">
+      <button class="text-button js-close-cart close-cart-text text-only" type="button" aria-label="Close Cart drawer">
         {% render 'icon-close-kati' %}
       </button>
     {%- endif -%}
@@ -11,8 +11,8 @@
     <div class="cart-product-wrap" rv-each-item="cart.items">
 
       <div class="cart-image">
-        <a rv-href="item.url">
-          <img rv-src="item.image | productImageSize '180x272_crop_center'" src="">
+        <a rv-href="item.url" title="Visit product page">
+          <img rv-src="item.image | productImageSize '180x272_crop_center'" src="" rv-alt="item.product_title">
         </a>
       </div>
       <div class="info-col">
